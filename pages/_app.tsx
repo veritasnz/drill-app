@@ -5,13 +5,13 @@ import "../src/styles/style.global.scss";
 
 import StatsContextProvider from "../src/context/StatsContextProvider";
 import SettingsContextProvider from "../src/context/SettingsContextProvider";
-import QuestionHistoryContextProvider from "../src/context/QuestionHistoryContextProvider";
+import ProgressContextProvider from "../src/context/ProgressContextProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
         <StatsContextProvider>
             <SettingsContextProvider>
-                <QuestionHistoryContextProvider>
+                <ProgressContextProvider>
                     <Head>
                         <title>Create Next App</title>
                         <meta
@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                         <link rel="icon" href="/favicon.ico" />
                     </Head>
                     <Component {...pageProps} />
-                </QuestionHistoryContextProvider>
+                </ProgressContextProvider>
             </SettingsContextProvider>
         </StatsContextProvider>
     );

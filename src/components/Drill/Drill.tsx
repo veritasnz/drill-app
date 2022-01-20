@@ -1,12 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 import ParticleEnum from "../../models/ParticleEnum.model";
-
 import { checkAnswerIsCorrect } from "../../lib/drill-functions";
 
 import SettingsContext from "../../context/settings-context";
 import StatsContext from "../../context/stats-context";
-import QuestionHistoryContext from "../../context/question-history-context";
+import ProgressContext from "../../context/progress-context";
 import useDrill from "../../hooks/useDrill";
 import useTimer from "../../hooks/useTimer";
 
@@ -18,12 +17,9 @@ import Key from "./Key";
 const Drill: React.FC = () => {
     const settingsCtx = useContext(SettingsContext);
     const statsCtx = useContext(StatsContext);
-    const questionCtx = useContext(QuestionHistoryContext);
+    const questionCtx = useContext(ProgressContext);
 
-    const { nextQuestion, correctAnswerHandler } = useDrill(
-        settingsCtx,
-        questionCtx
-    );
+    const { nextQuestion, correctAnswerHandler } = useDrill(questionCtx);
 
     const [isTicking, startTimer] = useTimer(correctAnswerHandler, 1000);
 
@@ -51,7 +47,7 @@ const Drill: React.FC = () => {
 
     return (
         <>
-            <LevelProgress settingsCtx={settingsCtx} />
+            <LevelProgress context={questionCtx} />
 
             <div
                 className={`${s["question"]} ${
@@ -65,35 +61,54 @@ const Drill: React.FC = () => {
                 </p>
             </div>
 
-            <div className={`${s["keyboard"]} ${isTicking && s["keyboard--disabled"]}`}>
-                <Key onAttempt={attemptHandler} particle={ParticleEnum.GA} isTicking={isTicking}/>
-                <Key onAttempt={attemptHandler} particle={ParticleEnum.DE} isTicking={isTicking}/>
-                <Key onAttempt={attemptHandler} particle={ParticleEnum.TO} isTicking={isTicking}/>
+            <div
+                className={`${s["keyboard"]} ${
+                    isTicking && s["keyboard--disabled"]
+                }`}
+            >
+                <Key
+                    onAttempt={attemptHandler}
+                    particle={ParticleEnum.GA}
+                    isTicking={isTicking}
+                />
+                <Key
+                    onAttempt={attemptHandler}
+                    particle={ParticleEnum.DE}
+                    isTicking={isTicking}
+                />
+                <Key
+                    onAttempt={attemptHandler}
+                    particle={ParticleEnum.TO}
+                    isTicking={isTicking}
+                />
 
-                <Key onAttempt={attemptHandler} particle={ParticleEnum.NI} isTicking={isTicking}/>
-                <Key onAttempt={attemptHandler} particle={ParticleEnum.HE} isTicking={isTicking}/>
-                <Key onAttempt={attemptHandler} particle={ParticleEnum.WO} isTicking={isTicking}/>
+                <Key
+                    onAttempt={attemptHandler}
+                    particle={ParticleEnum.NI}
+                    isTicking={isTicking}
+                />
+                <Key
+                    onAttempt={attemptHandler}
+                    particle={ParticleEnum.HE}
+                    isTicking={isTicking}
+                />
+                <Key
+                    onAttempt={attemptHandler}
+                    particle={ParticleEnum.WO}
+                    isTicking={isTicking}
+                />
 
-                <Key onAttempt={attemptHandler} particle={ParticleEnum.KARA} isTicking={isTicking}/>
-                <Key onAttempt={attemptHandler} particle={ParticleEnum.MADE} isTicking={isTicking}/>
+                <Key
+                    onAttempt={attemptHandler}
+                    particle={ParticleEnum.KARA}
+                    isTicking={isTicking}
+                />
+                <Key
+                    onAttempt={attemptHandler}
+                    particle={ParticleEnum.MADE}
+                    isTicking={isTicking}
+                />
             </div>
-
-            {/* <button
-                // DUMMY BUTTON
-                onClick={() => {
-                    questionCtx.addAnsweredQuestionsIds(["roshi-test"]);
-                }}
-            >
-                Add 3. Roshi
-            </button>
-            <button
-                // DUMMY BUTTON
-                onClick={() => {
-                    questionCtx.addAnsweredQuestionsIds(["vegeta-test"]);
-                }}
-            >
-                Add 10. Vegeta
-            </button> */}
         </>
     );
 };

@@ -9,7 +9,7 @@
 
     -   Levels
         -   Difficulty progression (like Wanikani's heaven/hell progression)
-            -   Based on DBZ characters?
+            -   Based on DBZ QuestionHistorycharacters?
             -   English
         -   Level reset
         -   Dynamic Level for wrong answers (Graveyard)
@@ -42,7 +42,6 @@
 
 ## Next to implement
 
--   Move currentLevel to QuestionHistoryContext and refactor
 -   Graveyard level system
 -   Progress bar
 -   Question section
@@ -52,6 +51,7 @@
     -   Integration with Settings context
 -   Settings page
 -   Level page
+-   Fill out question content properly
 -   Stats page
 -   Design/animations
 -   About page

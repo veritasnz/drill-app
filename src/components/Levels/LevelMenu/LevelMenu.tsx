@@ -1,11 +1,10 @@
 import { useContext, useEffect } from "react";
 
 import drillData from "../../../../data/drillData";
-
-import SettingsContext from "../../../context/settings-context";
+import ProgressContext from "../../../context/progress-context";
 
 const LevelMenu: React.FC = () => {
-    const settingsCtx = useContext(SettingsContext);
+    const questionCtx = useContext(ProgressContext);
 
     return (
         <>
@@ -21,7 +20,7 @@ const LevelMenu: React.FC = () => {
                                     <h3>
                                         <button
                                             onClick={() => {
-                                                settingsCtx.setLevelId(
+                                                questionCtx.setLevelId(
                                                     level.id
                                                 );
                                             }}

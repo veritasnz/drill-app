@@ -1,18 +1,8 @@
 import React from "react";
 
-export interface SettingsContextState {
-    currentLevelId: string;
-    setLevelId: (levelId: string) => void;
-    // currentStageId: string;
-    // setStageId: (stageId: string) => void;
-}
+export interface SettingsContextState {}
 
-const defaultState: SettingsContextState = {
-    currentLevelId: "",
-    setLevelId: (levelId: string) => {},
-    // currentStageId: "",
-    // setStageId: (stageId: string) => {},
-};
+const defaultState: SettingsContextState = {};
 
 const SettingsContext = React.createContext<SettingsContextState>(defaultState);
 

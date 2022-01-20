@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { SettingsContextState } from "../../context/settings-context";
-import { getLevelWithNumber } from "../../lib/level-api";
 
 import Level from "../../models/Level.model";
+
+import { getLevelWithNumber } from "../../lib/level-api";
+
+import { ProgressContextState } from "../../context/progress-context";
 
 import s from "./Drill.module.scss";
 
 interface Props {
-    settingsCtx: SettingsContextState;
+    context: ProgressContextState;
 }
 
 const BLANK_LEVEL: Level = {
@@ -16,19 +18,17 @@ const BLANK_LEVEL: Level = {
     questions: [],
 };
 
-const LevelProgress: React.FC<Props> = ({ settingsCtx }) => {
+const LevelProgress: React.FC<Props> = ({ context }) => {
     const [currentLevel, setCurrentLevel] = useState<Level>(BLANK_LEVEL);
     const [currentLevelNum, setCurrentLevelNum] = useState<number>(0);
 
     // On initialize
     useEffect(() => {
-        const { level, number } = getLevelWithNumber(
-            settingsCtx.currentLevelId
-        );
+        const { level, number } = getLevelWithNumber(context.currentLevelId);
 
         if (level) setCurrentLevel(level);
         if (number) setCurrentLevelNum(number);
-    }, [settingsCtx.currentLevelId]);
+    }, [context.currentLevelId]);
 
     const titleText = `Lv. ${currentLevelNum + 1} - ${
         currentLevel.name || "No level name"

@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 
-import QuestionHistoryContext from "./question-history-context";
+import ProgressContext from "./progress-context";
 
 /** Stats Local Storage Keys */
 enum LSKey {
+    LEVEL_KEY = "current_level_id",
     QUESTIONS_ANSWERED = "questions_answered",
 }
 
-const QuestionHistoryContextProvider: React.FC = (props) => {
+const INITIAL_LEVEL_ID = "yajirobe";
+
+const ProgressContextProvider: React.FC = (props) => {
+    const [currentLevel, setCurrentLevel] = useState(INITIAL_LEVEL_ID);
     const [answeredQuestionsIds, setAnsweredQuestionsIds] = useState<string[]>(
         []
     );
@@ -54,8 +58,18 @@ const QuestionHistoryContextProvider: React.FC = (props) => {
         });
     };
 
-    // Initialize
+    const setLevelId = (level: string) => {
+        setCurrentLevel(level);
+        localStorage.setItem(LSKey.LEVEL_KEY, level);
+    };
+
+    // Initialize & load from localStorage
     useEffect(() => {
+        // Load current level ID
+        const storedCurrentLevelId = localStorage.getItem(LSKey.LEVEL_KEY);
+        if (storedCurrentLevelId) setLevelId(storedCurrentLevelId);
+
+        // Load questions
         const storedAnsweredQuestionIdsJSON = localStorage.getItem(
             LSKey.QUESTIONS_ANSWERED
         );
@@ -66,16 +80,18 @@ const QuestionHistoryContextProvider: React.FC = (props) => {
     }, []);
 
     return (
-        <QuestionHistoryContext.Provider
+        <ProgressContext.Provider
             value={{
                 answeredQuestions: answeredQuestionsIds,
                 addAnsweredQuestionId,
                 removeAnsweredQuestionsIds,
+                currentLevelId: currentLevel,
+                setLevelId: setLevelId,
             }}
         >
             {props.children}
-        </QuestionHistoryContext.Provider>
+        </ProgressContext.Provider>
     );
 };
 
-export default QuestionHistoryContextProvider;
+export default ProgressContextProvider;
