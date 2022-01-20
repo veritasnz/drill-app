@@ -1,0 +1,40 @@
+// Colors / Shadows
+//----------------------------------------------- //
+$c-black: #000;
+$c-white: #fff;
+$c-text: #444;
+
+// Fonts
+//----------------------------------------------- //
+$ff-sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic",
+    YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;
+$ff-serif: "游明朝", YuMincho, "Hiragino Mincho ProN W3", "ヒラギノ明朝 ProN W3",
+    "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+
+// Font Weights
+//----------------------------------------------- //
+$fw-light: 300;
+$fw-regular: 400;
+$fw-bold: 600;
+
+// Font Sizes
+//----------------------------------------------- //
+$fs-body: 1.6rem;
+
+// Measurements
+//----------------------------------------------- //
+$breakpoint-ss: 450px;
+$breakpoint-s: 600px;
+$breakpoint-m: 900px;
+$breakpoint-ml: 1200px;
+$breakpoint-l: 1400px;
+$breakpoint-xl: 1600px;
+
+// Z-Indexes
+//----------------------------------------------- //
+$zindex-slick: 1000;
+
+// Misc
+//----------------------------------------------- //
+$transition-default: 150ms ease;
+$shift-default-offset: 3px;

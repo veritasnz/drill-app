@@ -1,0 +1,57 @@
+/* Page Wrapper
+------------------------------- */
+.page-wrapper {
+    padding: 5rem 0;
+
+    &__wrap {
+        max-width: 100rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: var(--m-padding-edge);
+        padding-right: var(--m-padding-edge);
+    }
+}
+
+/* Header
+------------------------------- */
+.header {
+    padding: 2rem 3rem;
+    border-bottom: 1px solid;
+
+    &__wrap {
+        display: flex;
+        gap: 2rem;
+        justify-content: space-between;
+    }
+
+    &__logo {
+    }
+
+    &__nav {
+        display: flex;
+        gap: 1em;
+    }
+
+    &__nav-item {
+        /*a*/
+        display: block;
+
+        &:global(.active) {
+            color: var(--c-theme-color);
+        }
+
+        i {
+            &,
+            & svg {
+                display: block;
+                width: 2em;
+                height: 2em;
+                margin: 0 auto 0.4em;
+            }
+        }
+
+        span {
+            display: block;
+        }
+    }
+}

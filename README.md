@@ -1,34 +1,90 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+🧭 **[Wireframe](https://xd.adobe.com/view/fcda656c-e122-4ce5-a462-3c6e3448417a-a989/?fullscreen&hints=off)**
 
-## Getting Started
+## Feature List
 
-First, run the development server:
+-   Particle drill system
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+    -   Choose from grid of particles for entry
+    -   Incorrect input will be treated as a wrong answer, user will have another change to input correct particle
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    -   Levels
+        -   Difficulty progression (like Wanikani's heaven/hell progression)
+            -   Based on DBZ characters?
+            -   English
+        -   Level reset
+        -   Dynamic Level for wrong answers (Graveyard)
+        -   Level stats
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+-   Stats/Options page
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+    -   Options
+        -   Language (English/Japanese)
+        -   Audio on/off
+        -   Furigana on/off
+        -   Voice Gender
+        -   Show English
+        -   Reset progress/stats
+        -   Double tap/click to enter (character shows up as the placeholder)
+    -   Stats
+        -   Percentage correct
+    -   Feedback
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+-   Levels Page
+    -   Select and clear
+-   About / instructions page
 
-## Learn More
+    -   How to use the app
+    -   About the author / SNS links
+    -   Contributors + links
+    -   Patreon
 
-To learn more about Next.js, take a look at the following resources:
+-   Landing Page
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Next to implement
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+-   Move currentLevel to QuestionHistoryContext and refactor
+-   Graveyard level system
+-   Progress bar
+-   Question section
+    -   Japanese parsing /w Furigana
+    -   Google Speech API integration
+    -   English display
+    -   Integration with Settings context
+-   Settings page
+-   Level page
+-   Stats page
+-   Design/animations
+-   About page
+-   Documentation
+-   Create tests
+-   Testing
 
-## Deploy on Vercel
+## Wishlist
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+-   Double tap brings up modal with word details from Jisho.org
+-   Auto say answer after entering
+-   Advanced mode (すら・さえ・しか・だけ)
+-   Backend
+    -   Auth, storage of user statistics etc. on Supabase
+-   Actual branding/design
+-   Dark Mode
+-   Adding own questions/levels etc.
+-   Entertainment feedback aspect
+    -   Noises
+    -   Graphics for each level
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Roadmap
+
+-   Version 1
+    -   Get the app off the ground
+-   Version 2
+
+    -   Introduce back end
+    -   Hide raw data
+        -   Add proper hashed IDs
+    -   Add new levels
+
+-   Version 3
+    -   User system
+-   Version 4
+    -   Visual overhaul

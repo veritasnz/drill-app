@@ -1,0 +1,101 @@
+/* Progress
+------------------------------- */
+.level-progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Question
+------------------------------- */
+.question {
+    margin: 5rem auto;
+    text-align: center;
+
+    &--correct {
+        color: green;
+    }
+}
+
+/* Keyboard
+------------------------------- */
+.keyboard {
+    max-width: 600px;
+    margin: 100px auto 0;
+
+    &--disabled {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    display: grid;
+    grid:
+        "ga ga de de to to" 100px
+        "ni ni he he wo wo" 100px
+        "kara kara kara made made made" 100px
+        / 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+/* Key
+------------------------------- */
+.key {
+    position: relative;
+    padding: 1rem;
+    border: 2px solid;
+
+    &[data-state=""] {
+        color: inherit;
+    }
+
+    &[data-state="correct"] {
+        color: green;
+    }
+
+    &[data-state="incorrect"] {
+        color: red;
+    }
+
+    &[data-particle="が"] {
+        grid-area: ga;
+    }
+
+    &[data-particle="で"] {
+        grid-area: de;
+    }
+
+    &[data-particle="と"] {
+        grid-area: to;
+    }
+
+    &[data-particle="に"] {
+        grid-area: ni;
+    }
+
+    &[data-particle="へ"] {
+        grid-area: he;
+    }
+
+    &[data-particle="を"] {
+        grid-area: wo;
+    }
+
+    &[data-particle="から"] {
+        grid-area: kara;
+    }
+
+    &[data-particle="まで"] {
+        grid-area: made;
+    }
+
+    &__button {
+        /*button*/
+        position: absolute;
+        display: block;
+        width: 100%;
+        inset: 0;
+        color: inherit;
+        background-color: transparent;
+        border: none;
+    }
+}

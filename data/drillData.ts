@@ -1,0 +1,151 @@
+import ParticleEnum from "../src/models/ParticleEnum.model";
+import Stage from "../src/models/Stage.model";
+
+/**
+ * Temporary store of level data. To be replaced by database + API at some point
+ */
+
+const drillData: Stage[] = [
+    {
+        id: "dragon-ball",
+        name: "Dragon Ball",
+        difficulty: "~N4/N5",
+        levels: [
+            {
+                id: "yajirobe",
+                name: "Yajirobe",
+                questions: [
+                    {
+                        id: "yajirobe-apple",
+                        question: "{林檎}(りんご)_{食}[た]べる",
+                        answers: [ParticleEnum.WO],
+                        english: "To eat an apple",
+                    },
+                    {
+                        id: "yajirobe-park",
+                        question: "{公園}(こうえん)_{行}[い]きます",
+                        answers: [ParticleEnum.NI, ParticleEnum.HE],
+                        english: "To play at the park",
+                    },
+                ],
+            },
+            {
+                id: "krillin",
+                name: "Krillin",
+                questions: [
+                    {
+                        id: "krillin-test",
+                        question: "テスト_{行}(おこな)います",
+                        answers: [ParticleEnum.WO],
+                        english: "To carry out a test",
+                    },
+                ],
+            },
+            {
+                id: "roshi",
+                name: "Master Roshi",
+                questions: [
+                    {
+                        id: "roshi-test",
+                        question: "テスト_{行}(おこな)います",
+                        answers: [ParticleEnum.WO],
+                        english: "To carry out a test",
+                    },
+                ],
+            },
+            {
+                id: "tien-shinhan",
+                name: "Tien Shinhan",
+                questions: [
+                    {
+                        id: "tien-test",
+                        question: "テスト_{行}(おこな)います",
+                        answers: [ParticleEnum.WO],
+                        english: "To carry out a test",
+                    },
+                ],
+            },
+            {
+                id: "piccolo",
+                name: "Piccolo",
+                questions: [
+                    {
+                        id: "piccolo-test",
+                        question: "テスト_{行}(おこな)います",
+                        answers: [ParticleEnum.WO],
+                        english: "To carry out a test",
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        id: "saiyan-saga",
+        name: "Saiyan Saga",
+        difficulty: "~N3",
+        levels: [
+            {
+                id: "farmer",
+                name: "Farmer",
+                questions: [
+                    {
+                        id: "farmer-test",
+                        question: "テスト_{行}(おこな)います",
+                        answers: [ParticleEnum.WO],
+                        english: "To carry out a test",
+                    },
+                ],
+            },
+            {
+                id: "raditz",
+                name: "Raditz",
+                questions: [
+                    {
+                        id: "raditz-test",
+                        question: "テスト_{行}(おこな)います",
+                        answers: [ParticleEnum.WO],
+                        english: "To carry out a test",
+                    },
+                ],
+            },
+            {
+                id: "saibaman",
+                name: "Saibaman",
+                questions: [
+                    {
+                        id: "raditz-test",
+                        question: "テスト_{行}(おこな)います",
+                        answers: [ParticleEnum.WO],
+                        english: "To carry out a test",
+                    },
+                ],
+            },
+            {
+                id: "nappa",
+                name: "Nappa",
+                questions: [
+                    {
+                        id: "nappa-test",
+                        question: "テスト_{行}(おこな)います",
+                        answers: [ParticleEnum.WO],
+                        english: "To carry out a test",
+                    },
+                ],
+            },
+            {
+                id: "vegeta",
+                name: "Vegeta",
+                questions: [
+                    {
+                        id: "vegeta-test",
+                        question: "テスト_{行}(おこな)います",
+                        answers: [ParticleEnum.WO],
+                        english: "To carry out a test",
+                    },
+                ],
+            },
+        ],
+    },
+];
+
+export default drillData;

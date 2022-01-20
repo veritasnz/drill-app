@@ -1,15 +1,14 @@
 import type { NextPage } from "next";
 
 import PageWrapper from "../src/components/Layout/PageWrapper";
+import LevelMenu from "../src/components/Levels/LevelMenu/LevelMenu";
 
-import Drill from "../src/components/Drill/Drill";
-
-const Home: NextPage = () => {
+const Level: NextPage = () => {
     return (
         <PageWrapper>
-            <Drill />
+            <LevelMenu />
         </PageWrapper>
     );
 };
 
-export default Home;
+export default Level;

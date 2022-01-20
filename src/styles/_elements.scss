@@ -1,0 +1,59 @@
+:root {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+
+    --c-theme-color: #6e98cc;
+
+    --m-padding-edge: 2.6rem;
+}
+
+body {
+    position: relative;
+
+    font-size: $fs-body;
+    font-weight: $fw-regular;
+    font-family: $ff-sans;
+
+    line-height: 1.6;
+    color: $c-text;
+    background: $c-white;
+    overflow-anchor: auto;
+}
+
+a {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+        transition: all $transition-default; //sass-lint:disable-line no-transition-all
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+::selection {
+    color: $c-white;
+    background: var(--c-theme-color);
+}
+
+button,
+[type="button"],
+[type="submit"] {
+    cursor: pointer;
+}
+
+em {
+    font-style: normal;
+}
+
+img,
+svg,
+iframe {
+    display: block;
+    max-width: 100%;
+}
+
+img,
+svg {
+    height: auto;
+}
