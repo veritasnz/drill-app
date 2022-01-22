@@ -17,28 +17,30 @@ import Key from "./Key";
 const Drill: React.FC = () => {
     const settingsCtx = useContext(SettingsContext);
     const statsCtx = useContext(StatsContext);
-    const questionCtx = useContext(ProgressContext);
+    const progressCtx = useContext(ProgressContext);
 
-    const { nextQuestion, correctAnswerHandler } = useDrill(questionCtx);
+    const { nextQuestion, correctAnswerHandler, incorrectAnswerHandler } =
+        useDrill(progressCtx);
 
-    const [isTicking, startTimer] = useTimer(correctAnswerHandler, 1000);
+    const [isTicking, startTimer] = useTimer(1000);
 
     const attemptHandler = (inputtedAnswer: ParticleEnum) => {
-        statsCtx.incrementTotalAttempts();
-
         const answerIsCorrect = checkAnswerIsCorrect(
             inputtedAnswer,
             nextQuestion.answers
         );
 
+        statsCtx.incrementTotalAttempts();
+
         if (answerIsCorrect) {
             statsCtx.incrementTotalCorrectAttempts();
-            startTimer();
+            startTimer(correctAnswerHandler);
 
             return true;
+        } else {
+            incorrectAnswerHandler();
+            return false;
         }
-
-        return false;
     };
 
     if (!nextQuestion) {
@@ -47,7 +49,10 @@ const Drill: React.FC = () => {
 
     return (
         <>
-            <LevelProgress context={questionCtx} />
+            <LevelProgress
+                currentQuestionId={nextQuestion.id}
+                progressCtx={progressCtx}
+            />
 
             <div
                 className={`${s["question"]} ${

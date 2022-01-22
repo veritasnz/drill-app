@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
+import Question from "../models/Question.model";
 
 import ProgressContext from "./progress-context";
 
 /** Stats Local Storage Keys */
 enum LSKey {
-    LEVEL_KEY = "current_level_id",
     QUESTIONS_ANSWERED = "questions_answered",
+    LEVEL_KEY = "current_level_id",
+    GRAVEYARD_QUESTIONS = "graveyard_questions",
 }
 
 const INITIAL_LEVEL_ID = "yajirobe";
 
 const ProgressContextProvider: React.FC = (props) => {
-    const [currentLevel, setCurrentLevel] = useState(INITIAL_LEVEL_ID);
     const [answeredQuestionsIds, setAnsweredQuestionsIds] = useState<string[]>(
         []
     );
+    const [currentLevelId, setCurrentLevelId] = useState(INITIAL_LEVEL_ID);
+    const [graveyard, setGraveyard] = useState<Question[]>([]);
 
     const addAnsweredQuestionId = (questionId: string) => {
         setAnsweredQuestionsIds((prevState) => {
@@ -59,8 +62,26 @@ const ProgressContextProvider: React.FC = (props) => {
     };
 
     const setLevelId = (level: string) => {
-        setCurrentLevel(level);
+        setCurrentLevelId(level);
         localStorage.setItem(LSKey.LEVEL_KEY, level);
+    };
+
+    const addGraveyardQuestion = (question: Question) => {
+        setGraveyard((prevState) => {
+            const newGraveyard = prevState.concat(question);
+            localStorage.setItem(LSKey.GRAVEYARD_QUESTIONS, JSON.stringify(newGraveyard));
+            return newGraveyard;
+        });
+    };
+
+    const removeGraveyardQuestionById = (questionId: string) => {
+        setGraveyard((prevState) => {
+            const newGraveyard = prevState.filter(
+                (currQuestion) => currQuestion.id !== questionId
+            );
+            localStorage.setItem(LSKey.GRAVEYARD_QUESTIONS, JSON.stringify(newGraveyard));
+            return newGraveyard;
+        });
     };
 
     // Initialize & load from localStorage
@@ -73,20 +94,30 @@ const ProgressContextProvider: React.FC = (props) => {
         const storedAnsweredQuestionIdsJSON = localStorage.getItem(
             LSKey.QUESTIONS_ANSWERED
         );
-
         if (storedAnsweredQuestionIdsJSON) {
             setAnsweredQuestionsIds(JSON.parse(storedAnsweredQuestionIdsJSON));
+        }
+
+        // Load graveyard
+        const storedGraveyardJSON = localStorage.getItem(
+            LSKey.GRAVEYARD_QUESTIONS
+        );
+        if (storedGraveyardJSON) {
+            setGraveyard(JSON.parse(storedGraveyardJSON));
         }
     }, []);
 
     return (
         <ProgressContext.Provider
             value={{
-                answeredQuestions: answeredQuestionsIds,
+                answeredQuestionsIds,
                 addAnsweredQuestionId,
                 removeAnsweredQuestionsIds,
-                currentLevelId: currentLevel,
-                setLevelId: setLevelId,
+                currentLevelId,
+                setLevelId,
+                graveyard,
+                addGraveyardQuestion,
+                removeGraveyardQuestionById,
             }}
         >
             {props.children}

@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 
-type UseTimer = (
-    delayedFn: Function,
-    duration: number
-) => [boolean, () => void];
+type UseTimer = (duration: number) => [boolean, (delayedFn: Function) => void];
 
 let correctAnswerTimer: any;
 
-const useTimer: UseTimer = (delayedFn: Function, duration: number) => {
+const useTimer: UseTimer = (duration: number) => {
     const [isTicking, setIsTicking] = useState(false);
 
-    const startTimer = () => {
+    const startTimer = (delayedFn: Function) => {
         clearTimeout(correctAnswerTimer);
         setIsTicking(true);
         correctAnswerTimer = setTimeout(() => {

@@ -42,7 +42,7 @@
 
 ## Next to implement
 
--   Graveyard level system
+-   Refactor useDrill hook & LevelProgress component
 -   Progress bar
 -   Question section
     -   Japanese parsing /w Furigana

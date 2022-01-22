@@ -1,7 +1,7 @@
 import Question from "./Question.model";
 
 interface Level {
-    id: string;
+    id: string | "GRAVEYARD";
     name: string;
     questions: Question[];
 }

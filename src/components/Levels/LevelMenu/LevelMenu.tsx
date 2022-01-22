@@ -4,11 +4,20 @@ import drillData from "../../../../data/drillData";
 import ProgressContext from "../../../context/progress-context";
 
 const LevelMenu: React.FC = () => {
-    const questionCtx = useContext(ProgressContext);
+    const progressCtx = useContext(ProgressContext);
 
     return (
         <>
             <h1>Level Select</h1>
+            <h2>Graveyard</h2>
+            <p>Questions you done goofed</p>
+            <button
+                onClick={() => {
+                    progressCtx.setLevelId("GRAVEYARD");
+                }}
+            >
+                Select Graveyard
+            </button>
             {drillData.map((stage) => {
                 return (
                     <div className="o-prose" key={stage.name}>
@@ -20,7 +29,7 @@ const LevelMenu: React.FC = () => {
                                     <h3>
                                         <button
                                             onClick={() => {
-                                                questionCtx.setLevelId(
+                                                progressCtx.setLevelId(
                                                     level.id
                                                 );
                                             }}
