@@ -24,14 +24,12 @@ export const getLevelById: (levelId: string) => Level | null = (
 };
 
 /**
- * getLevelWithNumber
+ * getLevelNumber
  */
-export const getLevelWithNumber: (levelId: string) => {
-    level: Level;
-    number: number;
-} = (levelId: string) => {
+export const getLevelNumber: (levelId: string) => number = (
+    levelId: string
+) => {
     let returnIndex: number = -1;
-    let returnLevel: Level;
 
     drillData.every((stage) => {
         const levelFound = stage.levels.find((level) => {
@@ -40,18 +38,44 @@ export const getLevelWithNumber: (levelId: string) => {
         });
 
         if (levelFound) {
-            returnLevel = levelFound;
             return false;
         }
 
         return true;
     });
 
-    return {
-        level: returnLevel!,
-        number: returnIndex,
-    };
+    return returnIndex;
 };
+
+/**
+ * getLevelWithNumber
+ */
+// export const getLevelWithNumber: (levelId: string) => {
+//     level: Level;
+//     number: number;
+// } = (levelId: string) => {
+//     let returnIndex: number = -1;
+//     let returnLevel: Level;
+
+//     drillData.every((stage) => {
+//         const levelFound = stage.levels.find((level) => {
+//             returnIndex++;
+//             return level.id === levelId;
+//         });
+
+//         if (levelFound) {
+//             returnLevel = levelFound;
+//             return false;
+//         }
+
+//         return true;
+//     });
+
+//     return {
+//         level: returnLevel!,
+//         number: returnIndex,
+//     };
+// };
 
 /**
  * getNextLevelById

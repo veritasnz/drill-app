@@ -58,6 +58,10 @@
 -   Create tests
 -   Testing
 
+## Known Bugs
+
+-   On load, half finished levels are displayed as if nothing has been answered before
+
 ## Wishlist
 
 -   Double tap brings up modal with word details from Jisho.org

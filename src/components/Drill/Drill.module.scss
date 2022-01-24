@@ -9,9 +9,10 @@
         position: relative;
         flex-grow: 1;
         margin: 0 2rem;
-        height: 5px;
+        height: 8px;
         background: #ccc;
         overflow: hidden;
+        border-radius: 200vh;
     }
 
     &__bar {
@@ -22,6 +23,7 @@
         bottom: 0;
         background: var(--c-theme-color);
         transition: width 300ms ease;
+        border-radius: 200vh;
     }
 }
 

@@ -1,77 +1,39 @@
 import { useEffect, useState } from "react";
 
-import Level from "../../models/Level.model";
-
-import { getLevelWithNumber } from "../../lib/level-api";
-
-import { ProgressContextState } from "../../context/progress-context";
+import { getLevelNumber } from "../../lib/level-api";
 
 import s from "./Drill.module.scss";
-import Question from "../../models/Question.model";
+import { DrillStateType } from "../../hooks/useDrill";
 
 interface Props {
-    nextQuestionId: string;
-    progressCtx: ProgressContextState;
+    drillState: DrillStateType;
 }
 
-const BLANK_LEVEL: Level = {
-    id: "",
-    name: "",
-    questions: [],
-};
-
-const buildGraveyard: (graveyard: Question[]) => Level = (
-    graveyard: Question[]
-) => {
-    return {
-        id: "GRAVEYARD",
-        name: "Graveyard",
-        questions: graveyard,
-    };
-};
-
-const LevelProgress: React.FC<Props> = ({ nextQuestionId, progressCtx }) => {
-    const [currentLevel, setCurrentLevel] = useState<Level>(BLANK_LEVEL);
-    const [currentLevelNum, setCurrentLevelNum] = useState<number>(0);
-
-    // On initialize
-    useEffect(() => {
-        if (progressCtx.currentLevelId !== "GRAVEYARD") {
-            // Level
-            const { level, number } = getLevelWithNumber(
-                progressCtx.currentLevelId
-            );
-
-            if (level) setCurrentLevel(level);
-            if (number) setCurrentLevelNum(number);
-        } else {
-            // Graveyard
-            setCurrentLevel(buildGraveyard(progressCtx.graveyard));
-            setCurrentLevelNum(-1);
-        }
-    }, [progressCtx.currentLevelId]);
-
+const LevelProgress: React.FC<Props> = ({ drillState }) => {
     let titleText = ``;
     let progressText = ``;
     let progressPercent = 0;
 
-    if (currentLevel.id === "GRAVEYARD") {
-        titleText = currentLevel.name;
-        progressText = `Remaining questions: ${currentLevel.questions.length}`;
+    if (drillState.currentLevel.id === "GRAVEYARD") {
+        titleText = drillState.currentLevel.name;
+        progressText = `Remaining questions: ${drillState.currentLevel.questions.length}`;
     } else {
         let questionIndex = 0;
-        currentLevel.questions.every((question, index) => {
+        drillState.currentLevel.questions.every((question, index) => {
             questionIndex = index;
-            if (nextQuestionId === question.id) {
+            if (drillState.nextQuestion.id === question.id) {
                 return false;
             }
 
             return true;
         });
 
-        progressPercent = (questionIndex / currentLevel.questions.length) * 100;
-        titleText = `Lv. ${currentLevelNum + 1} - ${currentLevel.name}`;
-        progressText = `${questionIndex} / ${currentLevel.questions.length}`;
+        progressPercent =
+            (questionIndex / drillState.currentLevel.questions.length) * 100;
+        titleText = `Lv. ${drillState.currentLevelNum + 1} - ${
+            drillState.currentLevel.name
+        }`;
+        progressText = `${questionIndex} / ${drillState.currentLevel.questions.length}`;
     }
 
     return (

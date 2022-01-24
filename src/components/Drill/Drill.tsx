@@ -19,7 +19,7 @@ const Drill: React.FC = () => {
     const statsCtx = useContext(StatsContext);
     const progressCtx = useContext(ProgressContext);
 
-    const { nextQuestion, correctAnswerHandler, incorrectAnswerHandler } =
+    const { drillState, correctAnswerHandler, incorrectAnswerHandler } =
         useDrill(progressCtx);
 
     const [isTicking, startTimer] = useTimer(1000);
@@ -27,7 +27,7 @@ const Drill: React.FC = () => {
     const attemptHandler = (inputtedAnswer: ParticleEnum) => {
         const answerIsCorrect = checkAnswerIsCorrect(
             inputtedAnswer,
-            nextQuestion.answers
+            drillState.nextQuestion.answers
         );
 
         statsCtx.incrementTotalAttempts();
@@ -43,16 +43,13 @@ const Drill: React.FC = () => {
         }
     };
 
-    if (!nextQuestion) {
+    if (!drillState.nextQuestion) {
         return <p>Finished! Choose next level</p>;
     }
 
     return (
         <>
-            <LevelProgress
-                nextQuestionId={nextQuestion.id}
-                progressCtx={progressCtx}
-            />
+            <LevelProgress drillState={drillState} />
 
             <div
                 className={`${s["question"]} ${
@@ -60,8 +57,8 @@ const Drill: React.FC = () => {
                 }`}
             >
                 <p className={s["question__text"]}>
-                    {nextQuestion
-                        ? nextQuestion.question
+                    {drillState.nextQuestion
+                        ? drillState.nextQuestion.question
                         : "Loading next question"}
                 </p>
             </div>

@@ -1,45 +1,79 @@
 import { useEffect, useState } from "react";
 
 import Question from "../models/Question.model";
+import Level from "../models/Level.model";
 
 import { ProgressContextState } from "../context/progress-context";
 
-import { getLevelById, getNextLevelById } from "../lib/level-api";
+import {
+    getLevelById,
+    getLevelNumber,
+    getNextLevelById,
+} from "../lib/level-api";
 import { getUnansweredQuestionsInLevel } from "../lib/question-api";
 
-type UseDrill = (progressCtx: ProgressContextState) => {
+export interface DrillStateType {
     nextQuestion: Question;
+    questions: Question[];
+    currentLevel: Level;
+    currentLevelNum: number;
+}
+
+type UseDrill = (progressCtx: ProgressContextState) => {
+    drillState: DrillStateType;
     correctAnswerHandler: () => void;
     incorrectAnswerHandler: () => void;
 };
 
+const BLANK_LEVEL: Level = {
+    id: "",
+    name: "",
+    questions: [],
+};
+
+const buildGraveyard: (graveyard: Question[]) => Level = (
+    graveyard: Question[]
+) => {
+    return {
+        id: "GRAVEYARD",
+        name: "Graveyard",
+        questions: graveyard,
+    };
+};
+
 const useDrill: UseDrill = (progressCtx) => {
     const [questions, setQuestions] = useState<Question[]>([]);
+    const [currentLevel, setCurrentLevel] = useState<Level>(BLANK_LEVEL);
+    const [currentLevelNum, setCurrentLevelNum] = useState<number>(0);
 
     // On level change / init
     useEffect(() => {
         if (progressCtx.currentLevelId !== "GRAVEYARD") {
             // Get current level
-            const currentLevel = getLevelById(progressCtx.currentLevelId);
+            const newCtxLevel = getLevelById(progressCtx.currentLevelId);
 
-            if (currentLevel) {
+            if (newCtxLevel) {
+                setCurrentLevelNum(getLevelNumber(newCtxLevel.id));
+
                 // Check if unanswered questions in level
                 const nextQuestions = getUnansweredQuestionsInLevel(
                     progressCtx.answeredQuestionsIds,
-                    currentLevel.questions
+                    newCtxLevel.questions
                 );
 
                 if (nextQuestions.length > 0) {
                     // If questions in current level, set questions
                     setQuestions(nextQuestions);
+                    setCurrentLevel(newCtxLevel);
                 } else {
                     // Else, set questionsCtx level ID to next
                     // thus triggering this useEffect again
-                    const nextLevel = getNextLevelById(currentLevel.id);
+                    const nextLevel = getNextLevelById(newCtxLevel.id);
 
                     if (nextLevel) {
                         // If there is another level
                         progressCtx.setLevelId(nextLevel.id);
+                        setCurrentLevel(nextLevel);
                     } else {
                         // Else final level, display "no more levels" screen
                         setQuestions([]);
@@ -47,10 +81,11 @@ const useDrill: UseDrill = (progressCtx) => {
                 }
             }
         } else {
-            // Graveyard get
+            // Graveyard set
             setQuestions(progressCtx.graveyard);
+            setCurrentLevel(buildGraveyard(progressCtx.graveyard));
         }
-    }, [progressCtx.answeredQuestionsIds]);
+    }, [progressCtx.currentLevelId]);
 
     const correctAnswerHandler = () => {
         // Add answered question to context + localStorage
@@ -89,7 +124,12 @@ const useDrill: UseDrill = (progressCtx) => {
     };
 
     return {
-        nextQuestion: questions[0],
+        drillState: {
+            nextQuestion: questions[0],
+            questions,
+            currentLevel,
+            currentLevelNum,
+        },
         correctAnswerHandler,
         incorrectAnswerHandler,
     };
