@@ -50,7 +50,7 @@ const useDrill: UseDrill = (progressCtx) => {
             // Graveyard get
             setQuestions(progressCtx.graveyard);
         }
-    }, [progressCtx.currentLevelId]);
+    }, [progressCtx.answeredQuestionsIds]);
 
     const correctAnswerHandler = () => {
         // Add answered question to context + localStorage
