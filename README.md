@@ -42,13 +42,12 @@
 
 ## Next to implement
 
--   Refactor useDrill hook & LevelProgress component
--   Progress bar
 -   Question section
     -   Japanese parsing /w Furigana
     -   Google Speech API integration
     -   English display
     -   Integration with Settings context
+-   Refactor useDrill hook & LevelProgress component
 -   Settings page
 -   Level page
 -   Fill out question content properly

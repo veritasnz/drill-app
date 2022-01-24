@@ -50,7 +50,7 @@ const Drill: React.FC = () => {
     return (
         <>
             <LevelProgress
-                currentQuestionId={nextQuestion.id}
+                nextQuestionId={nextQuestion.id}
                 progressCtx={progressCtx}
             />
 

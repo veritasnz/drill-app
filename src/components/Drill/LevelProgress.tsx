@@ -51,18 +51,38 @@ const LevelProgress: React.FC<Props> = ({ nextQuestionId, progressCtx }) => {
         }
     }, [progressCtx.currentLevelId]);
 
-    let titleText = `${currentLevel.name}`;
+    let titleText = ``;
+    let progressText = ``;
+    let progressPercent = 0;
 
-    if (currentLevel.id !== "GRAVEYARD") {
-        titleText = `Lv. ${currentLevelNum + 1} - ${titleText}`;
+    if (currentLevel.id === "GRAVEYARD") {
+        titleText = currentLevel.name;
+        progressText = `Remaining questions: ${currentLevel.questions.length}`;
+    } else {
+        let questionIndex = 0;
+        currentLevel.questions.every((question, index) => {
+            questionIndex = index;
+            if (nextQuestionId === question.id) {
+                return false;
+            }
+
+            return true;
+        });
+
+        progressPercent = (questionIndex / currentLevel.questions.length) * 100;
+        titleText = `Lv. ${currentLevelNum + 1} - ${currentLevel.name}`;
+        progressText = `${questionIndex} / ${currentLevel.questions.length}`;
     }
-
-    const progressText = `${69} / ${currentLevel.questions.length}`;
 
     return (
         <header className={s["level-progress"]}>
             <div>{titleText}</div>
-            <div>progress bar</div>
+            <div className={s["level-progress__bar-wrap"]}>
+                <span
+                    style={{ width: `${progressPercent}%` }}
+                    className={s["level-progress__bar"]}
+                ></span>
+            </div>
             <div>{progressText}</div>
         </header>
     );
