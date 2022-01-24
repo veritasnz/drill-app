@@ -17,15 +17,27 @@ const drillData: Stage[] = [
                 questions: [
                     {
                         id: "yajirobe-apple",
-                        question: "{林檎}(りんご)_{食}[た]べる",
+                        question: "{林檎}(りんご)_{食}(た)べる",
                         answers: [ParticleEnum.WO],
                         english: "To eat an apple",
                     },
                     {
                         id: "yajirobe-park",
-                        question: "{公園}(こうえん)_{行}[い]きます",
+                        question: "{公園}(こうえん)_{行}(い)く",
                         answers: [ParticleEnum.NI, ParticleEnum.HE],
-                        english: "To play at the park",
+                        english: "To go to the park",
+                    },
+                    {
+                        id: "yajirobe-friends",
+                        question: "{友達}(ともだち)_{遊}(あそ)ぶ",
+                        answers: [ParticleEnum.TO],
+                        english: "To play with friends",
+                    },
+                    {
+                        id: "yajirobe-train",
+                        question: "{電車}(でんしゃ)_乗(の)る",
+                        answers: [ParticleEnum.NI, ParticleEnum.HE],
+                        english: "To ride the train",
                     },
                 ],
             },
