@@ -69,7 +69,10 @@ const ProgressContextProvider: React.FC = (props) => {
     const addGraveyardQuestion = (question: Question) => {
         setGraveyard((prevState) => {
             const newGraveyard = prevState.concat(question);
-            localStorage.setItem(LSKey.GRAVEYARD_QUESTIONS, JSON.stringify(newGraveyard));
+            localStorage.setItem(
+                LSKey.GRAVEYARD_QUESTIONS,
+                JSON.stringify(newGraveyard)
+            );
             return newGraveyard;
         });
     };
@@ -79,7 +82,10 @@ const ProgressContextProvider: React.FC = (props) => {
             const newGraveyard = prevState.filter(
                 (currQuestion) => currQuestion.id !== questionId
             );
-            localStorage.setItem(LSKey.GRAVEYARD_QUESTIONS, JSON.stringify(newGraveyard));
+            localStorage.setItem(
+                LSKey.GRAVEYARD_QUESTIONS,
+                JSON.stringify(newGraveyard)
+            );
             return newGraveyard;
         });
     };
