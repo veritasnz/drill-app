@@ -1,7 +1,3 @@
-import { useEffect, useState } from "react";
-
-import { getLevelNumber } from "../../lib/level-api";
-
 import s from "./Drill.module.scss";
 import { DrillStateType } from "../../hooks/useDrill";
 

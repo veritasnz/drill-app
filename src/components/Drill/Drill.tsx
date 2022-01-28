@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 import ParticleEnum from "../../models/ParticleEnum.model";
-import { checkAnswerIsCorrect } from "../../lib/drill-functions";
+import { checkAnswerIsCorrect } from "../../lib/drill-functions.tsx";
 
 import SettingsContext from "../../context/settings-context";
 import StatsContext from "../../context/stats-context";
@@ -13,6 +13,7 @@ import s from "./Drill.module.scss";
 
 import LevelProgress from "./LevelProgress";
 import Key from "./Key";
+import Question from "./Question";
 
 const Drill: React.FC = () => {
     const settingsCtx = useContext(SettingsContext);
@@ -50,18 +51,7 @@ const Drill: React.FC = () => {
     return (
         <>
             <LevelProgress drillState={drillState} />
-
-            <div
-                className={`${s["question"]} ${
-                    isTicking && s["question--correct"]
-                }`}
-            >
-                <p className={s["question__text"]}>
-                    {drillState.nextQuestion
-                        ? drillState.nextQuestion.question
-                        : "Loading next question"}
-                </p>
-            </div>
+            <Question drillState={drillState} isTicking={isTicking} />
 
             <div
                 className={`${s["keyboard"]} ${
