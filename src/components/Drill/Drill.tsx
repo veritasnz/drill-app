@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 import ParticleEnum from "../../models/ParticleEnum.model";
-import { checkAnswerIsCorrect } from "../../lib/drill-functions.tsx";
+import { checkAnswerIsCorrect } from "../../lib/drill-functions";
 
 import SettingsContext from "../../context/settings-context";
 import StatsContext from "../../context/stats-context";

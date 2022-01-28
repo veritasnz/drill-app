@@ -9,7 +9,7 @@ import {
     getLevelById,
     getLevelNumber,
     getNextLevelById,
-} from "../lib/level-api.tsx";
+} from "../lib/level-api";
 import { getUnansweredQuestionsInLevel } from "../lib/question-api";
 
 export interface DrillStateType {
