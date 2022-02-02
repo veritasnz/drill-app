@@ -35,8 +35,8 @@ const drillData: Stage[] = [
                     },
                     {
                         id: "yajirobe-train",
-                        question: "{電車}(でんしゃ)_乗(の)る",
-                        answers: [ParticleEnum.NI, ParticleEnum.HE],
+                        question: "{電車}(でんしゃ)_{乗}(の)る",
+                        answers: [ParticleEnum.NI],
                         english: "To ride the train",
                     },
                 ],
