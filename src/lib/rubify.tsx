@@ -24,13 +24,15 @@ const rubifyText: (sentence: string) => JSX.Element = (sentence: string) => {
     return (
         <>
             {sentence.split(REGEX_WITH_CURLED_AND_NORMAL_BRACES)?.map((bit) => {
-                if (bit === "") return "";
+                if (bit === "") return null;
                 if (bit[0] === "{") {
                     // If ruby
-                    return buildRuby(bit);
+                    return (
+                        <span key={Math.random() * 1000}>{buildRuby(bit)}</span>
+                    );
                 } else {
                     // Else straight push
-                    return <>{bit}</>;
+                    return <span key={Math.random() * 1000}>{bit}</span>;
                 }
             })}
         </>

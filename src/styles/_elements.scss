@@ -2,6 +2,10 @@
     font-size: 62.5%;
     scroll-behavior: smooth;
 
+    --fw-normal: normal;
+    --fw-bold: bold;
+
+    --c-text-color: #444;
     --c-theme-color: #6e98cc;
 
     --m-padding-edge: 2.6rem;
@@ -11,11 +15,11 @@ body {
     position: relative;
 
     font-size: $fs-body;
-    font-weight: $fw-regular;
+    font-weight: var(--fw-normal);
     font-family: $ff-sans;
 
     line-height: 1.6;
-    color: $c-text;
+    color: var(--c-text-color);
     background: $c-white;
     overflow-anchor: auto;
 }

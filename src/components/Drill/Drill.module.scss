@@ -30,11 +30,58 @@
 /* Question
 ------------------------------- */
 .question {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 5rem auto;
     text-align: center;
 
-    &--correct {
-        color: green;
+    &__text {
+        margin-right: 1em;
+    }
+
+    &__place-wrap {
+        display: inline-block;
+        min-width: 1.5em;
+        margin-left: 0.2em;
+        margin-right: 0.2em;
+        padding-left: 0.2em;
+        padding-right: 0.2em;
+        font-size: 1.3em;
+        text-align: center;
+        border-bottom: 1px solid var(--c-text-color);
+    }
+
+    &__place-inner {
+        display: inline-block;
+        font-weight: var(--fw-bold);
+
+        opacity: 0;
+        transition: opacity 300ms ease;
+
+        &--correct {
+            opacity: 1;
+            color: green;
+        }
+    }
+
+    &__check {
+        display: inline-block;
+        opacity: 0;
+        transition: opacity 300ms ease;
+
+        &--correct {
+            opacity: 1;
+            color: green;
+        }
+
+        svg {
+            width: 1.6em;
+        }
+    }
+
+    &__loading {
+        color: lightgrey;
     }
 }
 
