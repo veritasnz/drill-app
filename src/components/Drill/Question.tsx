@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { DrillStateType } from "../../hooks/useDrill";
-import { rubifyDrillQuestion } from "../../lib/rubify";
+import { rubifyDrillQuestion } from "../../lib/question-parser";
 import Icon from "../UI/Icon/Icon";
 
 import s from "./Drill.module.scss";

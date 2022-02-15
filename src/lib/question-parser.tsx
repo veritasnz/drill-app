@@ -1,12 +1,16 @@
 const REGEX_WITH_CURLED_AND_NORMAL_BRACES = new RegExp(
-    /(\{[^\}]*\}\([^\)]*\))/,
+    /(\{[^\}]*\}\([^\)]*\))|(\?)/,
     "gi"
 );
+// /(\{[^\}]*\}\([^\)]*\))/,
+
 const REGEX_WITHOUT_CURLED_AND_NORMAL_BRACES = new RegExp(
     /(\((.+?)\))|(\{(.+?)\})/,
     "gi"
 );
 const REGEX_UNDERSCORE = new RegExp(/_/, "g");
+
+import s from "../components/Drill/Drill.module.scss";
 
 export const rubifyDrillQuestion: (
     sentence: string
@@ -24,15 +28,25 @@ const rubifyText: (sentence: string) => JSX.Element = (sentence: string) => {
     return (
         <>
             {sentence.split(REGEX_WITH_CURLED_AND_NORMAL_BRACES)?.map((bit) => {
-                if (bit === "") return null;
+                if (!bit) return null;
+
+                const randKey = Math.random() * 1000;
+
                 if (bit[0] === "{") {
                     // If ruby
+                    return <span key={randKey}>{buildRuby(bit)}</span>;
+                } else if (bit[0] === "?") {
                     return (
-                        <span key={Math.random() * 1000}>{buildRuby(bit)}</span>
+                        <span
+                            key={randKey}
+                            className={s["question__place-wrap"]}
+                        >
+                            <span className={s["question__place-inner"]}></span>
+                        </span>
                     );
                 } else {
                     // Else straight push
-                    return <span key={Math.random() * 1000}>{bit}</span>;
+                    return <span key={randKey}>{bit}</span>;
                 }
             })}
         </>

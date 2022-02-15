@@ -43,19 +43,20 @@
 ## Next to implement
 
 -   Question section
-    -   Japanese parsing /w Furigana
+    -   Add "Next question button", as opposed to timer-system
     -   Google Speech API integration
     -   English display
     -   Integration with Settings context
 -   Refactor useDrill hook & LevelProgress component
 -   Settings page
 -   Level page
+-   Keyboard support
 -   Fill out question content properly
 -   Stats page
 -   Design/animations
 -   About page
 -   Documentation
--   Create tests
+-   Create tests cases
 -   Testing
 
 ## Known Bugs
