@@ -43,6 +43,7 @@
 ## Next to implement
 
 -   Question section
+    -   Fix multiple of the same questions entering graveyard
     -   Add "Next question button", as opposed to timer-system
     -   Google Speech API integration
     -   English display
