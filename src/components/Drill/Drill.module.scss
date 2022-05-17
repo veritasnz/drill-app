@@ -30,11 +30,15 @@
 /* Question
 ------------------------------- */
 .question {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 5rem auto;
-    text-align: center;
+    min-height: 6em;
+    margin: 5rem auto 0;
+
+    &__wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 
     &__text {
         margin-right: 1em;
@@ -83,13 +87,19 @@
     &__loading {
         color: lightgrey;
     }
+
+    &__next {
+        margin-top: 2rem;
+        text-align: center;
+
+    }
 }
 
 /* Keyboard
 ------------------------------- */
 .keyboard {
     max-width: 600px;
-    margin: 100px auto 0;
+    margin: 6rem auto 0;
 
     &--disabled {
         opacity: 0.6;

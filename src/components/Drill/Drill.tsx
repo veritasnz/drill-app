@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import ParticleEnum from "../../models/ParticleEnum.model";
 import { checkAnswerIsCorrect } from "../../lib/drill-functions";
@@ -7,7 +7,6 @@ import SettingsContext from "../../context/settings-context";
 import StatsContext from "../../context/stats-context";
 import ProgressContext from "../../context/progress-context";
 import useDrill from "../../hooks/useDrill";
-import useTimer from "../../hooks/useTimer";
 
 import s from "./Drill.module.scss";
 
@@ -23,7 +22,9 @@ const Drill: React.FC = () => {
     const { drillState, correctAnswerHandler, incorrectAnswerHandler } =
         useDrill(progressCtx);
 
-    const [isTicking, startTimer] = useTimer(1000);
+    const [isCorrect, setIsCorrect] = useState(false);
+
+    // const [isTicking, startTimer] = useTimer(1000);
 
     const attemptHandler = (inputtedAnswer: ParticleEnum) => {
         const answerIsCorrect = checkAnswerIsCorrect(
@@ -35,13 +36,19 @@ const Drill: React.FC = () => {
 
         if (answerIsCorrect) {
             statsCtx.incrementTotalCorrectAttempts();
-            startTimer(correctAnswerHandler);
+            // startTimer(correctAnswerHandler);
+            setIsCorrect(true);
 
             return true;
         } else {
             incorrectAnswerHandler();
             return false;
         }
+    };
+
+    const nextQuestionHandler = () => {
+        correctAnswerHandler();
+        setIsCorrect(false);
     };
 
     if (!drillState.nextQuestion) {
@@ -51,54 +58,58 @@ const Drill: React.FC = () => {
     return (
         <>
             <LevelProgress drillState={drillState} />
-            <Question drillState={drillState} isTicking={isTicking} />
+            <Question
+                drillState={drillState}
+                isCorrect={isCorrect}
+                onNextQuestion={nextQuestionHandler}
+            />
 
             <div
                 className={`${s["keyboard"]} ${
-                    isTicking && s["keyboard--disabled"]
+                    isCorrect && s["keyboard--disabled"]
                 }`}
             >
                 <Key
                     onAttempt={attemptHandler}
                     particle={ParticleEnum.GA}
-                    isTicking={isTicking}
+                    isCorrect={isCorrect}
                 />
                 <Key
                     onAttempt={attemptHandler}
                     particle={ParticleEnum.DE}
-                    isTicking={isTicking}
+                    isCorrect={isCorrect}
                 />
                 <Key
                     onAttempt={attemptHandler}
                     particle={ParticleEnum.TO}
-                    isTicking={isTicking}
+                    isCorrect={isCorrect}
                 />
 
                 <Key
                     onAttempt={attemptHandler}
                     particle={ParticleEnum.NI}
-                    isTicking={isTicking}
+                    isCorrect={isCorrect}
                 />
                 <Key
                     onAttempt={attemptHandler}
                     particle={ParticleEnum.HE}
-                    isTicking={isTicking}
+                    isCorrect={isCorrect}
                 />
                 <Key
                     onAttempt={attemptHandler}
                     particle={ParticleEnum.WO}
-                    isTicking={isTicking}
+                    isCorrect={isCorrect}
                 />
 
                 <Key
                     onAttempt={attemptHandler}
                     particle={ParticleEnum.KARA}
-                    isTicking={isTicking}
+                    isCorrect={isCorrect}
                 />
                 <Key
                     onAttempt={attemptHandler}
                     particle={ParticleEnum.MADE}
-                    isTicking={isTicking}
+                    isCorrect={isCorrect}
                 />
             </div>
         </>

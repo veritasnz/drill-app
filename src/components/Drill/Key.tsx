@@ -5,7 +5,7 @@ import s from "./Drill.module.scss";
 
 interface Props {
     particle: ParticleEnum;
-    isTicking: boolean;
+    isCorrect: boolean;
     onAttempt: (answerEnum: ParticleEnum) => boolean;
 }
 
@@ -26,8 +26,8 @@ const Key: React.FC<Props> = (props) => {
     };
 
     useEffect(() => {
-        if (!props.isTicking) setColorState("");
-    }, [props.isTicking]);
+        if (!props.isCorrect) setColorState("");
+    }, [props.isCorrect]);
 
     return (
         <div

@@ -43,7 +43,6 @@
 ## Next to implement
 
 -   Question section
-    -   Add "Next question button", as opposed to timer-system
     -   Google Speech API integration
     -   English display
     -   Integration with Settings context

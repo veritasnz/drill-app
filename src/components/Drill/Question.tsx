@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { DrillStateType } from "../../hooks/useDrill";
 import { rubifyDrillQuestion } from "../../lib/question-parser";
+
 import Icon from "../UI/Icon/Icon";
+import Button from "../UI/Button";
 
 import s from "./Drill.module.scss";
 
 interface Props {
     drillState: DrillStateType;
-    isTicking: boolean;
+    isCorrect: boolean;
+    onNextQuestion: () => void;
 }
 
-const Question: React.FC<Props> = ({ drillState, isTicking }) => {
+const Question: React.FC<Props> = ({
+    drillState,
+    isCorrect,
+    onNextQuestion,
+}) => {
     const { nextQuestion } = drillState;
 
     const [firstHalf, setFirstHalf] = useState<JSX.Element>(<></>);
@@ -29,7 +36,7 @@ const Question: React.FC<Props> = ({ drillState, isTicking }) => {
 
     // Update placeholder when ticking
     useEffect(() => {
-        if (isTicking) {
+        if (isCorrect) {
             let isFirst = true;
             const newPlaceholderContent = nextQuestion.answers.map((answer) => {
                 if (isFirst) {
@@ -43,33 +50,40 @@ const Question: React.FC<Props> = ({ drillState, isTicking }) => {
         } else {
             setPlaceholderContent([""]);
         }
-    }, [isTicking]);
+    }, [isCorrect]);
 
     return (
         <div className={s["question"]}>
             {nextQuestion ? (
                 <>
-                    <p className={s["question__text"]}>
-                        {firstHalf}
-                        <span className={`${s["question__place-wrap"]}`}>
-                            <span
-                                className={`${s["question__place-inner"]} ${
-                                    isTicking &&
-                                    s["question__place-inner--correct"]
-                                }`}
-                            >
-                                {placeholderContent}
+                    <div className={s["question__wrap"]}>
+                        <p className={s["question__text"]}>
+                            {firstHalf}
+                            <span className={`${s["question__place-wrap"]}`}>
+                                <span
+                                    className={`${s["question__place-inner"]} ${
+                                        isCorrect &&
+                                        s["question__place-inner--correct"]
+                                    }`}
+                                >
+                                    {placeholderContent}
+                                </span>
                             </span>
-                        </span>
-                        {secondHalf}
-                    </p>
-                    <i
-                        className={`${s["question__check"]} ${
-                            isTicking && s["question__check--correct"]
-                        }`}
-                    >
-                        <Icon name="check-circle" />
-                    </i>
+                            {secondHalf}
+                        </p>
+                        <i
+                            className={`${s["question__check"]} ${
+                                isCorrect && s["question__check--correct"]
+                            }`}
+                        >
+                            <Icon name="check-circle" />
+                        </i>
+                    </div>
+                    {isCorrect && (
+                        <div className={s["question__next"]}>
+                            <Button onClick={onNextQuestion}>Next</Button>
+                        </div>
+                    )}
                 </>
             ) : (
                 <p className={s["question__loading"]}>Loading next question</p>
