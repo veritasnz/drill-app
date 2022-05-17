@@ -30,7 +30,7 @@
 /* Question
 ------------------------------- */
 .question {
-    min-height: 6em;
+    min-height: 9em;
     margin: 5rem auto 0;
 
     &__wrap {
@@ -86,6 +86,12 @@
 
     &__loading {
         color: lightgrey;
+    }
+
+    &__eng {
+        margin-top: 2rem;
+        font-size: 1.1em;
+        text-align: center;
     }
 
     &__next {

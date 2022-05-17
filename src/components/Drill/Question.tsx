@@ -80,9 +80,14 @@ const Question: React.FC<Props> = ({
                         </i>
                     </div>
                     {isCorrect && (
-                        <div className={s["question__next"]}>
-                            <Button onClick={onNextQuestion}>Next</Button>
-                        </div>
+                        <>
+                            <div className={s["question__eng"]}>
+                                {nextQuestion.english}
+                            </div>
+                            <div className={s["question__next"]}>
+                                <Button onClick={onNextQuestion}>Next</Button>
+                            </div>
+                        </>
                     )}
                 </>
             ) : (

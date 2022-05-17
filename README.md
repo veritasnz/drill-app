@@ -44,7 +44,6 @@
 
 -   Question section
     -   Google Speech API integration
-    -   English display
     -   Integration with Settings context
 -   Refactor useDrill hook & LevelProgress component
 -   Settings page
