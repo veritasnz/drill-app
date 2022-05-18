@@ -13,7 +13,7 @@ const env = process.env.NODE_ENV;
  */
 const client = new TextToSpeechClient();
 
-export async function buildVoices() {
+export default async function buildVoices() {
     const allQuestions = getAllQuestions();
 
     if (env == "production") {
