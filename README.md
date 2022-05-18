@@ -1,5 +1,46 @@
 🧭 **[Wireframe](https://xd.adobe.com/view/fcda656c-e122-4ce5-a462-3c6e3448417a-a989/?fullscreen&hints=off)**
 
+## Getting Started
+
+### Installation
+
+To install:
+
+```
+yarn create next-app -e https://github.com/veritasnz/wonideto
+# or
+npx create-next-app -e https://github.com/veritasnz/wonideto
+```
+
+To run the project locally:
+
+```
+yarn dev
+# or
+npm run dev
+```
+
+Build the project using:
+
+```
+yarn build
+# or
+npm run build
+```
+
+This also builds all the audio files used by drill
+
+The project should now be available at http://localhost:3000!
+
+### Environment Variables
+
+A few environment variables are needed to get this project working.
+Create a new file locally called `.env.local` and add the following:
+
+| Name                           | Required | Description                                                   |
+| ------------------------------ | -------- | ------------------------------------------------------------- |
+| GOOGLE_APPLICATION_CREDENTIALS | Yes      | The local URL for your Google Cloud API credentials JSON file |
+
 ## Feature List
 
 -   Particle drill system
