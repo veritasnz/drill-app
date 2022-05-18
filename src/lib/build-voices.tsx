@@ -16,22 +16,33 @@ const client = new TextToSpeechClient();
 export async function buildVoices() {
     const allQuestions = getAllQuestions();
 
-    let charsToConvert = 0;
-
-    for (const question of allQuestions) {
-        const currentText = parseQuestionTextForTTS(
-            question.question,
-            question.answers[0]
-        );
-
-        charsToConvert += currentText.length;
-
-        if (currentText && env == "production") {
-            await writeMp3FromText(currentText, question.id);
+    if (env == "production") {
+        // Delete dir if exists
+        if (fs.existsSync("public/audio")) {
+            console.log("Directory 'public/audio' already exists. Deleting...");
+            fs.rmSync("public/audio", { recursive: true, force: true });
         }
-    }
 
-    console.log(`Converted ${charsToConvert} chars using TTS API`);
+        // Re-make dir
+        fs.mkdirSync("public/audio");
+
+        let charsToConvert = 0;
+
+        for (const question of allQuestions) {
+            const currentText = parseQuestionTextForTTS(
+                question.question,
+                question.answers[0]
+            );
+
+            charsToConvert += currentText.length;
+
+            if (currentText) {
+                await writeMp3FromText(currentText, question.id);
+            }
+        }
+
+        console.log(`Converted ${charsToConvert} chars using TTS API`);
+    }
 }
 
 const writeMp3FromText: (text: string, filename: string) => void = async (
@@ -52,9 +63,6 @@ const writeMp3FromText: (text: string, filename: string) => void = async (
     if (response) {
         // Write the binary audio content to a local file
         const writeFile = util.promisify(fs.writeFile);
-
-        // Check if directory exists, create if non-existant
-        if (!fs.existsSync("public/audio")) fs.mkdirSync("public/audio");
 
         await writeFile(
             `public/audio/${filename}.mp3`,
