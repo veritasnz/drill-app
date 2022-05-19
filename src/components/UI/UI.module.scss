@@ -4,20 +4,103 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5em 2em;
-    line-height: 1.4;
-    text-align: center;
-    border-radius: 1.4rem;
-    color: var(--c-white);
-    background: var(--c-blue);
-    border: 1px solid var(--c-blue);
+    padding: 0.375em 0.8125em;
 
-    &:hover,
-    &:focus,
-    &:active {
-        color: var(--c-blue);
-        background: var(--c-white);
+    font-weight: var(--fw-normal);
+    letter-spacing: var(--ls-body);
+    line-height: 1.2;
+    text-align: center;
+
+    border-radius: 0.3125em;
+    border: solid 2px;
+    transition: color 300ms ease, border-color 300ms ease,
+        background-color 300ms ease;
+
+    &--blue {
+        color: var(--c-white);
+        background: var(--c-blue);
+        border-color: var(--c-blue);
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: var(--c-white);
+            background: var(--c-blue);
+        }
     }
+
+    &--green {
+        color: var(--c-white);
+        background: var(--c-green);
+        border-color: var(--c-green);
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: var(--c-green);
+            background: var(--c-white);
+        }
+    }
+
+    &--red {
+        color: var(--c-white);
+        background: var(--c-red);
+        border-color: var(--c-red);
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: var(--c-red);
+            background: var(--c-white);
+        }
+    }
+
+    &--orange {
+        color: var(--c-white);
+        background: var(--c-orange);
+        border-color: var(--c-orange);
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: var(--c-orange);
+            background: var(--c-white);
+        }
+    }
+
+    &--transitioning {
+        &,
+        &:hover,
+        &:focus,
+        &:active {
+            color: var(--c-green);
+            background: var(--c-white);
+            border-color: var(--c-green);
+        }
+    }
+
+    &__icon {
+        margin-left: 0.3125em;
+
+        svg {
+            width: 1em;
+            height: 1em;
+            object-fit: contain;
+            transition: transform 500ms ease-out;
+
+            .button--transitioning & {
+                transform: rotate(360deg);
+            }
+        }
+    }
+}
+
+/* ButtonBlock
+------------------------------- */
+.button-wrap {
+    display: grid;
+    gap: 0.5625em;
+    grid: 1fr / 1fr 1fr;
 }
 
 /* Toggle Switch
