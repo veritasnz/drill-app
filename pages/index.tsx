@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 
 import buildAudio from "../src/lib/build-audio";
 
-import PageWrapper from "../src/components/Layout/PageWrapper";
+import PageWrapper from "../src/components/PageLayout/PageWrapper";
 import Drill from "../src/components/Drill/Drill";
 
 const Home: NextPage = () => {
