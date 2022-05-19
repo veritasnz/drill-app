@@ -22,8 +22,7 @@
         }
     }
 
-    &__text {
-    }
+    // &__text {}
 }
 
 /* ToggleBlock
@@ -53,5 +52,45 @@
         // p
         font-size: var(--fs-small);
         color: var(--c-grey);
+    }
+}
+
+/* StatBlock
+------------------------------- */
+.stat-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & + & {
+        margin-top: 0.8125em;
+        padding-top: 0.8125em;
+        border-top: 1px solid rgba(var(--c-grey-rgb), 0.15);
+    }
+
+    &__title {
+        padding-right: 1em;
+
+        p {
+            // description
+            font-size: var(--fs-small);
+            color: var(--c-grey);
+        }
+    }
+
+    &__cont {
+        flex-shrink: 0;
+
+        strong {
+            font-weight: var(--fw-bold);
+        }
+
+        em {
+            color: var(--c-blue);
+        }
+
+        i {
+            color: var(--c-orange);
+        }
     }
 }

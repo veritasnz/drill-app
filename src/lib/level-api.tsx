@@ -100,6 +100,19 @@ export const getLevelIndex: (levelId: string) => number = (levelId: string) => {
 };
 
 /**
+
+ */
+export const getAllLevels: () => Level[] = () => {
+    const levelsArray: Level[] = [];
+
+    drillData.forEach((stage) => {
+        stage.levels.forEach((level) => levelsArray.push(level));
+    });
+
+    return levelsArray;
+};
+
+/**
  * Returns total number of levels in drillData
  * @returns {number} total number of levels in drillData
  */
