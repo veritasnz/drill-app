@@ -1,16 +1,3 @@
-// Measurements
-//----------------------------------------------- //
-$breakpoint-ss: 450px;
-$breakpoint-s: 600px;
-$breakpoint-m: 900px;
-$breakpoint-ml: 1200px;
-$breakpoint-l: 1400px;
-$breakpoint-xl: 1600px;
-
-// Misc
-//----------------------------------------------- //
-$transition-default: 150ms ease;
-
 :root {
     font-size: 62.5%;
     scroll-behavior: smooth;
@@ -39,9 +26,9 @@ $transition-default: 150ms ease;
     --c-red: #ff7d7d;
 
     // Measurements
-    --m-padding-edge: 2.6rem;
+    --m-padding-edge: 2.4rem;
 
-    @media (min-width: $breakpoint-m) {
+    @media (min-width: 900px) {
         --fs-small: 1.6rem;
         --fs-body: 2rem;
         --fs-title: 2.5rem;
@@ -67,7 +54,7 @@ a {
     &:hover,
     &:focus,
     &:active {
-        transition: all $transition-default; //sass-lint:disable-line no-transition-all
+        transition: all 150ms ease; //sass-lint:disable-line no-transition-all
         text-decoration: none;
         color: inherit;
     }
