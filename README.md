@@ -81,9 +81,7 @@ Create a new file locally called `.env.local` and add the following:
 
 ## Next to implement
 
--   Fix Credential issue with Google Cloud TTS
 -   Drill section
-    -   Integration with Settings context
     -   Keyboard support
 -   Refactor useDrill hook & LevelProgress component
 -   Level page

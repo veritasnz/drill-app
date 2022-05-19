@@ -60,7 +60,7 @@ const Question: React.FC<Props> = ({
     const audioElement = useRef(new Audio());
 
     useEffect(() => {
-        if (isCorrect) {
+        if (isCorrect && settingsCtx.autoplayIsOn) {
             audioElement.current.src = `/audio/${nextQuestion.id}.mp3`;
             audioElement.current.play();
         } else {
