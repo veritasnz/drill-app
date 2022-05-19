@@ -38,9 +38,9 @@ const SettingsContextProvider: React.FC = (props) => {
 
     // Reset settings Fn
     const resetSettings = () => {
-        clearBoolState(LSKey.AUTOPLAY_IS_ON, setAutoplayIsOn, true);
-        clearBoolState(LSKey.SHOW_FURIGANA, setShowFurigana, true);
-        clearBoolState(LSKey.SHOW_ENGLISH, setShowEnglish, true);
+        resetSetting(LSKey.AUTOPLAY_IS_ON, setAutoplayIsOn, true);
+        resetSetting(LSKey.SHOW_FURIGANA, setShowFurigana, true);
+        resetSetting(LSKey.SHOW_ENGLISH, setShowEnglish, true);
     };
 
     return (
@@ -88,15 +88,12 @@ const toggleBoolStateFnBuilder = (
     };
 };
 
-// Builds a clearing function based on the LocalStorage key parameter and default value
-const clearBoolState = (
+// Clearing function based on the LocalStorage key parameter and default value
+const resetSetting = (
     lskey: LSKey,
     setter: React.Dispatch<React.SetStateAction<boolean>>,
     defaultValue: boolean
 ) => {
-    return () => {
-        const newState = defaultValue;
-        localStorage.setItem(lskey, newState.toString());
-        setter(newState);
-    };
+    localStorage.setItem(lskey, defaultValue.toString());
+    setter(defaultValue);
 };
