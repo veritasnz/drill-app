@@ -2,7 +2,9 @@ import drillData from "../../data/drillData";
 import Level from "../models/Level.model";
 
 /**
- * getLevelById
+ * Returns a Level given a level ID
+ * @param levelId
+ * @returns {Level | null}
  */
 export const getLevelById: (levelId: string) => Level | null = (
     levelId: string
@@ -24,11 +26,11 @@ export const getLevelById: (levelId: string) => Level | null = (
 };
 
 /**
- * getLevelNumber
+ * Get's a level's index as a number if all stages were flattened and concatenated – must account for offset if displaying
+ * @param levelId
+ * @returns {number}
  */
-export const getLevelNumber: (levelId: string) => number = (
-    levelId: string
-) => {
+export const getLevelIndex: (levelId: string) => number = (levelId: string) => {
     let returnIndex: number = -1;
 
     drillData.every((stage) => {
@@ -78,7 +80,9 @@ export const getLevelNumber: (levelId: string) => number = (
 // };
 
 /**
- * getNextLevelById
+ * Gets the next level given the current level's ID
+ * @param levelId
+ * @returns {Level | null}
  */
 export const getNextLevelById: (currLevelId: string) => Level | null = (
     levelId: string

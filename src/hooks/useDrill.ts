@@ -7,7 +7,7 @@ import { ProgressContextState } from "../context/progress-context";
 
 import {
     getLevelById,
-    getLevelNumber,
+    getLevelIndex,
     getNextLevelById,
 } from "../lib/level-api";
 import { getUnansweredQuestionsInLevel } from "../lib/question-api";
@@ -53,7 +53,7 @@ const useDrill: UseDrill = (progressCtx) => {
             const newCtxLevel = getLevelById(progressCtx.currentLevelId);
 
             if (newCtxLevel) {
-                setCurrentLevelNum(getLevelNumber(newCtxLevel.id));
+                setCurrentLevelNum(getLevelIndex(newCtxLevel.id));
 
                 // Check if unanswered questions in level
                 const nextQuestions = getUnansweredQuestionsInLevel(
