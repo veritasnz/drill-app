@@ -69,7 +69,7 @@
 
         &--correct {
             opacity: 1;
-            color: green;
+            color: var(--c-green);
         }
     }
 
@@ -80,7 +80,7 @@
 
         &--correct {
             opacity: 1;
-            color: green;
+            color: var(--c-green);
         }
 
         svg {
@@ -89,12 +89,12 @@
     }
 
     &__loading {
-        color: lightgrey;
+        color: var(--c-grey);
     }
 
     &__eng {
         margin-top: 2rem;
-        font-size: 1.1em;
+        font-size: 1em;
         text-align: center;
 
         .question--no-eng & {
@@ -105,7 +105,6 @@
     &__next {
         margin-top: 2rem;
         text-align: center;
-
     }
 }
 
@@ -141,11 +140,12 @@
     }
 
     &[data-state="correct"] {
-        color: green;
+        color: var(--c-green);
     }
 
     &[data-state="incorrect"] {
-        color: red;
+        color: var(--c-red);
+        pointer-events: none;
     }
 
     &[data-particle="が"] {
