@@ -16,19 +16,19 @@ const drillData: Stage[] = [
                 name: "Yajirobe",
                 questions: [
                     {
-                        id: "yajirobe-double",
+                        id: "yajirobe-long-1",
                         question: "{自分}(じぶん)_{人}(ひと)?プレゼント?{上}(あ)げる",
                         answers: [ParticleEnum.KARA],
                         english: "To give a person a present from yourself",
                     },
                     {
-                        id: "yajirobe-double",
+                        id: "yajirobe-long-2",
                         question: "{自分}(じぶん)から{人}(ひと)_プレゼント?{上}(あ)げる",
-                        answers: [ParticleEnum.NI],
+                        answers: [ParticleEnum.NI, ParticleEnum.HE],
                         english: "To give a person a present from yourself",
                     },
                     {
-                        id: "yajirobe-double-2",
+                        id: "yajirobe-long-3",
                         question: "{自分}(じぶん)から{人}(ひと)にプレゼント_{上}(あ)げる",
                         answers: [ParticleEnum.WO],
                         english: "To give a person a present from yourself",
