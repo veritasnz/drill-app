@@ -19,7 +19,7 @@ export default Home;
  * Build Audio
  */
 export async function getStaticProps() {
-    // await buildAudio();
+    await buildAudio();
 
     return {
         props: {},
