@@ -47,14 +47,14 @@ const Header: React.FC = () => {
                         <span>Stats</span>
                     </NavLink>
                     <NavLink
-                        href="/level"
+                        href="/levels"
                         className={s["header__nav-item"]}
                         activeClassName="active"
                     >
                         <i>
                             <Icon name="level-circle" />
                         </i>
-                        <span>Level</span>
+                        <span>Levels</span>
                     </NavLink>
                     <NavLink
                         href="/settings"

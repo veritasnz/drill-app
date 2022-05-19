@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import PageWrapper from "../src/components/PageLayout/PageWrapper";
 import LevelMenu from "../src/components/Levels/LevelMenu/LevelMenu";
 
-const Level: NextPage = () => {
+const Levels: NextPage = () => {
     return (
         <PageWrapper>
             <LevelMenu />
@@ -11,4 +11,4 @@ const Level: NextPage = () => {
     );
 };
 
-export default Level;
+export default Levels;
