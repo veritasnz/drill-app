@@ -88,10 +88,12 @@ Create a new file locally called `.env.local` and add the following:
 -   Level page
 -   Fill out question content properly
 -   Stats page
+    -   Feedback form
 -   Design/animations
 -   About page
 -   Documentation
 -   Create tests cases
+    -   Test for duplicate IDs in drillData
 -   Testing
 
 ## Known Bugs
