@@ -21,7 +21,7 @@
         top: 0;
         left: 0;
         bottom: 0;
-        background: var(--c-theme-color);
+        background: var(--c-blue);
         transition: width 300ms ease;
         border-radius: 200vh;
     }
@@ -53,7 +53,7 @@
         padding-right: 0.2em;
         font-size: 1.3em;
         text-align: center;
-        border-bottom: 1px solid var(--c-text-color);
+        border-bottom: 1px solid var(--c-black);
     }
 
     &__place-inner {

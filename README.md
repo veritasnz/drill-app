@@ -59,13 +59,10 @@ Create a new file locally called `.env.local` and add the following:
 -   Stats/Options page
 
     -   Options
-        -   Language (English/Japanese)
         -   Audio on/off
         -   Furigana on/off
-        -   Voice Gender
         -   Show English
         -   Reset progress/stats
-        -   Double tap/click to enter (character shows up as the placeholder)
     -   Stats
         -   Percentage correct
     -   Feedback
@@ -83,13 +80,12 @@ Create a new file locally called `.env.local` and add the following:
 
 ## Next to implement
 
--   Question section
-    -   Google Speech API integration
-    -   Integration with Settings context
--   Refactor useDrill hook & LevelProgress component
 -   Settings page
+-   Drill section
+    -   Integration with Settings context
+    -   Keyboard support
+-   Refactor useDrill hook & LevelProgress component
 -   Level page
--   Keyboard support
 -   Fill out question content properly
 -   Stats page
 -   Design/animations
@@ -105,11 +101,15 @@ Create a new file locally called `.env.local` and add the following:
 ## Wishlist
 
 -   Double tap brings up modal with word details from Jisho.org
--   Auto say answer after entering
 -   Advanced mode (すら・さえ・しか・だけ)
 -   Backend
     -   Auth, storage of user statistics etc. on Supabase
 -   Actual branding/design
+-   Options
+    -   Dark Mode
+    -   Language (English/Japanese)
+    -   Double tap/click to enter (character shows up as the placeholder)
+    -   Voice Gender
 -   Dark Mode
 -   Adding own questions/levels etc.
 -   Entertainment feedback aspect

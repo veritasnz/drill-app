@@ -1,0 +1,57 @@
+/* Section
+------------------------------- */
+.section {
+    padding-bottom: 2em;
+}
+
+/* Title
+------------------------------- */
+.title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8em;
+
+    font-size: var(--fs-title);
+    font-weight: var(--fw-bold);
+
+    &__icon {
+        margin-right: 0.6em;
+
+        > svg {
+            width: 1em;
+        }
+    }
+
+    &__text {
+    }
+}
+
+/* ToggleBlock
+------------------------------- */
+.toggle-block {
+    display: flex;
+    align-items: center;
+
+    & + & {
+        margin-top: 1.4em;
+    }
+
+    &__inp {
+        font-size: 1.1em;
+    }
+
+    &__cont {
+        margin-left: 0.5em;
+    }
+
+    &__tit {
+        // h3
+        margin-bottom: 0.2em;
+    }
+
+    &__text {
+        // p
+        font-size: var(--fs-small);
+        color: var(--c-grey);
+    }
+}

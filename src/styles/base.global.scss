@@ -15,20 +15,35 @@ $transition-default: 150ms ease;
     font-size: 62.5%;
     scroll-behavior: smooth;
 
-    --ff-sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic",
-    YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;
+    // Text
+    --ff-sans: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Yu Gothic",
+        YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;
 
+    --fs-small: 1.2rem;
     --fs-body: 1.6rem;
+    --fs-title: 2.1rem;
 
     --fw-normal: normal;
     --fw-bold: bold;
 
+    --ls-body: -0.05em;
+
+    // Colors
     --c-white: #fff;
-    --c-black: #444;
+    --c-black: #000;
+    --c-grey: #707070;
+    
     --c-blue: #74bbf8;
     --c-orange: #fcbe63;
 
+    // Measurements
     --m-padding-edge: 2.6rem;
+
+    @media (min-width: $breakpoint-m) {
+        --fs-small: 1.6rem;
+        --fs-body: 2rem;
+        --fs-title: 2.5rem;
+    }
 }
 
 body {
@@ -37,8 +52,9 @@ body {
     font-size: var(--fs-body);
     font-weight: var(--fw-normal);
     font-family: var(--ff-sans);
+    letter-spacing: var(--ls-body);
 
-    line-height: 1.6;
+    line-height: 1.4;
     color: var(--c-black);
     background: var(--c-white);
     overflow-anchor: auto;

@@ -28,7 +28,7 @@ interface Props {
     name: IconName;
 }
 
-type IconName =
+export type IconName =
     | "about-circle"
     | "about"
     | "arrow-right-circle"
