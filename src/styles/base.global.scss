@@ -1,0 +1,83 @@
+// Measurements
+//----------------------------------------------- //
+$breakpoint-ss: 450px;
+$breakpoint-s: 600px;
+$breakpoint-m: 900px;
+$breakpoint-ml: 1200px;
+$breakpoint-l: 1400px;
+$breakpoint-xl: 1600px;
+
+// Misc
+//----------------------------------------------- //
+$transition-default: 150ms ease;
+
+:root {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+
+    --ff-sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic",
+    YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;
+
+    --fs-body: 1.6rem;
+
+    --fw-normal: normal;
+    --fw-bold: bold;
+
+    --c-white: #fff;
+    --c-black: #444;
+    --c-blue: #74bbf8;
+    --c-orange: #fcbe63;
+
+    --m-padding-edge: 2.6rem;
+}
+
+body {
+    position: relative;
+
+    font-size: var(--fs-body);
+    font-weight: var(--fw-normal);
+    font-family: var(--ff-sans);
+
+    line-height: 1.6;
+    color: var(--c-black);
+    background: var(--c-white);
+    overflow-anchor: auto;
+}
+
+a {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+        transition: all $transition-default; //sass-lint:disable-line no-transition-all
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+::selection {
+    color: var(--c-white);
+    background: var(--c-blue);
+}
+
+button,
+[type="button"],
+[type="submit"] {
+    cursor: pointer;
+}
+
+em {
+    font-style: normal;
+}
+
+img,
+svg,
+iframe {
+    display: block;
+    max-width: 100%;
+}
+
+img,
+svg {
+    height: auto;
+}
