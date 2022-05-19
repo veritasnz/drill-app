@@ -24,8 +24,6 @@ const Drill: React.FC = () => {
 
     const [isCorrect, setIsCorrect] = useState(false);
 
-    // const [isTicking, startTimer] = useTimer(1000);
-
     const attemptHandler = (inputtedAnswer: ParticleEnum) => {
         const answerIsCorrect = checkAnswerIsCorrect(
             inputtedAnswer,
@@ -36,7 +34,6 @@ const Drill: React.FC = () => {
 
         if (answerIsCorrect) {
             statsCtx.incrementTotalCorrectAttempts();
-            // startTimer(correctAnswerHandler);
             setIsCorrect(true);
 
             return true;
