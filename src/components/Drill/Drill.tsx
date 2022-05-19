@@ -11,8 +11,8 @@ import useDrill from "../../hooks/useDrill";
 import s from "./Drill.module.scss";
 
 import LevelProgress from "./LevelProgress";
-import Key from "./Key";
 import Question from "./Question";
+import Key from "./Key";
 
 const Drill: React.FC = () => {
     const settingsCtx = useContext(SettingsContext);
