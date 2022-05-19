@@ -6,17 +6,20 @@ import util from "util";
 import { getAllQuestions } from "./question-api";
 import { parseQuestionTextForTTS } from "./question-parser";
 
-const env = process.env.NODE_ENV;
-
 /**
  * Build MP3 audio from Google Cloud Text-to-speech API
  */
-const client = new TextToSpeechClient();
+const client = new TextToSpeechClient({
+    credentials: {
+        client_email: process.env.GOOGLE_CREDENTIALS_CLIENT_EMAIL,
+        private_key: process.env.GOOGLE_CREDENTIALS_PRIVATE_KEY,
+    },
+});
 
 export default async function buildVoices() {
     const allQuestions = getAllQuestions();
 
-    if (env == "production") {
+    if (process.env.NODE_ENV == "production") {
         // Delete dir if exists
         if (fs.existsSync("public/audio")) {
             console.log("Directory 'public/audio' already exists. Deleting...");

@@ -37,9 +37,10 @@ The project should now be available at http://localhost:3000!
 A few environment variables are needed to get this project working.
 Create a new file locally called `.env.local` and add the following:
 
-| Name                           | Required | Description                                                   |
-| ------------------------------ | -------- | ------------------------------------------------------------- |
-| GOOGLE_APPLICATION_CREDENTIALS | Yes      | The local URL for your Google Cloud API credentials JSON file |
+| Name                            | Required | Description                                                       |
+| ------------------------------- | -------- | ----------------------------------------------------------------- |
+| GOOGLE_CREDENTIALS_CLIENT_EMAIL | Yes      | The client email from your Google Cloud API credentials JSON file |
+| GOOGLE_CREDENTIALS_PRIV_KEY     | Yes      | The private key from your Google Cloud API credentials JSON file  |
 
 ## Feature List
 
