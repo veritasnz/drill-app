@@ -1,4 +1,5 @@
 import drillData from "../../data/drillData";
+
 import Level from "../models/Level.model";
 
 /**
@@ -24,60 +25,6 @@ export const getLevelById: (levelId: string) => Level | null = (
 
     return levelToReturn;
 };
-
-/**
- * Get's a level's index as a number if all stages were flattened and concatenated – must account for offset if displaying
- * @param levelId
- * @returns {number}
- */
-export const getLevelIndex: (levelId: string) => number = (levelId: string) => {
-    let returnIndex: number = -1;
-
-    drillData.every((stage) => {
-        const levelFound = stage.levels.find((level) => {
-            returnIndex++;
-            return level.id === levelId;
-        });
-
-        if (levelFound) {
-            return false;
-        }
-
-        return true;
-    });
-
-    return returnIndex;
-};
-
-/**
- * getLevelWithNumber
- */
-// export const getLevelWithNumber: (levelId: string) => {
-//     level: Level;
-//     number: number;
-// } = (levelId: string) => {
-//     let returnIndex: number = -1;
-//     let returnLevel: Level;
-
-//     drillData.every((stage) => {
-//         const levelFound = stage.levels.find((level) => {
-//             returnIndex++;
-//             return level.id === levelId;
-//         });
-
-//         if (levelFound) {
-//             returnLevel = levelFound;
-//             return false;
-//         }
-
-//         return true;
-//     });
-
-//     return {
-//         level: returnLevel!,
-//         number: returnIndex,
-//     };
-// };
 
 /**
  * Gets the next level given the current level's ID
@@ -128,9 +75,40 @@ export const getNextLevelById: (currLevelId: string) => Level | null = (
     return nextLevel;
 };
 
-// export const getLevelByIndex: (
-//     stageIndex: number,
-//     levelIndex: number
-// ) => Level = (stageIndex: number, levelIndex: number) => {
-//     return drillData[stageIndex].levels[levelIndex];
-// };
+/**
+ * Get's a level's index as a number if all stages were flattened and concatenated – must account for offset if displaying
+ * @param levelId
+ * @returns {number}
+ */
+export const getLevelIndex: (levelId: string) => number = (levelId: string) => {
+    let returnIndex: number = -1;
+
+    drillData.every((stage) => {
+        const levelFound = stage.levels.find((level) => {
+            returnIndex++;
+            return level.id === levelId;
+        });
+
+        if (levelFound) {
+            return false;
+        }
+
+        return true;
+    });
+
+    return returnIndex;
+};
+
+/**
+ * Returns total number of levels in drillData
+ * @returns {number} total number of levels in drillData
+ */
+export const getTotalLevelCount: () => number = () => {
+    let levelCount = 0;
+
+    drillData.forEach((stage) => {
+        levelCount += stage.levels.length;
+    });
+
+    return levelCount;
+};
