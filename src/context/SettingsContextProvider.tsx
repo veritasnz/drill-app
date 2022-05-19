@@ -36,6 +36,13 @@ const SettingsContextProvider: React.FC = (props) => {
         setShowEnglish
     );
 
+    // Reset settings Fn
+    const resetSettings = () => {
+        setAutoplayIsOn(true);
+        setShowFurigana(true);
+        setShowEnglish(true);
+    };
+
     return (
         <SettingsContext.Provider
             value={{
@@ -45,6 +52,7 @@ const SettingsContextProvider: React.FC = (props) => {
                 toggleShowFurigana,
                 showEnglish,
                 toggleShowEnglish,
+                resetSettings,
             }}
         >
             {props.children}

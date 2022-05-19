@@ -7,6 +7,7 @@ export interface SettingsContextState {
     toggleShowFurigana: () => void;
     showEnglish: boolean;
     toggleShowEnglish: () => void;
+    resetSettings: () => void;
 }
 
 const defaultState: SettingsContextState = {
@@ -16,6 +17,7 @@ const defaultState: SettingsContextState = {
     toggleShowFurigana: () => {},
     showEnglish: true,
     toggleShowEnglish: () => {},
+    resetSettings: () => {},
 };
 
 const SettingsContext = React.createContext<SettingsContextState>(defaultState);
