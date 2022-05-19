@@ -4,8 +4,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.375em 0.8125em;
+    padding: 0.375em 0.7em;
 
+    font-size: 0.9em;
     font-weight: var(--fw-normal);
     letter-spacing: var(--ls-body);
     line-height: 1.2;
@@ -92,6 +93,10 @@
                 transform: rotate(360deg);
             }
         }
+    }
+
+    @media (min-width: 400px) {
+        font-size: 1em;
     }
 }
 
