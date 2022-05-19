@@ -23,24 +23,24 @@ const SettingsContextProvider: React.FC = (props) => {
     }, []);
 
     // Create toggle functions
-    const toggleAutoplayIsOn = toggleFnBuilder(
+    const toggleAutoplayIsOn = toggleBoolStateFnBuilder(
         LSKey.AUTOPLAY_IS_ON,
         setAutoplayIsOn
     );
-    const toggleShowFurigana = toggleFnBuilder(
+    const toggleShowFurigana = toggleBoolStateFnBuilder(
         LSKey.SHOW_FURIGANA,
         setShowFurigana
     );
-    const toggleShowEnglish = toggleFnBuilder(
+    const toggleShowEnglish = toggleBoolStateFnBuilder(
         LSKey.SHOW_ENGLISH,
         setShowEnglish
     );
 
     // Reset settings Fn
     const resetSettings = () => {
-        setAutoplayIsOn(true);
-        setShowFurigana(true);
-        setShowEnglish(true);
+        clearBoolState(LSKey.AUTOPLAY_IS_ON, setAutoplayIsOn, true);
+        clearBoolState(LSKey.SHOW_FURIGANA, setShowFurigana, true);
+        clearBoolState(LSKey.SHOW_ENGLISH, setShowEnglish, true);
     };
 
     return (
@@ -75,7 +75,7 @@ const loadBooleanStateValue = (
 };
 
 // Builds a toggling function based on the LocalStorage key parameter
-const toggleFnBuilder = (
+const toggleBoolStateFnBuilder = (
     lskey: LSKey,
     setter: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
@@ -85,5 +85,18 @@ const toggleFnBuilder = (
             localStorage.setItem(lskey, newState.toString());
             return newState;
         });
+    };
+};
+
+// Builds a clearing function based on the LocalStorage key parameter and default value
+const clearBoolState = (
+    lskey: LSKey,
+    setter: React.Dispatch<React.SetStateAction<boolean>>,
+    defaultValue: boolean
+) => {
+    return () => {
+        const newState = defaultValue;
+        localStorage.setItem(lskey, newState.toString());
+        setter(newState);
     };
 };
