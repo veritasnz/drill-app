@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { DrillStateType } from "../../hooks/useDrill";
 import { rubifyDrillQuestion } from "../../lib/question-parser";
 
@@ -34,7 +34,7 @@ const Question: React.FC<Props> = ({
         setSecondHalf(newSecondHalf);
     }, [nextQuestion]);
 
-    // Update placeholder when ticking
+    // Update placeholder when 'isCorrect' changes
     useEffect(() => {
         if (isCorrect) {
             let isFirst = true;
@@ -49,6 +49,18 @@ const Question: React.FC<Props> = ({
             setPlaceholderContent(newPlaceholderContent);
         } else {
             setPlaceholderContent([""]);
+        }
+    }, [isCorrect]);
+
+    // Play audio when 'isCorrect' changes
+    const audioElement = useRef(new Audio());
+
+    useEffect(() => {
+        if (isCorrect) {
+            audioElement.current.src = `/audio/${nextQuestion.id}.mp3`;
+            audioElement.current.play();
+        } else {
+            audioElement.current.pause();
         }
     }, [isCorrect]);
 
