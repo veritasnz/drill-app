@@ -6,14 +6,27 @@ import StatsContext from "../src/context/stats-context";
 import ProgressContext from "../src/context/progress-context";
 
 import PageWrapper from "../src/components/PageLayout/PageWrapper";
+
 import Section from "../src/components/Blocks/Section";
 import Title from "../src/components/Blocks/Title";
 import ToggleBlock from "../src/components/Blocks/ToggleBlock";
+
+import ButtonWrap from "../src/components/UI/ButtonWrap";
+import TransitionButton from "../src/components/UI/TransitionButton";
 
 const Settings: NextPage = () => {
     const settingsCtx = useContext(SettingsContext);
     const statsCtx = useContext(StatsContext);
     const progressCtx = useContext(ProgressContext);
+
+    const resetSettingsHandler = () => {
+        settingsCtx.resetSettings();
+    };
+
+    const resetProgressHandler = () => {
+        progressCtx.resetProgress();
+        statsCtx.resetStats();
+    };
 
     return (
         <PageWrapper>
@@ -44,6 +57,22 @@ const Settings: NextPage = () => {
                 <Title heading={2} icon={"danger-zone"}>
                     Danger Zone
                 </Title>
+                <ButtonWrap>
+                    <TransitionButton
+                        onClick={resetSettingsHandler}
+                        preText="Reset Settings"
+                        postText="Settings Reset"
+                        color="orange"
+                        icon="refresh"
+                    />
+                    <TransitionButton
+                        onClick={resetProgressHandler}
+                        preText="Reset All Progress"
+                        postText="Progress Reset"
+                        color="red"
+                        icon="trash"
+                    />
+                </ButtonWrap>
             </Section>
         </PageWrapper>
     );
