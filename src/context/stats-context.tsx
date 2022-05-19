@@ -9,6 +9,7 @@ export interface StatsContextState {
     incrementTotalAttempts: () => void;
     totalCorrectAttempts: number;
     incrementTotalCorrectAttempts: () => void;
+    resetStats: () => void;
 }
 
 const defaultState: StatsContextState = {
@@ -16,6 +17,7 @@ const defaultState: StatsContextState = {
     incrementTotalAttempts: () => {},
     totalCorrectAttempts: 0,
     incrementTotalCorrectAttempts: () => {},
+    resetStats: () => {},
 };
 
 const StatsContext = React.createContext<StatsContextState>(defaultState);

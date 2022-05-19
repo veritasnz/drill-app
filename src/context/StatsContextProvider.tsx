@@ -42,13 +42,24 @@ const StatsContextProvider: React.FC = (props) => {
         }
     }, []);
 
+    const resetStats = () => {
+        // Reset total attempts
+        setTotalAttempts(0);
+        localStorage.setItem(LSKey.TOTAL_ALL, "0");
+
+        // Reset total correct attempts
+        setTotalCorrectAttempts(0);
+        localStorage.setItem(LSKey.TOTAL_CORRECT, "0");
+    };
+
     return (
         <StatsContext.Provider
             value={{
-                totalAttempts: totalAttempts,
-                incrementTotalAttempts: incrementTotalAttempts,
-                totalCorrectAttempts: totalCorrectAttempts,
-                incrementTotalCorrectAttempts: incrementTotalCorrectAttempts,
+                totalAttempts,
+                incrementTotalAttempts,
+                totalCorrectAttempts,
+                incrementTotalCorrectAttempts,
+                resetStats,
             }}
         >
             {props.children}
