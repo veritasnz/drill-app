@@ -121,6 +121,19 @@ const ProgressContextProvider: React.FC = (props) => {
         }
     }, []);
 
+    const resetProgress = () => {
+        // Clear graveyard
+        graveyard.forEach((question) => {
+            removeGraveyardQuestionById(question.id);
+        });
+
+        // Clear answeredQuestionsIds
+        removeAnsweredQuestionsIds(answeredQuestionsIds);
+
+        // Reset level
+        setLevelId(INITIAL_LEVEL_ID);
+    };
+
     return (
         <ProgressContext.Provider
             value={{
@@ -132,6 +145,7 @@ const ProgressContextProvider: React.FC = (props) => {
                 graveyard,
                 addGraveyardQuestion,
                 removeGraveyardQuestionById,
+                resetProgress,
             }}
         >
             {props.children}

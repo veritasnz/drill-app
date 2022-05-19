@@ -14,6 +14,7 @@ export interface ProgressContextState {
     graveyard: Question[];
     addGraveyardQuestion: (question: Question) => void;
     removeGraveyardQuestionById: (questionId: string) => void;
+    resetProgress: () => void;
 }
 
 const defaultState: ProgressContextState = {
@@ -25,6 +26,7 @@ const defaultState: ProgressContextState = {
     graveyard: [],
     addGraveyardQuestion: (question: Question) => {},
     removeGraveyardQuestionById: (questionId: string) => {},
+    resetProgress: () => {},
 };
 
 const ProgressContext = React.createContext<ProgressContextState>(defaultState);
