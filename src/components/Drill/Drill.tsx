@@ -59,12 +59,14 @@ const Drill: React.FC = () => {
                 drillState={drillState}
                 isCorrect={isCorrect}
                 onNextQuestion={nextQuestionHandler}
+                settingsCtx={settingsCtx}
             />
 
             <div
-                className={`${s["keyboard"]} ${
-                    isCorrect && s["keyboard--disabled"]
-                }`}
+                className={`
+                    ${s["keyboard"]}
+                    ${isCorrect && s["keyboard--disabled"]}
+                `}
             >
                 <Key
                     onAttempt={attemptHandler}

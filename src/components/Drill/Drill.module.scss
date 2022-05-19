@@ -42,6 +42,10 @@
 
     &__text {
         margin-right: 1em;
+
+        .question--no-fur & rt {
+            display: none;
+        }
     }
 
     &__place-wrap {
@@ -92,6 +96,10 @@
         margin-top: 2rem;
         font-size: 1.1em;
         text-align: center;
+
+        .question--no-eng & {
+            display: none;
+        }
     }
 
     &__next {

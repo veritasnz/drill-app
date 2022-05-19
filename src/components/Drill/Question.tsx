@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+
+import { SettingsContextState } from "../../context/settings-context";
 import { DrillStateType } from "../../hooks/useDrill";
 import { rubifyDrillQuestion } from "../../lib/question-parser";
 
@@ -11,12 +13,14 @@ interface Props {
     drillState: DrillStateType;
     isCorrect: boolean;
     onNextQuestion: () => void;
+    settingsCtx: SettingsContextState;
 }
 
 const Question: React.FC<Props> = ({
     drillState,
     isCorrect,
     onNextQuestion,
+    settingsCtx,
 }) => {
     const { nextQuestion } = drillState;
 
@@ -65,7 +69,13 @@ const Question: React.FC<Props> = ({
     }, [isCorrect]);
 
     return (
-        <div className={s["question"]}>
+        <div
+            className={`
+                ${s["question"]}
+                ${settingsCtx.showEnglish || s["question--no-eng"]}
+                ${settingsCtx.showFurigana || s["question--no-fur"]}
+            `}
+        >
             {nextQuestion ? (
                 <>
                     <div className={s["question__wrap"]}>
@@ -97,7 +107,9 @@ const Question: React.FC<Props> = ({
                                 {nextQuestion.english}
                             </div>
                             <div className={s["question__next"]}>
-                                <Button onClick={onNextQuestion}>Next</Button>
+                                <Button color="green" onClick={onNextQuestion}>
+                                    Next
+                                </Button>
                             </div>
                         </>
                     )}
