@@ -3,7 +3,28 @@ import drillData from "../../data/drillData";
 import Question from "../models/Question.model";
 
 /**
- * getUnansweredQuestionsInLevel
+ * @param answeredQuestionIds
+ * @param levelQuestions
+ * @returns {Question[]}
+ */
+export const getAnsweredQuestionsInLevel = (
+    answeredQuestionIds: string[],
+    levelQuestions: Question[]
+) => {
+    const answeredQuestions: Question[] = [];
+
+    levelQuestions.forEach((levelQuestion) => {
+        const questionIsAnswered = answeredQuestionIds.find(
+            (answeredQuestionId) => levelQuestion.id === answeredQuestionId
+        );
+
+        if (questionIsAnswered) answeredQuestions.push(levelQuestion);
+    });
+
+    return answeredQuestions;
+};
+
+/**
  * @param answeredQuestionIds
  * @param levelQuestions
  * @returns {Question[]}
@@ -19,16 +40,13 @@ export const getUnansweredQuestionsInLevel = (
             (answeredQuestionId) => levelQuestion.id === answeredQuestionId
         );
 
-        if (!questionIsAnswered) {
-            unansweredQuestions.push(levelQuestion);
-        }
+        if (!questionIsAnswered) unansweredQuestions.push(levelQuestion);
     });
 
     return unansweredQuestions;
 };
 
 /**
- * getAllQuestions
  * @returns {Question[]}
  */
 export const getAllQuestions: () => Question[] = () => {
