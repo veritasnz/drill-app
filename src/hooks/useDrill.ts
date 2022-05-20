@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Question from "../models/Question.model";
-import Level from "../models/Level.model";
+import { Level } from "../models/Level.model";
 
 import { ProgressContextState } from "../context/progress-context";
 

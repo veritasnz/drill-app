@@ -1,5 +1,6 @@
-import s from "./Drill.module.scss";
 import { DrillStateType } from "../../hooks/useDrill";
+
+import s from "./Drill.module.scss";
 
 interface Props {
     drillState: DrillStateType;
