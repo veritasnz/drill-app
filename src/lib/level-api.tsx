@@ -1,6 +1,6 @@
 import drillData from "../../data/drillData";
 
-import Level from "../models/Level.model";
+import { Level } from "../models/Level.model";
 
 /**
  * Returns a Level given a level ID

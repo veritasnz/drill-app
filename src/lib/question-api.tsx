@@ -4,8 +4,8 @@ import Question from "../models/Question.model";
 
 /**
  * getUnansweredQuestionsInLevel
- * @param answeredQuestionIds 
- * @param levelQuestions 
+ * @param answeredQuestionIds
+ * @param levelQuestions
  * @returns {Question[]}
  */
 export const getUnansweredQuestionsInLevel = (
@@ -36,7 +36,7 @@ export const getAllQuestions: () => Question[] = () => {
 
     drillData.forEach((stage) => {
         stage.levels.forEach((level) => {
-            level.questions.forEach((question) => {
+            level.questions.forEach((question: Question) => {
                 allQuestions.push(question);
             });
         });

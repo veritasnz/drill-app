@@ -1,4 +1,4 @@
-import Level from "./Level.model";
+import { Level } from "./Level.model";
 
 interface Stage {
     id: string;
