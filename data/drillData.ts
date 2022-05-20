@@ -151,7 +151,7 @@ const drillData: Stage[] = [
                 name: "Saibaman",
                 questions: [
                     {
-                        id: "raditz-test",
+                        id: "saibaman-test",
                         question: "テスト_{行}(おこな)います",
                         answers: [ParticleEnum.WO],
                         english: "To carry out a test",
