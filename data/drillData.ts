@@ -2,9 +2,14 @@ import ParticleEnum from "../src/models/ParticleEnum.model";
 import Stage from "../src/models/Stage.model";
 
 /**
- * Temporary store of level data. To be replaced by database + API at some point
+ * Stores all stage, level and question data.
+ * Temporary – to be replaced by database + API at some point
+ *
+ * Question text symbol legend:
+ * -    {}() → Kanji/furigana pair
+ * -    _ → Current question marker
+ * -    ? → Future question markers
  */
-
 const drillData: Stage[] = [
     {
         id: "dragon-ball",
@@ -17,19 +22,22 @@ const drillData: Stage[] = [
                 questions: [
                     {
                         id: "yajirobe-long-1",
-                        question: "{自分}(じぶん)_{人}(ひと)?プレゼント?{上}(あ)げる",
+                        question:
+                            "{自分}(じぶん)_{人}(ひと)?プレゼント?{上}(あ)げる",
                         answers: [ParticleEnum.KARA],
                         english: "To give a person a present from yourself",
                     },
                     {
                         id: "yajirobe-long-2",
-                        question: "{自分}(じぶん)から{人}(ひと)_プレゼント?{上}(あ)げる",
+                        question:
+                            "{自分}(じぶん)から{人}(ひと)_プレゼント?{上}(あ)げる",
                         answers: [ParticleEnum.NI, ParticleEnum.HE],
                         english: "To give a person a present from yourself",
                     },
                     {
                         id: "yajirobe-long-3",
-                        question: "{自分}(じぶん)から{人}(ひと)にプレゼント_{上}(あ)げる",
+                        question:
+                            "{自分}(じぶん)から{人}(ひと)にプレゼント_{上}(あ)げる",
                         answers: [ParticleEnum.WO],
                         english: "To give a person a present from yourself",
                     },
