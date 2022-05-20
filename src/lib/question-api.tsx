@@ -36,7 +36,7 @@ export const getAllQuestions: () => Question[] = () => {
 
     drillData.forEach((stage) => {
         stage.levels.forEach((level) => {
-            level.questions.forEach((question: Question) => {
+            level.questions.forEach((question) => {
                 allQuestions.push(question);
             });
         });
