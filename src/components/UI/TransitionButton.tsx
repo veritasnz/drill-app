@@ -45,9 +45,11 @@ const TransitionButton: React.FC<Props> = (props) => {
             onClick={clickHandler}
         >
             <span className={s["button__text"]}>{textContent}</span>
-            <span className={s["button__icon"]}>
-                {props.icon && <Icon name={props.icon} />}
-            </span>
+            {props.icon && (
+                <span className={s["button__icon"]}>
+                    <Icon name={props.icon} />
+                </span>
+            )}
         </button>
     );
 };
