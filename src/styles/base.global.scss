@@ -8,12 +8,14 @@
 
     --fs-small: 1.2rem;
     --fs-body: 1.6rem;
-    --fs-title: 2.1rem;
+    --fs-large: 1.8rem;
+    --fs-title: 2.2rem;
 
     --fw-normal: normal;
     --fw-bold: bold;
 
-    --ls-body: -0.05em;
+    --ls-normal: -0.05em;
+    --ls-thin: -0.1em;
 
     // Colors
     --c-white: #fff;
@@ -27,12 +29,13 @@
     --c-red: #ff7d7d;
 
     // Measurements
-    --m-padding-edge: 2.4rem;
+    --m-padding-edge: 1.5em;
 
     @media (min-width: 900px) {
         --fs-small: 1.6rem;
         --fs-body: 2rem;
-        --fs-title: 2.5rem;
+        --fs-large: 2.2rem;
+        --fs-title: 2.6rem;
     }
 }
 
@@ -42,7 +45,7 @@ body {
     font-size: var(--fs-body);
     font-weight: var(--fw-normal);
     font-family: var(--ff-sans);
-    letter-spacing: var(--ls-body);
+    letter-spacing: var(--ls-normal);
 
     line-height: 1.4;
     color: var(--c-black);
