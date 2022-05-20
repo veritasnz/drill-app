@@ -2,14 +2,17 @@ import type { NextPage } from "next";
 
 import buildAudio from "../src/lib/build-audio";
 
-import PageWrapper from "../src/components/PageLayout/PageWrapper";
+import LayoutWrapper from "../src/components/PageLayout/LayoutWrapper";
 import Drill from "../src/components/Drill/Drill";
+import PaddingWrapper from "../src/components/PageLayout/PaddingWrapper";
 
 const Home: NextPage = () => {
     return (
-        <PageWrapper>
-            <Drill />
-        </PageWrapper>
+        <LayoutWrapper>
+            <PaddingWrapper>
+                <Drill />
+            </PaddingWrapper>
+        </LayoutWrapper>
     );
 };
 

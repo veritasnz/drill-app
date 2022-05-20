@@ -9,11 +9,12 @@ import {
     getTotalLevelCount,
 } from "../src/lib/level-api";
 
-import PageWrapper from "../src/components/PageLayout/PageWrapper";
+import LayoutWrapper from "../src/components/PageLayout/LayoutWrapper";
 import Section from "../src/components/Blocks/Section";
 import Title from "../src/components/Blocks/Title";
 import StatBlock from "../src/components/Blocks/StatBlock";
 import { getUnansweredQuestionsInLevel } from "../src/lib/question-api";
+import PaddingWrapper from "../src/components/PageLayout/PaddingWrapper";
 
 const Stats: NextPage = () => {
     const { totalCorrectAttempts, totalAttempts } = useContext(StatsContext);
@@ -45,40 +46,42 @@ const Stats: NextPage = () => {
     }
 
     return (
-        <PageWrapper>
-            <Section>
-                <Title heading={2} icon={"stats"}>
-                    Stats
-                </Title>
-                <StatBlock title="Total questions answered correctly">
-                    <em>{totalCorrectAttempts}</em>
-                    {" / "}
-                    <strong>{totalAttempts}</strong>
-                </StatBlock>
-                <StatBlock title="Percentage correct">
-                    <strong>
-                        <em>{percentageCorrect}%</em>
-                    </strong>
-                </StatBlock>
-                <StatBlock title="Levels completed">
-                    <em>{currLevelNumber}</em>
-                    {" / "}
-                    <strong>{totalLevelNumber}</strong>
-                </StatBlock>
-                <StatBlock
-                    title="Power Level"
-                    description="(Highest completed level)"
-                >
-                    {highestLevelContent}
-                </StatBlock>
-            </Section>
-            <Section>
-                <Title heading={2} icon={"megaphone"}>
-                    Feedback
-                </Title>
-                <p>Feedback form goes here</p>
-            </Section>
-        </PageWrapper>
+        <LayoutWrapper>
+            <PaddingWrapper>
+                <Section>
+                    <Title heading={2} icon={"stats"}>
+                        Stats
+                    </Title>
+                    <StatBlock title="Total questions answered correctly">
+                        <em>{totalCorrectAttempts}</em>
+                        {" / "}
+                        <strong>{totalAttempts}</strong>
+                    </StatBlock>
+                    <StatBlock title="Percentage correct">
+                        <strong>
+                            <em>{percentageCorrect}%</em>
+                        </strong>
+                    </StatBlock>
+                    <StatBlock title="Levels completed">
+                        <em>{currLevelNumber}</em>
+                        {" / "}
+                        <strong>{totalLevelNumber}</strong>
+                    </StatBlock>
+                    <StatBlock
+                        title="Power Level"
+                        description="(Highest completed level)"
+                    >
+                        {highestLevelContent}
+                    </StatBlock>
+                </Section>
+                <Section>
+                    <Title heading={2} icon={"megaphone"}>
+                        Feedback
+                    </Title>
+                    <p>Feedback form goes here</p>
+                </Section>
+            </PaddingWrapper>
+        </LayoutWrapper>
     );
 };
 

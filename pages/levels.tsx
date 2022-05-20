@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
 
-import PageWrapper from "../src/components/PageLayout/PageWrapper";
-import LevelMenu from "../src/components/Levels/LevelMenu/LevelMenu";
+import LayoutWrapper from "../src/components/PageLayout/LayoutWrapper";
+import LevelsMenu from "../src/components/Levels/StagesMenu";
 
 const Levels: NextPage = () => {
     return (
-        <PageWrapper>
-            <LevelMenu />
-        </PageWrapper>
+        <LayoutWrapper>
+            <LevelsMenu />
+        </LayoutWrapper>
     );
 };
 
