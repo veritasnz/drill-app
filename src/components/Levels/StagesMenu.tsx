@@ -1,13 +1,7 @@
 import { useContext } from "react";
-import Router from "next/router";
-
-import { LevelIDType } from "../../models/Level.model";
 
 import drillData from "../../../data/drillData";
-
 import ProgressContext from "../../context/progress-context";
-import SettingsContext from "../../context/settings-context";
-import StatsContext from "../../context/stats-context";
 
 import s from "./Levels.module.scss";
 

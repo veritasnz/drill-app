@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Router from "next/router";
 
-import { Level as LevelModel, LevelIDType } from "../../models/Level.model";
+import { Level as LevelModel } from "../../models/Level.model";
 import { getLevelIndex } from "../../lib/level-api";
 import { getAnsweredQuestionsInLevel } from "../../lib/question-api";
 import ProgressContext from "../../context/progress-context";
