@@ -62,7 +62,7 @@ const Stats: NextPage = () => {
                             <em>{percentageCorrect}%</em>
                         </strong>
                     </StatBlock>
-                    <StatBlock title="Levels completed">
+                    <StatBlock title="Current level">
                         <em>{currLevelNumber}</em>
                         {" / "}
                         <strong>{totalLevelNumber}</strong>
