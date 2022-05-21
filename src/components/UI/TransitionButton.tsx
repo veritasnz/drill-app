@@ -8,7 +8,7 @@ import s from "./UI.module.scss";
 interface Props {
     onClick: () => void;
     preText: string;
-    postText: string;
+    postText?: string;
     color: ButtonColorNames;
     icon?: IconName;
 }
@@ -33,7 +33,10 @@ const TransitionButton: React.FC<Props> = (props) => {
         return () => clearTimeout(transitionTimer);
     }, []);
 
-    const textContent = btnIsTransitioning ? props.postText : props.preText;
+    let textContent = props.preText;
+    if (btnIsTransitioning && props.postText) {
+        textContent = props.postText;
+    }
 
     return (
         <button
