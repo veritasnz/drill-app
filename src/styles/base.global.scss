@@ -79,6 +79,13 @@ a {
 button,
 [type="button"],
 [type="submit"] {
+    border: none;
+    padding: 0;
+    font-weight: var(--fw-normal);
+    letter-spacing: var(--ls-normal);
+    border: none;
+    background: none;
+    color: inherit;
     cursor: pointer;
 }
 

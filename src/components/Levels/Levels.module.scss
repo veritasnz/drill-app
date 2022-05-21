@@ -90,11 +90,7 @@
         display: block;
         width: 2.3em;
         height: 2.3em;
-
-        padding: 0;
         color: var(--c-blue);
-        border: none;
-        background: none;
     }
 }
 
@@ -180,7 +176,6 @@
         align-items: center;
         justify-content: space-between;
         padding: 0.3em 0.9em 0.3em 0.5em;
-        border: none;
         border-radius: var(--lvl-border-radius);
         background-color: var(--c-white);
         box-shadow: 0 0 var(--bs-blur) var(--bs-color);
