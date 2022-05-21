@@ -36,6 +36,7 @@ export type IconName =
     | "arrow-right"
     | "check-circle"
     | "check"
+    | "chevron-down"
     | "cross-circle"
     | "cross"
     | "danger-zone"
