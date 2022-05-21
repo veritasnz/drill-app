@@ -82,14 +82,16 @@ Create a new file locally called `.env.local` and add the following:
 ## Next to implement
 
 -   Drill section
-    -   Keyboard support
+    -   Keyboard support (Enter and first character for each button – with focus display)
+    -   Styles
 -   Refactor useDrill hook & LevelProgress component
 -   Rough testing
 -   Test cases for duplicate IDs (Vitest?)
 -   Fill out question content properly
 -   Design/animations
--   Fix SEO
+-   Fix loading state for SEO
     -   Top page displays "Finished! Choose next level" when viewing page source
+    -   Add loading spinner before context has finished loading
 -   Stats page
     -   Feedback form
 -   About page

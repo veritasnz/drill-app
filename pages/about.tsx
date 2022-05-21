@@ -5,7 +5,9 @@ import PaddingWrapper from "../src/components/PageLayout/PaddingWrapper";
 const About: NextPage = () => {
     return (
         <LayoutWrapper>
-            <PaddingWrapper>About</PaddingWrapper>
+            <PaddingWrapper>
+                <p>About page goes here</p>
+            </PaddingWrapper>
         </LayoutWrapper>
     );
 };
