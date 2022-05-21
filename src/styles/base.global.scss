@@ -30,10 +30,13 @@
     --c-red: #ff7d7d;
 
     // Box shadow
-    --bs-light: 0 0 0.8em rgba(0, 0, 0, 0.08);
+    --bs-blur: 0.8em;
+    --bs-color: rgba(0, 0, 0, 0.08);
+    --bs-light: 0 0 var(--bs-blur) var(--bs-color);
 
     // Measurements
     --m-padding-edge: 1.5em;
+    --m-max-width: calc(var(--fs-body) * 40); //30em
 
     @media (min-width: 900px) {
         --fs-small: 1.6rem;

@@ -84,15 +84,17 @@ Create a new file locally called `.env.local` and add the following:
 -   Drill section
     -   Keyboard support
 -   Refactor useDrill hook & LevelProgress component
--   Level page
+-   Rough testing
+-   Test cases for duplicate IDs (Vitest?)
 -   Fill out question content properly
+-   Design/animations
+-   Fix SEO
+    -   Top page displays "Finished! Choose next level" when viewing page source
 -   Stats page
     -   Feedback form
--   Design/animations
 -   About page
 -   Documentation
--   Create tests cases
-    -   Test for duplicate IDs in drillData
+-   Create more tests cases
 -   Testing
 
 ## Known Bugs
