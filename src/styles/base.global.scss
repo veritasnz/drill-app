@@ -21,12 +21,16 @@
     --c-white: #fff;
     --c-black: #000;
     --c-grey: #707070;
-    --c-grey-rgb: 112, 112, 112;
+    --c-grey-light: #cccccc;
+    --c-grey-white: #f7f7f7;
 
     --c-blue: #74bbf8;
     --c-orange: #fcbe63;
     --c-green: #51e1b6;
     --c-red: #ff7d7d;
+
+    // Box shadow
+    --bs-light: 0 0 0.8em rgba(0, 0, 0, 0.08);
 
     // Measurements
     --m-padding-edge: 1.5em;
