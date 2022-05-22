@@ -85,6 +85,13 @@
         color: var(--c-grey);
     }
 
+    &__empty {
+        max-width: 10em;
+        font-size: var(--fs-small);
+        text-align: right;
+        color: var(--c-grey);
+    }
+
     &__icon {
         // button
         display: block;

@@ -18,6 +18,8 @@ const Graveyard: React.FC<Props> = (props) => {
         Router.push("/");
     };
 
+    const graveyardNotEmpty = progressCtx.graveyard.length > 0;
+
     return (
         <section className={`${s["stage-wrap"]} ${s["stage-wrap--graveyard"]}`}>
             <div className={`${s["graveyard"]} ${s["stage-wrap__inner"]}`}>
@@ -32,12 +34,18 @@ const Graveyard: React.FC<Props> = (props) => {
                         Practice missed questions here
                     </p>
                 </div>
-                <button
-                    className={s["graveyard__icon"]}
-                    onClick={changeLevelHandler}
-                >
-                    <Icon name="arrow-right-circle" />
-                </button>
+                {graveyardNotEmpty ? (
+                    <button
+                        className={s["graveyard__icon"]}
+                        onClick={changeLevelHandler}
+                    >
+                        <Icon name="arrow-right-circle" />
+                    </button>
+                ) : (
+                    <p className={s["graveyard__empty"]}>
+                        There is nothing in your graveyard. Well done!
+                    </p>
+                )}
             </div>
         </section>
     );
