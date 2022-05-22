@@ -6,7 +6,7 @@ import ParticleEnum from "../models/ParticleEnum.model";
  * @param sentence
  * @returns {[JSX.Element, JSX.Element]}
  */
-export const rubifyDrillQuestion: (
+export const rubifyQuestionText: (
     sentence: string
 ) => [JSX.Element, JSX.Element] = (sentence: string) => {
     const [firstHalfString, secondHalfString] =

@@ -43,8 +43,12 @@
     &__text {
         margin-right: 1em;
 
-        .question--no-fur & rt {
-            display: none;
+        rt {
+            user-select: none;
+
+            .question--no-fur & {
+                display: none;
+            }
         }
     }
 
@@ -93,13 +97,11 @@
     }
 
     &__eng {
+        min-height: 1.2em;
         margin-top: 2rem;
         font-size: 1em;
+        line-height: 1.2em;
         text-align: center;
-
-        .question--no-eng & {
-            display: none;
-        }
     }
 
     &__next {
@@ -108,16 +110,11 @@
     }
 }
 
-/* Keyboard
+/* Keyboard & Key
 ------------------------------- */
 .keyboard {
     max-width: 600px;
     margin: 6rem auto 0;
-
-    &--disabled {
-        opacity: 0.6;
-        pointer-events: none;
-    }
 
     display: grid;
     grid:
@@ -128,12 +125,15 @@
     gap: 20px;
 }
 
-/* Key
-------------------------------- */
 .key {
     position: relative;
     padding: 1rem;
     border: 2px solid;
+
+    .keyboard--disabled & {
+        opacity: 0.6;
+        cursor: default;
+    }
 
     &[data-state=""] {
         color: inherit;

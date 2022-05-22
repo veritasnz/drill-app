@@ -20,9 +20,9 @@ export interface DrillStateType {
 }
 
 type UseDrill = (progressCtx: ProgressContextState) => {
-    drillState: DrillStateType;
-    correctAnswerHandler: () => void;
-    incorrectAnswerHandler: () => void;
+    state: DrillStateType;
+    correctHandler: () => void;
+    incorrectHandler: () => void;
 };
 
 const BLANK_LEVEL: Level = {
@@ -87,7 +87,7 @@ const useDrill: UseDrill = (progressCtx) => {
         }
     }, [progressCtx.currentLevelId]);
 
-    const correctAnswerHandler = () => {
+    const correctHandler = () => {
         // Add answered question to context + localStorage
         const answeredQuestionId = questions[0].id;
         progressCtx.addAnsweredQuestionId(answeredQuestionId);
@@ -119,19 +119,19 @@ const useDrill: UseDrill = (progressCtx) => {
         setQuestions(newQuestions);
     };
 
-    const incorrectAnswerHandler = () => {
+    const incorrectHandler = () => {
         progressCtx.addGraveyardQuestion(questions[0]);
     };
 
     return {
-        drillState: {
+        state: {
             nextQuestion: questions[0],
             questions,
             currentLevel,
             currentLevelNum,
         },
-        correctAnswerHandler,
-        incorrectAnswerHandler,
+        correctHandler,
+        incorrectHandler,
     };
 };
 

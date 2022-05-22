@@ -1,31 +1,38 @@
 import { useContext, useState } from "react";
 
+// Models
 import ParticleEnum from "../../models/ParticleEnum.model";
+
+// Lib
 import { checkAnswerIsCorrect } from "../../lib/drill-functions";
 
+// Contexts
 import SettingsContext from "../../context/settings-context";
 import StatsContext from "../../context/stats-context";
 import ProgressContext from "../../context/progress-context";
-import useDrill from "../../hooks/useDrill";
 
+// Hooks
+import useDrill from "../../hooks/useDrill";
+import useKeyPress from "../../hooks/useKeyPress";
+
+// Components
 import LevelProgress from "./LevelProgress";
 import Question from "./Question";
 import Keyboard from "./Keyboard";
 
 const Drill: React.FC = () => {
+    // Vars
     const settingsCtx = useContext(SettingsContext);
     const statsCtx = useContext(StatsContext);
     const progressCtx = useContext(ProgressContext);
-
-    const { drillState, correctAnswerHandler, incorrectAnswerHandler } =
-        useDrill(progressCtx);
-
+    const drill = useDrill(progressCtx);
     const [isPostAnswer, setIsPostAnswer] = useState(false);
 
+    //
     const attemptHandler = (inputtedAnswer: ParticleEnum) => {
         const answerIsCorrect = checkAnswerIsCorrect(
             inputtedAnswer,
-            drillState.nextQuestion.answers
+            drill.state.nextQuestion.answers
         );
 
         statsCtx.incrementTotalAttempts();
@@ -35,28 +42,33 @@ const Drill: React.FC = () => {
             setIsPostAnswer(true);
             return true;
         } else {
-            incorrectAnswerHandler();
+            drill.incorrectHandler();
             return false;
         }
     };
 
+    // 'Next question →' handler & keyboard listener
     const nextQuestionHandler = () => {
-        correctAnswerHandler();
+        drill.correctHandler();
         setIsPostAnswer(false);
     };
+    const nextQuestionKeyHandler = (event) => {
+        if (isPostAnswer) {
+            nextQuestionHandler();
+        }
+    };
+    useKeyPress(["Enter", "Space"], nextQuestionKeyHandler);
 
-    /**
-     * Return
-     */
-    if (!drillState.nextQuestion) {
+    // Render
+    if (!drill.state.nextQuestion) {
         return <p>Finished! Choose next level</p>;
     }
 
     return (
         <>
-            <LevelProgress drillState={drillState} />
+            <LevelProgress drillState={drill.state} />
             <Question
-                drillState={drillState}
+                nextQuestion={drill.state.nextQuestion}
                 isPostAnswer={isPostAnswer}
                 onNextQuestion={nextQuestionHandler}
                 settingsCtx={settingsCtx}

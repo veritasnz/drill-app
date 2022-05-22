@@ -21,7 +21,7 @@ const useKeyPress = (
     const handleKeyPress = useCallback(
         (event) => {
             // check if one of the key is part of the ones we want
-            if (keys.some((key) => event.key === key)) {
+            if (keys.some((key) => event.code === key)) {
                 callbackRef.current(event);
             }
         },

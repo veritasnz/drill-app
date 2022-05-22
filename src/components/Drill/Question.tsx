@@ -1,64 +1,31 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { SettingsContextState } from "../../context/settings-context";
-import { DrillStateType } from "../../hooks/useDrill";
-import { rubifyDrillQuestion } from "../../lib/question-parser";
-
-import Icon from "../UI/Icon/Icon";
-import Button from "../UI/Button";
+import QuestionT from "../../models/Question.model";
 
 import s from "./Drill.module.scss";
 
+import QuestionText from "./QuestionText";
+import Icon from "../UI/Icon/Icon";
+import Button from "../UI/Button";
+
 interface Props {
-    drillState: DrillStateType;
+    nextQuestion: QuestionT;
     isPostAnswer: boolean;
     onNextQuestion: () => void;
     settingsCtx: SettingsContextState;
 }
 
 const Question: React.FC<Props> = ({
-    drillState,
+    nextQuestion,
     isPostAnswer,
     onNextQuestion,
     settingsCtx,
 }) => {
-    const { nextQuestion } = drillState;
-
-    const [firstHalf, setFirstHalf] = useState<JSX.Element>(<></>);
-    const [secondHalf, setSecondHalf] = useState<JSX.Element>(<></>);
-    const [placeholderContent, setPlaceholderContent] = useState<string[]>([]);
-
-    // Update text on question change
-    useEffect(() => {
-        const [newFirstHalf, newSecondHalf] = rubifyDrillQuestion(
-            nextQuestion.question
-        );
-
-        setFirstHalf(newFirstHalf);
-        setSecondHalf(newSecondHalf);
-    }, [nextQuestion]);
-
-    // Update placeholder when 'isPostAnswer' changes
-    useEffect(() => {
-        if (isPostAnswer) {
-            let isFirst = true;
-            const newPlaceholderContent = nextQuestion.answers.map((answer) => {
-                if (isFirst) {
-                    isFirst = false;
-                    return answer;
-                } else {
-                    return `・${answer}`;
-                }
-            });
-            setPlaceholderContent(newPlaceholderContent);
-        } else {
-            setPlaceholderContent([""]);
-        }
-    }, [isPostAnswer]);
-
-    // Play audio when 'isPostAnswer' changes
+    /**
+     * Play audio when 'isPostAnswer' changes
+     */
     const audioElement = useRef(new Audio());
-
     useEffect(() => {
         if (isPostAnswer && settingsCtx.autoplayIsOn) {
             audioElement.current.src = `/audio/${nextQuestion.id}.mp3`;
@@ -68,31 +35,23 @@ const Question: React.FC<Props> = ({
         }
     }, [isPostAnswer]);
 
+    /**
+     * Render
+     */
     return (
         <div
             className={`
                 ${s["question"]}
-                ${settingsCtx.showEnglish || s["question--no-eng"]}
                 ${settingsCtx.showFurigana || s["question--no-fur"]}
             `}
         >
             {nextQuestion ? (
                 <>
                     <div className={s["question__wrap"]}>
-                        <p className={s["question__text"]}>
-                            {firstHalf}
-                            <span className={`${s["question__place-wrap"]}`}>
-                                <span
-                                    className={`${s["question__place-inner"]} ${
-                                        isPostAnswer &&
-                                        s["question__place-inner--correct"]
-                                    }`}
-                                >
-                                    {placeholderContent}
-                                </span>
-                            </span>
-                            {secondHalf}
-                        </p>
+                        <QuestionText
+                            nextQuestion={nextQuestion}
+                            isPostAnswer={isPostAnswer}
+                        />
                         <i
                             className={`${s["question__check"]} ${
                                 isPostAnswer && s["question__check--correct"]
@@ -101,18 +60,31 @@ const Question: React.FC<Props> = ({
                             <Icon name="check-circle" />
                         </i>
                     </div>
-                    {isPostAnswer && (
-                        <>
+
+                    {
+                        // Only show English if it is post-answer screen / English is enabled
+                        (isPostAnswer || settingsCtx.showEnglish) && (
                             <div className={s["question__eng"]}>
                                 {nextQuestion.english}
                             </div>
-                            <div className={s["question__next"]}>
-                                <Button color="green" onClick={onNextQuestion}>
-                                    Next
-                                </Button>
-                            </div>
-                        </>
-                    )}
+                        )
+                    }
+
+                    {
+                        // Show next button on the post-answer screen
+                        isPostAnswer && (
+                            <>
+                                <div className={s["question__next"]}>
+                                    <Button
+                                        color="green"
+                                        onClick={onNextQuestion}
+                                    >
+                                        Next
+                                    </Button>
+                                </div>
+                            </>
+                        )
+                    }
                 </>
             ) : (
                 <p className={s["question__loading"]}>Loading next question</p>

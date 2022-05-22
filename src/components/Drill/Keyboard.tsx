@@ -10,52 +10,44 @@ interface KeyBoardProps {
     onAttempt: (answerEnum: ParticleEnum) => boolean;
 }
 
-const Keyboard: React.FC<Props> = ({ isPostAnswer, onAttempt }) => {
-    const focusParticle = (keyChar: string) => {
-        switch (keyChar) {
-            case "g":
-            case "d":
-            case "t":
-            case "n":
-            case "h":
-            case "w":
-            case "k":
-            case "m":
-        }
+const Keyboard: React.FC<KeyBoardProps> = ({ isPostAnswer, onAttempt }) => {
+    const particleKeyPairs: { [keyName: string]: ParticleEnum } = {
+        KeyG: ParticleEnum.GA,
+        KeyD: ParticleEnum.DE,
+        KeyT: ParticleEnum.TO,
+        KeyN: ParticleEnum.NI,
+        KeyH: ParticleEnum.HE,
+        KeyW: ParticleEnum.WO,
+        KeyK: ParticleEnum.KARA,
+        KeyM: ParticleEnum.MADE,
     };
 
-    const onParticleHighlight = (event: KeyboardEvent) => {};
+    // Assign keyFocusHandler to particle keys
+    const keyFocusHandler = (event: KeyboardEvent) => {
+        document.getElementById(particleKeyPairs[event.code])?.focus();
+    };
+    useKeyPress(Object.keys(particleKeyPairs), keyFocusHandler);
 
-    useKeyPress(["g", "d", "t", "n", "h", "w", "k", "m"], onParticleHighlight);
-
-    const particleList = [
-        ParticleEnum.GA,
-        ParticleEnum.DE,
-        ParticleEnum.TO,
-        ParticleEnum.NI,
-        ParticleEnum.HE,
-        ParticleEnum.WO,
-        ParticleEnum.KARA,
-        ParticleEnum.MADE,
-    ];
+    // Build Keys for render
+    const keysArray: JSX.Element[] = [];
+    for (const keyChar in particleKeyPairs) {
+        keysArray.push(
+            <Key
+                key={keyChar}
+                onAttempt={onAttempt}
+                particle={particleKeyPairs[keyChar]}
+                isPostAnswer={isPostAnswer}
+            />
+        );
+    }
 
     return (
         <div
-            className={`
-        ${s["keyboard"]}
-        ${isPostAnswer && s["keyboard--disabled"]}
-    `}
+            className={`${s["keyboard"]} ${
+                isPostAnswer && s["keyboard--disabled"]
+            }`}
         >
-            {particleList.map((particle) => {
-                return (
-                    <Key
-                        key={particle}
-                        onAttempt={onAttempt}
-                        particle={particle}
-                        isPostAnswer={isPostAnswer}
-                    />
-                );
-            })}
+            {keysArray}
         </div>
     );
 };
@@ -95,6 +87,7 @@ const Key: React.FC<KeyProps> = (props) => {
                 onClick={answerHandler}
                 className={s["key__button"]}
                 type="button"
+                disabled={props.isPostAnswer}
             >
                 {props.particle}
             </button>
