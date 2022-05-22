@@ -11,14 +11,14 @@ import s from "./Drill.module.scss";
 
 interface Props {
     drillState: DrillStateType;
-    isCorrect: boolean;
+    isPostAnswer: boolean;
     onNextQuestion: () => void;
     settingsCtx: SettingsContextState;
 }
 
 const Question: React.FC<Props> = ({
     drillState,
-    isCorrect,
+    isPostAnswer,
     onNextQuestion,
     settingsCtx,
 }) => {
@@ -38,9 +38,9 @@ const Question: React.FC<Props> = ({
         setSecondHalf(newSecondHalf);
     }, [nextQuestion]);
 
-    // Update placeholder when 'isCorrect' changes
+    // Update placeholder when 'isPostAnswer' changes
     useEffect(() => {
-        if (isCorrect) {
+        if (isPostAnswer) {
             let isFirst = true;
             const newPlaceholderContent = nextQuestion.answers.map((answer) => {
                 if (isFirst) {
@@ -54,19 +54,19 @@ const Question: React.FC<Props> = ({
         } else {
             setPlaceholderContent([""]);
         }
-    }, [isCorrect]);
+    }, [isPostAnswer]);
 
-    // Play audio when 'isCorrect' changes
+    // Play audio when 'isPostAnswer' changes
     const audioElement = useRef(new Audio());
 
     useEffect(() => {
-        if (isCorrect && settingsCtx.autoplayIsOn) {
+        if (isPostAnswer && settingsCtx.autoplayIsOn) {
             audioElement.current.src = `/audio/${nextQuestion.id}.mp3`;
             audioElement.current.play();
         } else {
             audioElement.current.pause();
         }
-    }, [isCorrect]);
+    }, [isPostAnswer]);
 
     return (
         <div
@@ -84,7 +84,7 @@ const Question: React.FC<Props> = ({
                             <span className={`${s["question__place-wrap"]}`}>
                                 <span
                                     className={`${s["question__place-inner"]} ${
-                                        isCorrect &&
+                                        isPostAnswer &&
                                         s["question__place-inner--correct"]
                                     }`}
                                 >
@@ -95,13 +95,13 @@ const Question: React.FC<Props> = ({
                         </p>
                         <i
                             className={`${s["question__check"]} ${
-                                isCorrect && s["question__check--correct"]
+                                isPostAnswer && s["question__check--correct"]
                             }`}
                         >
                             <Icon name="check-circle" />
                         </i>
                     </div>
-                    {isCorrect && (
+                    {isPostAnswer && (
                         <>
                             <div className={s["question__eng"]}>
                                 {nextQuestion.english}

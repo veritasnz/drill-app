@@ -8,11 +8,9 @@ import StatsContext from "../../context/stats-context";
 import ProgressContext from "../../context/progress-context";
 import useDrill from "../../hooks/useDrill";
 
-import s from "./Drill.module.scss";
-
 import LevelProgress from "./LevelProgress";
 import Question from "./Question";
-import Key from "./Key";
+import Keyboard from "./Keyboard";
 
 const Drill: React.FC = () => {
     const settingsCtx = useContext(SettingsContext);
@@ -22,7 +20,7 @@ const Drill: React.FC = () => {
     const { drillState, correctAnswerHandler, incorrectAnswerHandler } =
         useDrill(progressCtx);
 
-    const [isCorrect, setIsCorrect] = useState(false);
+    const [isPostAnswer, setIsPostAnswer] = useState(false);
 
     const attemptHandler = (inputtedAnswer: ParticleEnum) => {
         const answerIsCorrect = checkAnswerIsCorrect(
@@ -34,8 +32,7 @@ const Drill: React.FC = () => {
 
         if (answerIsCorrect) {
             statsCtx.incrementTotalCorrectAttempts();
-            setIsCorrect(true);
-
+            setIsPostAnswer(true);
             return true;
         } else {
             incorrectAnswerHandler();
@@ -45,9 +42,12 @@ const Drill: React.FC = () => {
 
     const nextQuestionHandler = () => {
         correctAnswerHandler();
-        setIsCorrect(false);
+        setIsPostAnswer(false);
     };
 
+    /**
+     * Return
+     */
     if (!drillState.nextQuestion) {
         return <p>Finished! Choose next level</p>;
     }
@@ -57,60 +57,11 @@ const Drill: React.FC = () => {
             <LevelProgress drillState={drillState} />
             <Question
                 drillState={drillState}
-                isCorrect={isCorrect}
+                isPostAnswer={isPostAnswer}
                 onNextQuestion={nextQuestionHandler}
                 settingsCtx={settingsCtx}
             />
-
-            <div
-                className={`
-                    ${s["keyboard"]}
-                    ${isCorrect && s["keyboard--disabled"]}
-                `}
-            >
-                <Key
-                    onAttempt={attemptHandler}
-                    particle={ParticleEnum.GA}
-                    isCorrect={isCorrect}
-                />
-                <Key
-                    onAttempt={attemptHandler}
-                    particle={ParticleEnum.DE}
-                    isCorrect={isCorrect}
-                />
-                <Key
-                    onAttempt={attemptHandler}
-                    particle={ParticleEnum.TO}
-                    isCorrect={isCorrect}
-                />
-
-                <Key
-                    onAttempt={attemptHandler}
-                    particle={ParticleEnum.NI}
-                    isCorrect={isCorrect}
-                />
-                <Key
-                    onAttempt={attemptHandler}
-                    particle={ParticleEnum.HE}
-                    isCorrect={isCorrect}
-                />
-                <Key
-                    onAttempt={attemptHandler}
-                    particle={ParticleEnum.WO}
-                    isCorrect={isCorrect}
-                />
-
-                <Key
-                    onAttempt={attemptHandler}
-                    particle={ParticleEnum.KARA}
-                    isCorrect={isCorrect}
-                />
-                <Key
-                    onAttempt={attemptHandler}
-                    particle={ParticleEnum.MADE}
-                    isCorrect={isCorrect}
-                />
-            </div>
+            <Keyboard onAttempt={attemptHandler} isPostAnswer={isPostAnswer} />
         </>
     );
 };

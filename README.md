@@ -84,7 +84,8 @@ Create a new file locally called `.env.local` and add the following:
 -   Drill section
     -   Keyboard support (Enter and first character for each button – with focus display)
     -   Styles
--   Refactor useDrill hook & LevelProgress component
+-   Refactor logic
+    -   Add useMemo for drillData?
 -   Rough testing
 -   Test cases for duplicate IDs (Vitest?)
 -   Fill out question content properly
@@ -94,6 +95,7 @@ Create a new file locally called `.env.local` and add the following:
     -   Add loading spinner before context has finished loading
 -   Stats page
     -   Feedback form
+-   Move data to Supabase
 -   About page
 -   Documentation
 -   Create more tests cases
