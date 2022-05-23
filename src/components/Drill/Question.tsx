@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { Ref, useEffect, useRef } from "react";
 
 import { SettingsContextState } from "../../context/settings-context";
 import QuestionT from "../../models/Question.model";
@@ -12,6 +12,7 @@ import Button from "../UI/Button";
 interface Props {
     nextQuestion: QuestionT;
     isPostAnswer: boolean;
+    nextQuestionRef: Ref<HTMLButtonElement> | null;
     onNextQuestion: () => void;
     settingsCtx: SettingsContextState;
 }
@@ -19,6 +20,7 @@ interface Props {
 const Question: React.FC<Props> = ({
     nextQuestion,
     isPostAnswer,
+    nextQuestionRef,
     onNextQuestion,
     settingsCtx,
 }) => {
@@ -33,7 +35,7 @@ const Question: React.FC<Props> = ({
         } else {
             audioElement.current.pause();
         }
-    }, [isPostAnswer]);
+    }, [isPostAnswer, nextQuestion.id, settingsCtx.autoplayIsOn]);
 
     /**
      * Render
@@ -70,21 +72,17 @@ const Question: React.FC<Props> = ({
                         )
                     }
 
-                    {
-                        // Show next button on the post-answer screen
-                        isPostAnswer && (
-                            <>
-                                <div className={s["question__next"]}>
-                                    <Button
-                                        color="green"
-                                        onClick={onNextQuestion}
-                                    >
-                                        Next
-                                    </Button>
-                                </div>
-                            </>
-                        )
-                    }
+                    <div className={s["question__next"]}>
+                        <Button
+                            ref={nextQuestionRef}
+                            id="question-next-button"
+                            color="green"
+                            onClick={onNextQuestion}
+                            disabled={!isPostAnswer}
+                        >
+                            Next
+                        </Button>
+                    </div>
                 </>
             ) : (
                 <p className={s["question__loading"]}>Loading next question</p>
@@ -92,5 +90,6 @@ const Question: React.FC<Props> = ({
         </div>
     );
 };
+Question.displayName = "Question";
 
 export default Question;

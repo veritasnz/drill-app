@@ -82,10 +82,10 @@ Create a new file locally called `.env.local` and add the following:
 ## Next to implement
 
 -   Drill section
-    -   Keyboard support (Enter and first character for each button – with focus display)
-    -   Styles
+    -   Question component styles
 -   Refactor logic
     -   Add useMemo for drillData?
+    -   Refactor Drill/Question/useDrill
 -   Rough testing
 -   Test cases for duplicate IDs (Vitest?)
 -   Fill out question content properly

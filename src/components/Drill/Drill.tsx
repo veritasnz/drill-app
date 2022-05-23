@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 // Models
 import ParticleEnum from "../../models/ParticleEnum.model";
@@ -13,7 +13,6 @@ import ProgressContext from "../../context/progress-context";
 
 // Hooks
 import useDrill from "../../hooks/useDrill";
-import useKeyPress from "../../hooks/useKeyPress";
 
 // Components
 import LevelProgress from "./LevelProgress";
@@ -25,10 +24,13 @@ const Drill: React.FC = () => {
     const settingsCtx = useContext(SettingsContext);
     const statsCtx = useContext(StatsContext);
     const progressCtx = useContext(ProgressContext);
+
     const drill = useDrill(progressCtx);
+
     const [isPostAnswer, setIsPostAnswer] = useState(false);
 
-    //
+    // Tests if inputted answer is correct.
+    // Progresses state appropriately, moving to post-answer state if correct
     const attemptHandler = (inputtedAnswer: ParticleEnum) => {
         const answerIsCorrect = checkAnswerIsCorrect(
             inputtedAnswer,
@@ -47,17 +49,17 @@ const Drill: React.FC = () => {
         }
     };
 
-    // 'Next question →' handler & keyboard listener
+    // Setup 'Next question →' handler & ref
+    const nextQuestionRef = useRef<HTMLButtonElement>(null);
     const nextQuestionHandler = () => {
-        drill.correctHandler();
-        setIsPostAnswer(false);
-    };
-    const nextQuestionKeyHandler = (event) => {
         if (isPostAnswer) {
-            nextQuestionHandler();
+            drill.correctHandler();
+            setIsPostAnswer(false);
         }
     };
-    useKeyPress(["Enter", "Space"], nextQuestionKeyHandler);
+    useEffect(() => {
+        if (isPostAnswer) nextQuestionRef.current?.focus();
+    }, [isPostAnswer]);
 
     // Render
     if (!drill.state.nextQuestion) {
@@ -70,6 +72,7 @@ const Drill: React.FC = () => {
             <Question
                 nextQuestion={drill.state.nextQuestion}
                 isPostAnswer={isPostAnswer}
+                nextQuestionRef={nextQuestionRef}
                 onNextQuestion={nextQuestionHandler}
                 settingsCtx={settingsCtx}
             />

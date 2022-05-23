@@ -107,46 +107,91 @@
     &__next {
         margin-top: 2rem;
         text-align: center;
+
+        button {
+            &:focus {
+                color: red !important;
+            }
+
+            &:disabled {
+                // opacity: 0;
+                // user-select: none;
+                // pointer-events: none;
+            }
+        }
     }
 }
 
 /* Keyboard & Key
 ------------------------------- */
 .keyboard {
-    max-width: 600px;
+    max-width: 7em;
     margin: 6rem auto 0;
+    font-size: var(--fs-key);
 
     display: grid;
     grid:
-        "ga ga de de to to" 100px
-        "ni ni he he wo wo" 100px
-        "kara kara kara made made made" 100px
+        "ga ga de de to to" 2em
+        "ni ni he he wo wo" 2em
+        "kara kara kara made made made" 2em
         / 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 20px;
 }
 
 .key {
-    position: relative;
-    padding: 1rem;
-    border: 2px solid;
+    // button
+    --key-post-ans-opacity: 0.4;
 
-    .keyboard--disabled & {
-        opacity: 0.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2em;
+    height: 2em;
+    border-radius: 0.25em;
+    border: 2px solid var(--c-orange);
+    user-select: none;
+    transition: color 150ms ease, border-color 150ms ease,
+        background-color 150ms ease;
+
+    .keyboard--post-ans & {
         cursor: default;
     }
 
-    &[data-state=""] {
-        color: inherit;
+    &:focus {
+        outline: none;
+        color: var(--c-blue);
+        border-color: var(--c-blue);
     }
 
     &[data-state="correct"] {
-        color: var(--c-green);
+        color: var(--c-white);
+        border-color: var(--c-green);
+        background: var(--c-green);
+    }
+
+    &:not([data-state="correct"]) {
+        .keyboard--post-ans & {
+            opacity: var(--key-post-ans-opacity);
+        }
     }
 
     &[data-state="incorrect"] {
         color: var(--c-red);
+        border-color: var(--c-red);
+        opacity: var(--key-post-ans-opacity);
         pointer-events: none;
     }
+
+    span {
+        display: inline-block;
+        line-height: 1;
+        letter-spacing: var(--ls-thin);
+        margin-left: -0.05em; // offset --ls-thin (hack)
+    }
+
+    /**
+    * Grid Layout code
+    */
 
     &[data-particle="が"] {
         grid-area: ga;
@@ -178,13 +223,5 @@
 
     &[data-particle="まで"] {
         grid-area: made;
-    }
-
-    &__button {
-        // button
-        position: absolute;
-        display: block;
-        width: 100%;
-        inset: 0;
     }
 }
