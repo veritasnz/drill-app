@@ -11,7 +11,6 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     postText?: string;
     color: ButtonColorNames;
     icon?: IconName;
-    [key: string]: any;
 }
 
 let transitionTimer: any;

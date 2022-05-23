@@ -7,7 +7,6 @@ import s from "./UI.module.scss";
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     color: ButtonColorNames;
     icon?: IconName;
-    [key: string]: any;
 }
 
 export type ButtonColorNames = "blue" | "orange" | "red" | "green";
