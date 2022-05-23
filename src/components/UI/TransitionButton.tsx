@@ -1,23 +1,25 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { ButtonColorNames } from "./Button";
 import Icon, { IconName } from "./Icon/Icon";
 
 import s from "./UI.module.scss";
 
-interface Props {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     onClick: () => void;
     preText: string;
     postText?: string;
     color: ButtonColorNames;
-    id?: string;
     icon?: IconName;
-    disabled?: boolean;
+    [key: string]: any;
 }
 
 let transitionTimer: any;
 
-const TransitionButton: React.FC<Props> = (props) => {
+const TransitionButton: React.FC<Props> = React.forwardRef<
+    HTMLButtonElement,
+    Props
+>((props, ref) => {
     const [btnIsTransitioning, setBtnIsTransitioning] = useState(false);
 
     const clickHandler = () => {
@@ -42,14 +44,17 @@ const TransitionButton: React.FC<Props> = (props) => {
 
     return (
         <button
+            ref={ref}
             id={props.id}
             className={`
                 ${s["button"]}
                 ${props.color && s[`button--${props.color}`]}
                 ${btnIsTransitioning && s[`button--transitioning`]}
+                ${props.className}
             `}
-            onClick={clickHandler}
             disabled={props.disabled ? true : false}
+            {...props}
+            onClick={clickHandler}
         >
             <span className={s["button__text"]}>{textContent}</span>
             {props.icon && (
@@ -59,6 +64,6 @@ const TransitionButton: React.FC<Props> = (props) => {
             )}
         </button>
     );
-};
+});
 
 export default TransitionButton;

@@ -1,28 +1,29 @@
+import React from "react";
+
 import Icon, { IconName } from "./Icon/Icon";
 
 import s from "./UI.module.scss";
 
-interface Props {
-    children: React.ReactNode;
-    onClick?: () => void;
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     color: ButtonColorNames;
-    id?: string;
     icon?: IconName;
-    disabled?: boolean;
+    [key: string]: any;
 }
 
 export type ButtonColorNames = "blue" | "orange" | "red" | "green";
 
-const Button: React.FC<Props> = (props) => {
+const Button = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
     return (
         <button
-            id={props.id}
+            ref={ref}
             className={`
                 ${s["button"]}
                 ${props.color && s[`button--${props.color}`]}
+                ${props.className}
             `}
             onClick={props.onClick}
             disabled={props.disabled ? true : false}
+            {...props}
         >
             <span className={s["button__text"]}>{props.children}</span>
             {props.icon && (
@@ -32,6 +33,6 @@ const Button: React.FC<Props> = (props) => {
             )}
         </button>
     );
-};
+});
 
 export default Button;
