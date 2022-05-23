@@ -79,8 +79,9 @@ const Question: React.FC<Props> = ({
                             color="green"
                             onClick={onNextQuestion}
                             disabled={!isPostAnswer}
+                            icon="arrow-right"
                         >
-                            Next
+                            Next Question
                         </Button>
                     </div>
                 </>

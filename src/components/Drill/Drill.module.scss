@@ -30,18 +30,32 @@
 /* Question
 ------------------------------- */
 .question {
-    min-height: 9em;
-    margin: 5rem auto 0;
+    min-height: 7em;
+    margin: 1.4em auto 0;
+    text-align: center;
+    font-size: var(--fs-question);
+
+    @media (min-width: 900px) {
+        --fs-question: 3.2rem;
+    }
 
     &__wrap {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         text-align: center;
+
+        position: relative; // for check
+        padding: 0 1.2em;
     }
 
     &__text {
-        margin-right: 1em;
+        > span {
+            &:not(.question__place-wrap) {
+                display: inline-block;
+                margin: 0.3em 0;
+            }
+        }
 
         rt {
             user-select: none;
@@ -55,13 +69,13 @@
     &__place-wrap {
         display: inline-block;
         min-width: 1.5em;
-        margin-left: 0.2em;
-        margin-right: 0.2em;
-        padding-left: 0.2em;
-        padding-right: 0.2em;
-        font-size: 1.3em;
+        margin: 0 0.4em;
         text-align: center;
-        border-bottom: 1px solid var(--c-black);
+        border-bottom: 2px solid currentColor;
+
+        &--correct {
+            color: var(--c-green);
+        }
     }
 
     &__place-inner {
@@ -71,14 +85,16 @@
         opacity: 0;
         transition: opacity 300ms ease;
 
-        &--correct {
+        .question__place-wrap--correct & {
             opacity: 1;
             color: var(--c-green);
         }
     }
 
     &__check {
-        display: inline-block;
+        position: absolute;
+        right: -1em;
+        bottom: 0.25em;
         opacity: 0;
         transition: opacity 300ms ease;
 
@@ -98,10 +114,15 @@
 
     &__eng {
         min-height: 1.2em;
-        margin-top: 2rem;
-        font-size: 1em;
+        margin-top: 1em;
         line-height: 1.2em;
         text-align: center;
+        text-transform: lowercase;
+        color: var(--c-grey);
+
+        &:after {
+            content: ".";
+        }
     }
 
     &__next {
@@ -109,14 +130,19 @@
         text-align: center;
 
         button {
+            text-transform: uppercase;
+            font-size: var(--fs-small);
+            font-weight: var(--fw-bold);
+
             &:focus {
-                color: red !important;
+                border-color: var(--c-blue);
+                outline: none;
             }
 
             &:disabled {
-                // opacity: 0;
-                // user-select: none;
-                // pointer-events: none;
+                opacity: 0;
+                user-select: none;
+                pointer-events: none;
             }
         }
     }
@@ -126,7 +152,7 @@
 ------------------------------- */
 .keyboard {
     max-width: 7em;
-    margin: 6rem auto 0;
+    margin: 1.2em auto 0;
     font-size: var(--fs-key);
 
     display: grid;
