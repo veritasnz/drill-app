@@ -65,5 +65,6 @@ const TransitionButton: React.FC<Props> = React.forwardRef<
         </button>
     );
 });
+TransitionButton.displayName = "TransitionButton";
 
 export default TransitionButton;
