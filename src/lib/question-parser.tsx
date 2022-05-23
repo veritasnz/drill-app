@@ -1,5 +1,6 @@
-import s from "../components/Drill/Drill.module.scss";
 import ParticleEnum from "../models/ParticleEnum.model";
+
+import PlaceholderWrap from "../components/Drill/PlaceholderWrap";
 
 /**
  * Takes in a question and spits out JSX for before/after underscore
@@ -38,14 +39,7 @@ const rubifyText: (sentence: string) => JSX.Element = (sentence: string) => {
                     return <span key={randKey}>{buildRuby(bit)}</span>;
                 } else if (bit[0] === "?") {
                     // If is another placeholder in same question
-                    return (
-                        <span
-                            key={randKey}
-                            className={s["question__place-wrap"]}
-                        >
-                            <span className={s["question__place-inner"]}></span>
-                        </span>
-                    );
+                    return <PlaceholderWrap key={randKey} />;
                 } else {
                     // Else, is non-kanji content, straight push
                     return <span key={randKey}>{bit}</span>;
@@ -56,8 +50,8 @@ const rubifyText: (sentence: string) => JSX.Element = (sentence: string) => {
 };
 
 /**
- * Builds a 'ruby' element
- * @param text
+ * Builds a 'ruby' element from "{kanji}(furigana)" string
+ * @param text in the format "{kanji}(furigana)"
  * @returns
  */
 const buildRuby: (text: string) => JSX.Element = (text: string) => {

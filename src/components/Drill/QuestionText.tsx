@@ -3,6 +3,7 @@ import { rubifyQuestionText } from "../../lib/question-parser";
 import Question from "../../models/Question.model";
 
 import s from "./Drill.module.scss";
+import PlaceholderWrap from "./PlaceholderWrap";
 
 /**
  * Key
@@ -48,15 +49,10 @@ const QuestionText: React.FC<Props> = ({ nextQuestion, isPostAnswer }) => {
     return (
         <p className={s["question__text"]}>
             {firstHalf}
-            <span className={`${s["question__place-wrap"]}`}>
-                <span
-                    className={`${s["question__place-inner"]} ${
-                        isPostAnswer && s["question__place-inner--correct"]
-                    }`}
-                >
-                    {placeholderContent}
-                </span>
-            </span>
+            <PlaceholderWrap
+                isPostAnswer={isPostAnswer}
+                content={placeholderContent}
+            />
             {secondHalf}
         </p>
     );
