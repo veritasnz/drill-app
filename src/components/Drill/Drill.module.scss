@@ -4,13 +4,39 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: var(--c-grey);
+    text-align: center;
+
+    &__lvl {
+        em,
+        small {
+            display: block;
+            line-height: 1.2;
+        }
+
+        em {
+            font-size: var(--fs-title);
+            font-weight: var(--fw-bold);
+        }
+
+        small {
+            font-size: var(--fs-small);
+        }
+    }
+
+    &__prog {
+        flex-shrink: 0;
+        font-size: var(--fs-large);
+    }
 
     &__bar-wrap {
         position: relative;
         flex-grow: 1;
-        margin: 0 2rem;
-        height: 8px;
-        background: #ccc;
+        margin-left: 0.9em;
+        margin-right: 0.9em;
+        max-width: 26em;
+        height: 0.4em;
+        background: var(--c-grey-light);
         overflow: hidden;
         border-radius: 200vh;
     }
