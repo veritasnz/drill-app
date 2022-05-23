@@ -10,7 +10,9 @@ interface Props {
     preText: string;
     postText?: string;
     color: ButtonColorNames;
+    id?: string;
     icon?: IconName;
+    disabled?: boolean;
 }
 
 let transitionTimer: any;
@@ -40,12 +42,14 @@ const TransitionButton: React.FC<Props> = (props) => {
 
     return (
         <button
+            id={props.id}
             className={`
                 ${s["button"]}
                 ${props.color && s[`button--${props.color}`]}
                 ${btnIsTransitioning && s[`button--transitioning`]}
             `}
             onClick={clickHandler}
+            disabled={props.disabled ? true : false}
         >
             <span className={s["button__text"]}>{textContent}</span>
             {props.icon && (
