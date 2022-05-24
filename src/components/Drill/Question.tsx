@@ -12,7 +12,7 @@ import Button from "../UI/Button";
 interface Props {
     nextQuestion: QuestionT;
     isPostAnswer: boolean;
-    nextQuestionRef: Ref<HTMLButtonElement> | null;
+    nextQuestionButtonRef: Ref<HTMLButtonElement> | null;
     onNextQuestion: () => void;
     settingsCtx: SettingsContextState;
 }
@@ -20,7 +20,7 @@ interface Props {
 const Question: React.FC<Props> = ({
     nextQuestion,
     isPostAnswer,
-    nextQuestionRef,
+    nextQuestionButtonRef,
     onNextQuestion,
     settingsCtx,
 }) => {
@@ -74,7 +74,7 @@ const Question: React.FC<Props> = ({
 
                     <div className={s["question__next"]}>
                         <Button
-                            ref={nextQuestionRef}
+                            ref={nextQuestionButtonRef}
                             id="question-next-button"
                             color="green"
                             onClick={onNextQuestion}

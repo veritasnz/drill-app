@@ -51,7 +51,7 @@ const Drill: React.FC = () => {
     };
 
     // Setup 'Next question →' handler & ref
-    const nextQuestionRef = useRef<HTMLButtonElement>(null);
+    const nextQuestionButtonRef = useRef<HTMLButtonElement>(null);
     const nextQuestionHandler = () => {
         if (isPostAnswer) {
             drill.correctHandler();
@@ -59,7 +59,7 @@ const Drill: React.FC = () => {
         }
     };
     useEffect(() => {
-        if (isPostAnswer) nextQuestionRef.current?.focus();
+        if (isPostAnswer) nextQuestionButtonRef.current?.focus();
     }, [isPostAnswer]);
 
     // Render
@@ -73,7 +73,7 @@ const Drill: React.FC = () => {
             <Question
                 nextQuestion={drill.state.nextQuestion}
                 isPostAnswer={isPostAnswer}
-                nextQuestionRef={nextQuestionRef}
+                nextQuestionButtonRef={nextQuestionButtonRef}
                 onNextQuestion={nextQuestionHandler}
                 settingsCtx={settingsCtx}
             />
