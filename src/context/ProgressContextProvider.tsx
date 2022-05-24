@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+
+// Models
 import Question from "../models/Question.model";
 
+// Context component
 import ProgressContext from "./progress-context";
 
 /** Stats Local Storage Keys */
@@ -13,10 +16,10 @@ enum LSKey {
 const INITIAL_LEVEL_ID = "yajirobe";
 
 const ProgressContextProvider: React.FC = (props) => {
-    const [answeredQuestionsIds, setAnsweredQuestionsIds] = useState<string[]>(
+    const [answeredQuestionIds, setAnsweredQuestionsIds] = useState<string[]>(
         []
     );
-    const [currentLevelId, setCurrentLevelId] = useState(INITIAL_LEVEL_ID);
+    const [currentLevelId, setCurrentLevelId] = useState("");
     const [graveyard, setGraveyard] = useState<Question[]>([]);
 
     const addAnsweredQuestionId = (questionId: string) => {
@@ -100,9 +103,13 @@ const ProgressContextProvider: React.FC = (props) => {
 
     // Initialize & load from localStorage
     useEffect(() => {
-        // Load current level ID
-        const storedCurrentLevelId = localStorage.getItem(LSKey.LEVEL_KEY);
-        if (storedCurrentLevelId) setLevelId(storedCurrentLevelId);
+        // Set current level ID from storage if it exists, else initialise
+        const storedLevelId = localStorage.getItem(LSKey.LEVEL_KEY);
+        if (storedLevelId) {
+            setLevelId(storedLevelId);
+        } else {
+            setLevelId(INITIAL_LEVEL_ID);
+        }
 
         // Load questions
         const storedAnsweredQuestionIdsJSON = localStorage.getItem(
@@ -127,8 +134,8 @@ const ProgressContextProvider: React.FC = (props) => {
             removeGraveyardQuestionById(question.id);
         });
 
-        // Clear answeredQuestionsIds
-        removeAnsweredQuestionsIds(answeredQuestionsIds);
+        // Clear answeredQuestionIds
+        removeAnsweredQuestionsIds(answeredQuestionIds);
 
         // Reset level
         setLevelId(INITIAL_LEVEL_ID);
@@ -137,7 +144,7 @@ const ProgressContextProvider: React.FC = (props) => {
     return (
         <ProgressContext.Provider
             value={{
-                answeredQuestionsIds,
+                answeredQuestionIds,
                 addAnsweredQuestionId,
                 removeAnsweredQuestionsIds,
                 currentLevelId,

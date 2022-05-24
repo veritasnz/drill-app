@@ -94,7 +94,6 @@ Create a new file locally called `.env.local` and add the following:
 
 ## Known Bugs
 
--   On load, half finished levels are displayed as if nothing has been answered before
 -   Browser denying JS autoplay (_audioElement.play()_) not working on mobile browsers
     -   Inside try/catch, create modal with button to allow user to enable audio
 -   On iOS Safari, NavItem icon SVG edges clip the container on mobile
