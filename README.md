@@ -77,6 +77,7 @@ Create a new file locally called `.env.local` and add the following:
 -   Bugfixing
 -   Refactor logic
     -   Refactor Drill/Question/useDrill
+    -   Store more on _progressContext_. Create _state_ object that gets returned. Stop child components (LevelProgress, Level etc.) from performing needless data operations using the APIs that can instead be performed inside of _ProgressContextProvider_
 -   Rough testing
 -   Test cases for duplicate IDs (Vitest?)
 -   Fill out question content properly
@@ -85,8 +86,11 @@ Create a new file locally called `.env.local` and add the following:
     -   Add loading spinner before context has finished loading
 -   Stats page
     -   Feedback form
--   Move data to Supabase
 -   Finalize design/animations
+-   Huge architecture refactor
+    -   Architectually re-think storing **_all_** `answeredIds` in progressContext
+    -   Think of system to store answered levels and `answeredIds` separately
+-   Move data to Supabase & replace all `import drillData` with fetch methods
 -   About page
 -   Documentation
 -   Create more tests cases
@@ -94,9 +98,9 @@ Create a new file locally called `.env.local` and add the following:
 
 ## Known Bugs
 
--   Browser denying JS autoplay (_audioElement.play()_) not working on mobile browsers
+-   **severe** – Browser denying JS autoplay (_audioElement.play()_) not working on mobile browsers
     -   Inside try/catch, create modal with button to allow user to enable audio
--   On iOS Safari, NavItem icon SVG edges clip the container on mobile
+-   minor – On iOS Safari, NavItem icon SVG edges clip the container on mobile
 
 ## Wishlist
 

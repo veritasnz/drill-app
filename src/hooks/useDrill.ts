@@ -65,7 +65,6 @@ const useDrill: (progressCtx: ProgressContextState) => UseDrillReturnType = (
             setQuestions(progressCtx.graveyard);
             setCurrentLevel(buildGraveyard(progressCtx.graveyard));
         } else {
-            console.log(progressCtx);
             // Else, get current level
             const newCtxLevel = getLevelById(progressCtx.currentLevelId);
 
