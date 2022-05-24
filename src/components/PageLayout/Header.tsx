@@ -16,6 +16,11 @@ const Header: React.FC = () => {
                                 src="/img/logo.svg"
                                 alt="Wonideto | Japanese particle learning app"
                             />
+                            <img
+                                src="/img/logo-horizontal.svg"
+                                alt=""
+                                aria-hidden="true"
+                            />
                         </a>
                     </Link>
                 </h1>
@@ -78,7 +83,9 @@ const Header: React.FC = () => {
                             <i className={s["nav-item__ico"]}>
                                 <Icon name="settings-circle" />
                             </i>
-                            <span className={s["nav-item__text"]}>Settings</span>
+                            <span className={s["nav-item__text"]}>
+                                Settings
+                            </span>
                         </div>
                     </NavLink>
                 </nav>
