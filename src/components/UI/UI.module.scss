@@ -29,7 +29,8 @@
         }
     }
 
-    &--green {
+    &--green,
+    &--green-next {
         color: var(--c-white);
         background: var(--c-green);
         border-color: var(--c-green);
@@ -39,6 +40,13 @@
         &:active {
             color: var(--c-green);
             background: var(--c-white);
+        }
+    }
+
+    &--green-next {
+        &:focus {
+            border-color: var(--c-blue);
+            outline: none;
         }
     }
 
@@ -81,6 +89,10 @@
 
     &__icon {
         margin-left: 0.3125em;
+
+        .button--green-next:focus & {
+            animation: float-right 1.35s ease-in-out infinite;
+        }
 
         svg {
             width: 1em;
@@ -159,5 +171,18 @@
     input[type="checkbox"]:checked + .switch {
         background-color: var(--c-blue);
         border-color: var(--c-blue);
+    }
+}
+
+/* @ Keyframes
+------------------------------- */
+@keyframes float-right {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(0.15em);
     }
 }

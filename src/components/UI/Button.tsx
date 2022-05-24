@@ -9,25 +9,32 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     icon?: IconName;
 }
 
-export type ButtonColorNames = "blue" | "orange" | "red" | "green";
+export type ButtonColorNames =
+    | "blue"
+    | "orange"
+    | "red"
+    | "green"
+    | "green-next";
 
 const Button = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
+    const { color, icon, children, className, onClick, ...otherProps } = props;
+
     return (
         <button
             ref={ref}
             className={`
                 ${s["button"]}
-                ${props.color && s[`button--${props.color}`]}
-                ${props.className}
+                ${color && s[`button--${color}`]}
+                ${className}
             `}
-            onClick={props.onClick}
+            onClick={onClick}
             disabled={props.disabled ? true : false}
-            {...props}
+            {...otherProps}
         >
-            <span className={s["button__text"]}>{props.children}</span>
-            {props.icon && (
+            <span className={s["button__text"]}>{children}</span>
+            {icon && (
                 <span className={s["button__icon"]}>
-                    <Icon name={props.icon} />
+                    <Icon name={icon} />
                 </span>
             )}
         </button>

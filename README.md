@@ -34,6 +34,7 @@
 
 -   Fix sound bug
 -   Create one big shared LocalStorage Key enum to avoid duplicate LS keys
+-   Horizontal (flex) NavItems for wide screens
 -   Store more on _progressContext_.
     -   Create _state_ object that gets returned.
     -   Stop child components (LevelProgress, Level etc.) from performing needless data operations using the APIs that can instead be performed inside of _ProgressContextProvider_

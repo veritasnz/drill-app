@@ -19,12 +19,23 @@ const TransitionButton: React.FC<Props> = React.forwardRef<
     HTMLButtonElement,
     Props
 >((props, ref) => {
+    const {
+        onClick,
+        preText,
+        postText,
+        color,
+        icon,
+        disabled,
+        className,
+        ...otherProps
+    } = props;
+
     const [btnIsTransitioning, setBtnIsTransitioning] = useState(false);
 
     const clickHandler = () => {
         setBtnIsTransitioning(true);
 
-        props.onClick();
+        onClick();
 
         transitionTimer = setTimeout(() => {
             setBtnIsTransitioning(false);
@@ -36,24 +47,22 @@ const TransitionButton: React.FC<Props> = React.forwardRef<
         return () => clearTimeout(transitionTimer);
     }, []);
 
-    let textContent = props.preText;
-    if (btnIsTransitioning && props.postText) {
-        textContent = props.postText;
+    let textContent = preText;
+    if (btnIsTransitioning && postText) {
+        textContent = postText;
     }
 
     return (
         <button
             ref={ref}
-            id={props.id}
             className={`
                 ${s["button"]}
-                ${props.color && s[`button--${props.color}`]}
+                ${color && s[`button--${color}`]}
                 ${btnIsTransitioning && s[`button--transitioning`]}
-                ${props.className}
+                ${className}
             `}
-            disabled={props.disabled ? true : false}
-            {...props}
             onClick={clickHandler}
+            {...otherProps}
         >
             <span className={s["button__text"]}>{textContent}</span>
             {props.icon && (
