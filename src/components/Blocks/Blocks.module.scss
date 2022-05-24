@@ -94,3 +94,18 @@
         }
     }
 }
+
+/* Prose
+------------------------------- */
+.prose {
+    a {
+        color: var(--c-blue);
+        text-decoration: underline;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: var(--c-orange);
+        }
+    }
+}
