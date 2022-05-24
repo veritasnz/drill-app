@@ -8,6 +8,8 @@ import StatsContextProvider from "../src/context/StatsContextProvider";
 import SettingsContextProvider from "../src/context/SettingsContextProvider";
 import ProgressContextProvider from "../src/context/ProgressContextProvider";
 
+import Header from "../src/components/PageLayout/Header";
+
 function MyApp({ Component, pageProps }: AppProps) {
     return (
         <StatsContextProvider>
@@ -17,11 +19,14 @@ function MyApp({ Component, pageProps }: AppProps) {
                         <title>Wonideto</title>
                         <meta
                             name="description"
-                            content="A particle practicing app developed by Sean Veritas"
+                            content="A Japanese particle practicing app, developed by Sean Veritas"
                         />
-                        <link rel="icon" href="/favicon.png" />
+                        <link rel="icon" href="img/favicon.svg" />
                     </Head>
-                    <Component {...pageProps} />
+                    <Header />
+                    <main>
+                        <Component {...pageProps} />
+                    </main>
                 </ProgressContextProvider>
             </SettingsContextProvider>
         </StatsContextProvider>

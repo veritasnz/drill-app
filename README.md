@@ -81,15 +81,17 @@ Create a new file locally called `.env.local` and add the following:
 
 ## Next to implement
 
--   Drill section
+-   Styles
     -   Question component styles
+    -   Menu styles
+    -   Responsive styles
 -   Refactor logic
     -   Add useMemo for drillData?
     -   Refactor Drill/Question/useDrill
 -   Rough testing
 -   Test cases for duplicate IDs (Vitest?)
 -   Fill out question content properly
--   Design/animations
+-   Flesh out design/animations
 -   Fix loading state for SEO
     -   Top page displays "Finished! Choose next level" when viewing page source
     -   Add loading spinner before context has finished loading
@@ -99,7 +101,7 @@ Create a new file locally called `.env.local` and add the following:
 -   About page
 -   Documentation
 -   Create more tests cases
--   Testing
+-   Thorough testing
 
 ## Known Bugs
 
