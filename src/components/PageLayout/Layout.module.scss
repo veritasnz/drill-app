@@ -1,7 +1,7 @@
 /* Padding Wrapper
 ------------------------------- */
 .padding-wrapper {
-    padding: 5rem 0;
+    padding: 1.4em 0;
 
     &__wrap {
         max-width: var(--m-max-width);
@@ -14,44 +14,123 @@
 
 /* Header
 ------------------------------- */
+/*
+* Header
+*/
 .header {
-    padding: 2rem 3rem;
-    border-bottom: 1px solid;
+    padding: 1em 1.3em;
+    font-size: var(--fs-small);
+    border-bottom: 3px solid var(--c-blue);
 
     &__wrap {
         display: flex;
-        gap: 2rem;
+        align-items: center;
         justify-content: space-between;
     }
 
     &__logo {
+        flex-shrink: 0;
+        margin-right: 2em;
+
+        a {
+            display: block;
+        }
+
+        img,
+        svg {
+            width: 3.4em;
+        }
     }
 
     &__nav {
         display: flex;
-        gap: 1em;
+        align-items: center;
+        justify-content: flex-end;
+    }
+}
+
+/*
+* Nav Item
+*/
+.nav-item {
+    // a
+    --navitem-trans: 300ms ease;
+    --navitem-width: 2.8em;
+
+    position: relative;
+    display: block;
+    min-width: var(--navitem-width);
+    transition: transform var(--navitem-trans);
+
+    & + & {
+        margin-left: calc(var(--navitem-width) * 0.5);
     }
 
-    &__nav-item {
-        /*a*/
-        display: block;
+    &__ico {
+        // i
+        margin-bottom: 0;
 
-        &:global(.active) {
-            color: var(--c-blue);
+        &,
+        & svg {
+            display: block;
+            width: var(--navitem-width);
+            height: var(--navitem-width);
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        i {
-            &,
-            & svg {
-                display: block;
-                width: 2em;
-                height: 2em;
-                margin: 0 auto 0.4em;
+        svg {
+            path,
+            rect {
+                transition: fill var(--navitem-trans),
+                    stroke var(--navitem-trans);
+            }
+        }
+    }
+
+    &__text {
+        // text
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%);
+
+        display: block;
+        max-height: 0;
+        opacity: 0;
+        line-height: 1;
+        letter-spacing: var(--ls-thinn);
+        font-weight: var(--fw-bold);
+        transition: color var(--navitem-trans), opacity var(--navitem-trans),
+            max-height var(--navitem-trans);
+    }
+
+    /*
+    * Active state
+    */
+    &:global(.active) {
+        transform: translateY(-0.5em); // move to center
+        transition: transform var(--navitem-trans);
+
+        .nav-item__ico {
+            // i
+            svg {
+                path[stroke-width] {
+                    stroke: var(--c-blue);
+                }
+
+                path:not([stroke-width]),
+                rect {
+                    fill: var(--c-blue);
+                }
             }
         }
 
-        span {
-            display: block;
+        .nav-item__text {
+            // text
+            opacity: 1;
+            max-height: 1em;
+            color: var(--c-blue);
         }
     }
 }

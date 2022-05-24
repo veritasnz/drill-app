@@ -16,7 +16,7 @@ const Home: NextPage = () => {
 export default Home;
 
 /**
- * Build Audio
+ * Build script – Build Audio
  */
 export async function getStaticProps() {
     await buildAudio();

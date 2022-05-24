@@ -18,6 +18,7 @@
     --fw-bold: bold;
 
     --ls-normal: -0.05em;
+    --ls-thinner: -0.075em;
     --ls-thin: -0.1em;
 
     // Colors
@@ -46,7 +47,7 @@
         --fs-body: 2rem;
         --fs-large: 2.2rem;
         --fs-title: 2.6rem;
-        
+
         --fs-question: 3.2rem;
         --fs-key: 4.3rem;
     }
@@ -67,11 +68,12 @@ body {
 }
 
 a {
+    transition: color 150ms ease; //sass-lint:disable-line no-transition-all
+
     &,
     &:hover,
     &:focus,
     &:active {
-        transition: all 150ms ease; //sass-lint:disable-line no-transition-all
         text-decoration: none;
         color: inherit;
     }
