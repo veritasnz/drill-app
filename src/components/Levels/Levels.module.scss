@@ -27,7 +27,10 @@
 
     &--graveyard {
         padding: 1.44em var(--m-padding-hori);
+    }
 
+    &--graveyard,
+    &--black {
         &:before {
             opacity: 0.17; // was 0.08
             background-color: var(--c-black);

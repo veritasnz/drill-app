@@ -1,4 +1,3 @@
-
 import drillData from "../../../data/drillData";
 
 import s from "./Levels.module.scss";
@@ -6,9 +5,15 @@ import s from "./Levels.module.scss";
 import Graveyard from "./Graveyard";
 import Stage from "./Stage";
 
-const stageColorsNames: string[] = ["green", "blue", "orange", "red"];
-
 const StagesMenu: React.FC = () => {
+    const stageColorsNames: string[] = [
+        "green",
+        "blue",
+        "orange",
+        "red",
+        "black",
+    ];
+
     return (
         <>
             <Graveyard />
