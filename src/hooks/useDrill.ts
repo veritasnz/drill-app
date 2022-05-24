@@ -19,7 +19,7 @@ export interface DrillStateType {
     currentLevelNum: number;
 }
 
-type UseDrill = (progressCtx: ProgressContextState) => {
+type UseDrillType = (progressCtx: ProgressContextState) => {
     state: DrillStateType;
     correctHandler: () => void;
     incorrectHandler: () => void;
@@ -41,7 +41,7 @@ const buildGraveyard: (graveyard: Question[]) => Level = (
     };
 };
 
-const useDrill: UseDrill = (progressCtx) => {
+const useDrill: UseDrillType = (progressCtx) => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [currentLevel, setCurrentLevel] = useState<Level>(BLANK_LEVEL);
     const [currentLevelNum, setCurrentLevelNum] = useState<number>(0);
