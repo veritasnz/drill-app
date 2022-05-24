@@ -29,7 +29,7 @@ const Level: React.FC<Props> = ({ level }) => {
     const levelNum = getLevelIndex(level.id) + 1;
 
     const answeredQsIds = getAnsweredQuestionsInLevel(
-        progressCtx.answeredQuestionsIds,
+        progressCtx.answeredQuestionIds,
         level.questions
     ).map((question) => question.id);
 
@@ -37,7 +37,7 @@ const Level: React.FC<Props> = ({ level }) => {
     useEffect(() => {
         const roughDecimal = answeredQsIds.length / level.questions.length;
         setPercentageComplete(Math.round(roughDecimal * 100));
-    }, [progressCtx.answeredQuestionsIds, answeredQsIds, level]);
+    }, [progressCtx.answeredQuestionIds, answeredQsIds, level]);
 
     // Button Handlers
     const changeLevelHandler = () => {

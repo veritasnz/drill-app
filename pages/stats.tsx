@@ -33,7 +33,7 @@ const Stats: NextPage = () => {
     let highestLevelContent = <>No levels completed!</>; // fallback
 
     const highestLvl = getHighestCompletedLevel(
-        progressCtx.answeredQuestionsIds
+        progressCtx.answeredQuestionIds
     );
 
     if (highestLvl.name) {

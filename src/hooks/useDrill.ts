@@ -60,8 +60,13 @@ const useDrill: (progressCtx: ProgressContextState) => UseDrillReturnType = (
 
     // On level change / init
     useEffect(() => {
-        if (progressCtx.currentLevelId !== "GRAVEYARD") {
-            // Get current level
+        if (progressCtx.currentLevelId === "GRAVEYARD") {
+            // If Graveyard, set
+            setQuestions(progressCtx.graveyard);
+            setCurrentLevel(buildGraveyard(progressCtx.graveyard));
+        } else {
+            console.log(progressCtx);
+            // Else, get current level
             const newCtxLevel = getLevelById(progressCtx.currentLevelId);
 
             if (newCtxLevel) {
@@ -69,7 +74,7 @@ const useDrill: (progressCtx: ProgressContextState) => UseDrillReturnType = (
 
                 // Check if unanswered questions in level
                 const nextQuestions = getUnansweredQuestionsInLevel(
-                    progressCtx.answeredQuestionsIds,
+                    progressCtx.answeredQuestionIds,
                     newCtxLevel.questions
                 );
 
@@ -92,10 +97,6 @@ const useDrill: (progressCtx: ProgressContextState) => UseDrillReturnType = (
                     }
                 }
             }
-        } else {
-            // Graveyard set
-            setQuestions(progressCtx.graveyard);
-            setCurrentLevel(buildGraveyard(progressCtx.graveyard));
         }
     }, [progressCtx.currentLevelId]);
 

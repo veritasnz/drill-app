@@ -6,7 +6,7 @@ import Question from "../models/Question.model";
  */
 
 export interface ProgressContextState {
-    answeredQuestionsIds: string[];
+    answeredQuestionIds: string[];
     addAnsweredQuestionId: (questionId: string) => void;
     removeAnsweredQuestionsIds: (questionIds: string[]) => void;
     currentLevelId: string;
@@ -18,7 +18,7 @@ export interface ProgressContextState {
 }
 
 const defaultState: ProgressContextState = {
-    answeredQuestionsIds: [],
+    answeredQuestionIds: [],
     addAnsweredQuestionId: (questionIds: string) => {},
     removeAnsweredQuestionsIds: (questionIds: string[]) => {},
     currentLevelId: "",
