@@ -15,6 +15,7 @@ import ProgressContext from "../../context/progress-context";
 import useDrill from "../../hooks/useDrill";
 
 // Components
+import DrillEmpty from "./DrillEmpty";
 import LevelProgress from "./LevelProgress";
 import Question from "./Question";
 import Keyboard from "./Keyboard";
@@ -63,7 +64,7 @@ const Drill: React.FC = () => {
 
     // Render
     if (!drill.state.nextQuestion) {
-        return <p>Finished! Choose next level</p>;
+        return <DrillEmpty />;
     }
 
     return (
