@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
+// Models / type imports
 import Question from "../models/Question.model";
 import { Level } from "../models/Level.model";
-
 import { ProgressContextState } from "../context/progress-context";
 
+// API
 import {
     getLevelById,
     getLevelIndex,
@@ -12,6 +13,7 @@ import {
 } from "../lib/level-api";
 import { getUnansweredQuestionsInLevel } from "../lib/question-api";
 
+// Local type declarations
 export interface DrillStateType {
     nextQuestion: Question;
     questions: Question[];
@@ -19,18 +21,20 @@ export interface DrillStateType {
     currentLevelNum: number;
 }
 
-type UseDrillType = (progressCtx: ProgressContextState) => {
+type UseDrillReturnType = {
     state: DrillStateType;
     correctHandler: () => void;
     incorrectHandler: () => void;
 };
 
+// Local constant declarations
 const BLANK_LEVEL: Level = {
     id: "",
     name: "",
     questions: [],
 };
 
+// Local helper function declarations
 const buildGraveyard: (graveyard: Question[]) => Level = (
     graveyard: Question[]
 ) => {
@@ -41,7 +45,15 @@ const buildGraveyard: (graveyard: Question[]) => Level = (
     };
 };
 
-const useDrill: UseDrillType = (progressCtx) => {
+/**
+ * Controls the state of the drill, and provides methods to progress the state of the drill.
+ *
+ * @param {ProgressContextState} progressCtx
+ * @returns {UseDrillReturnType} { state, correctHandler, incorrectHandler }
+ */
+const useDrill: (progressCtx: ProgressContextState) => UseDrillReturnType = (
+    progressCtx
+) => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [currentLevel, setCurrentLevel] = useState<Level>(BLANK_LEVEL);
     const [currentLevelNum, setCurrentLevelNum] = useState<number>(0);

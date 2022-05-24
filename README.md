@@ -76,7 +76,6 @@ Create a new file locally called `.env.local` and add the following:
 
 -   Bugfixing
 -   Refactor logic
-    -   Add useMemo for drillData?
     -   Refactor Drill/Question/useDrill
 -   Rough testing
 -   Test cases for duplicate IDs (Vitest?)
@@ -95,9 +94,9 @@ Create a new file locally called `.env.local` and add the following:
 
 ## Known Bugs
 
+-   On load, half finished levels are displayed as if nothing has been answered before
 -   Browser denying JS autoplay (_audioElement.play()_) not working on mobile browsers
     -   Inside try/catch, create modal with button to allow user to enable audio
--   On load, half finished levels are displayed as if nothing has been answered before
 -   On iOS Safari, NavItem icon SVG edges clip the container on mobile
 
 ## Wishlist
