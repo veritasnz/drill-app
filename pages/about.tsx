@@ -9,15 +9,15 @@ const About: NextPage = () => {
         <PaddingWrapper>
             <Section>
                 <Prose>
-                    <p>The 'About' page will go here.</p>
+                    <p>{`The 'About' page will go here.`}</p>
                     <p>
-                        In the meantime, check out Wonideto's{" "}
+                        {`In the meantime, check out Wonideto's `}
                         <a
                             href="https://github.com/veritasnz/wonideto"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            Github repository
+                            {`Github repository`}
                         </a>
                         .
                     </p>
