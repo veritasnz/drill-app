@@ -45,10 +45,8 @@ Create a new file locally called `.env.local` and add the following:
 ## Feature List
 
 -   Particle drill system
-
     -   Choose from grid of particles for entry
     -   Incorrect input will be treated as a wrong answer, user will have another change to input correct particle
-
     -   Levels
         -   Difficulty progression (like Wanikani's heaven/hell progression)
             -   Based on DBZ QuestionHistorycharacters?
@@ -56,9 +54,7 @@ Create a new file locally called `.env.local` and add the following:
         -   Level reset
         -   Dynamic Level for wrong answers (Graveyard)
         -   Level stats
-
 -   Stats/Options page
-
     -   Options
         -   Audio on/off
         -   Furigana on/off
@@ -67,37 +63,31 @@ Create a new file locally called `.env.local` and add the following:
     -   Stats
         -   Percentage correct
     -   Feedback
-
 -   Levels Page
     -   Select and clear
 -   About / instructions page
-
     -   How to use the app
     -   About the author / SNS links
     -   Contributors + links
     -   Patreon
-
 -   Landing Page
 
 ## Next to implement
 
--   Styles
-    -   Question component styles
-    -   Menu styles
-    -   Responsive styles
+-   Bugfixing
 -   Refactor logic
     -   Add useMemo for drillData?
     -   Refactor Drill/Question/useDrill
 -   Rough testing
 -   Test cases for duplicate IDs (Vitest?)
 -   Fill out question content properly
--   Flesh out design/animations
 -   Fix loading state for SEO
     -   Top page displays "Finished! Choose next level" when viewing page source
     -   Add loading spinner before context has finished loading
 -   Stats page
     -   Feedback form
 -   Move data to Supabase
+-   Finalize design/animations
 -   About page
 -   Documentation
 -   Create more tests cases
@@ -105,7 +95,10 @@ Create a new file locally called `.env.local` and add the following:
 
 ## Known Bugs
 
+-   Browser denying JS autoplay (_audioElement.play()_) not working on mobile browsers
+    -   Inside try/catch, create modal with button to allow user to enable audio
 -   On load, half finished levels are displayed as if nothing has been answered before
+-   On iOS Safari, NavItem icon SVG edges clip the container on mobile
 
 ## Wishlist
 

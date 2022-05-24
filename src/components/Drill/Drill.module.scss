@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: var(--fs-progress);
     color: var(--c-grey);
     text-align: center;
 
@@ -15,18 +16,18 @@
         }
 
         em {
-            font-size: var(--fs-title);
+            font-size: 1em;
             font-weight: var(--fw-bold);
         }
 
         small {
-            font-size: var(--fs-small);
+            font-size: 0.55em;
         }
     }
 
     &__prog {
         flex-shrink: 0;
-        font-size: var(--fs-large);
+        font-size: 0.8em;
     }
 
     &__bar-wrap {
@@ -143,7 +144,7 @@
         min-height: 1.2em;
         margin-top: 0.8em;
         line-height: 1.2em;
-        font-size: var(--fs-body);
+        font-size: 0.9em;
         text-align: center;
         text-transform: lowercase;
         color: var(--c-grey);
@@ -159,7 +160,7 @@
 
         button {
             text-transform: uppercase;
-            font-size: var(--fs-small);
+            font-size: 0.66em;
             font-weight: var(--fw-bold);
 
             &:focus {
@@ -180,6 +181,7 @@
 ------------------------------- */
 .keyboard {
     max-width: 7em;
+    width: 100%;
     margin: 1em auto 0;
     font-size: var(--fs-key);
 
@@ -189,7 +191,7 @@
         "ni ni he he wo wo" 2em
         "kara kara kara made made made" 2em
         / 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 20px;
+    gap: 0.45em;
 }
 
 .key {

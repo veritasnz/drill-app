@@ -1,14 +1,13 @@
 /* Padding Wrapper
 ------------------------------- */
 .padding-wrapper {
-    padding: 1.4em 0;
+    padding: var(--m-padding-vert) 0 0;
 
     &__wrap {
         max-width: var(--m-max-width);
         margin-left: auto;
         margin-right: auto;
-        padding-left: var(--m-padding-edge);
-        padding-right: var(--m-padding-edge);
+        padding: 0 var(--m-padding-hori);
     }
 }
 
@@ -36,9 +35,8 @@
             display: block;
         }
 
-        img,
-        svg {
-            width: 3.4em;
+        img {
+            height: 3.4em;
         }
     }
 
@@ -46,6 +44,30 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
+    }
+
+    @media (max-width: 649px) {
+        &__logo {
+            img {
+                &:last-child {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media (min-width: 650px) {
+        &__logo {
+            img {
+                &:first-child {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media (min-width: 900px) {
+        font-size: var(--fs-body);
     }
 }
 
@@ -60,6 +82,7 @@
     position: relative;
     display: block;
     min-width: var(--navitem-width);
+    text-align: center;
     transition: transform var(--navitem-trans);
 
     & + & {
@@ -69,17 +92,20 @@
     &__ico {
         // i
         margin-bottom: 0;
+        width: calc(var(--navitem-width));
+        height: var(--navitem-width);
 
         &,
         & svg {
             display: block;
-            width: var(--navitem-width);
-            height: var(--navitem-width);
             margin-left: auto;
             margin-right: auto;
         }
 
         svg {
+            width: 100%;
+            object-fit: contain;
+
             path,
             rect {
                 transition: fill var(--navitem-trans),
@@ -96,17 +122,15 @@
         transform: translate(-50%);
 
         display: block;
-        max-height: 0;
         opacity: 0;
         line-height: 1;
         letter-spacing: var(--ls-thinn);
         font-weight: var(--fw-bold);
-        transition: color var(--navitem-trans), opacity var(--navitem-trans),
-            max-height var(--navitem-trans);
+        transition: color var(--navitem-trans), opacity var(--navitem-trans);
     }
 
     /*
-    * Active state
+    * Mobile Active state
     */
     &:global(.active) {
         transform: translateY(-0.5em); // move to center
@@ -129,8 +153,26 @@
         .nav-item__text {
             // text
             opacity: 1;
-            max-height: 1em;
             color: var(--c-blue);
+        }
+    }
+
+    /*
+    * Desktop
+    */
+    @media (min-width: 650px) {
+        transform: none;
+
+        &__text {
+            // text
+            position: static;
+            transform: none;
+
+            opacity: 1;
+        }
+
+        &:global(.active) {
+            transform: none;
         }
     }
 }

@@ -2,7 +2,7 @@
 ------------------------------- */
 .stage-wrap {
     position: relative;
-    padding: 1.6em var(--m-padding-edge) 2.6em;
+    padding: 1.6em var(--m-padding-hori) 2.6em;
 
     &__inner {
         max-width: var(--m-max-width);
@@ -26,7 +26,7 @@
     }
 
     &--graveyard {
-        padding: 1.44em var(--m-padding-edge);
+        padding: 1.44em var(--m-padding-hori);
 
         &:before {
             opacity: 0.17; // was 0.08
@@ -218,10 +218,10 @@
             width: 1em;
             height: 1em;
             object-fit: cover;
-            transition: transform 300ms ease-out;
+            transition: transform 150ms ease-out;
 
             .level--open & {
-                transform: rotate(-180deg);
+                transform: rotateX(-180deg);
             }
         }
     }
