@@ -57,7 +57,13 @@
 /* Empty
 ------------------------------- */
 .empty {
+    margin-top: 1em;
+    text-align: center;
     color: var(--c-grey);
+
+    &__bttn {
+        margin-top: 1em;
+    }
 }
 
 /* Question
