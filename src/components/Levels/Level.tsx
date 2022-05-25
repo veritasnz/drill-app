@@ -1,17 +1,24 @@
 import { useContext, useEffect, useState } from "react";
 import Router from "next/router";
 
+// Models
 import { Level as LevelModel } from "../../models/Level.model";
-import { getAnsweredQuestionsInLevel } from "../../lib/question-api";
+
+// Context
 import ProgressContext from "../../context/progress-context";
 
-import s from "./Levels.module.scss";
+// API
+import { getLevelNum } from "../../lib/level-api";
+import { getAnsweredQuestionsInLevel } from "../../lib/question-api";
 
+// Components
 import Button from "../UI/Button";
 import ButtonWrap from "../UI/ButtonWrap";
 import ProgressCircle from "./ProgressCircle";
 import TransitionButton from "../UI/TransitionButton";
 import Icon from "../UI/Icon/Icon";
+
+import s from "./Levels.module.scss";
 
 interface Props {
     level: LevelModel;
@@ -25,7 +32,7 @@ const Level: React.FC<Props> = ({ level }) => {
 
     // Setup vars
     const isActiveLevel = level.id === ctx.state.currentLevelId;
-    const levelNum = ctx.state.currentLevelNum;
+    const levelNum = getLevelNum(level.id);
 
     const answeredQsIds = getAnsweredQuestionsInLevel(
         ctx.state.answeredQuestionIds,
