@@ -9,6 +9,7 @@ import ArrowRight from "./svg/arrow-right.svg";
 import CheckCircle from "./svg/check-circle.svg";
 import Check from "./svg/check.svg";
 import ChevronDown from "./svg/chevron-down.svg";
+import ChevronRight from "./svg/chevron-right.svg";
 import CrossCircle from "./svg/cross-circle.svg";
 import Cross from "./svg/cross.svg";
 import DangerZone from "./svg/danger-zone.svg";
@@ -37,6 +38,7 @@ export type IconName =
     | "check-circle"
     | "check"
     | "chevron-down"
+    | "chevron-right"
     | "cross-circle"
     | "cross"
     | "danger-zone"
@@ -62,6 +64,7 @@ const Icon: React.FC<Props> = ({ name }) => {
         "check-circle": <CheckCircle />,
         check: <Check />,
         "chevron-down": <ChevronDown />,
+        "chevron-right": <ChevronRight />,
         "cross-circle": <CrossCircle />,
         cross: <Cross />,
         "danger-zone": <DangerZone />,
