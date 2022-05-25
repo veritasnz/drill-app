@@ -64,7 +64,7 @@ const ProgressContextProvider: React.FC = (props) => {
 
     const setLevelId = (levelId: string) => {
         setCurrentLevelId(levelId);
-        localStorage.setItem(LSKeyEnum.PROGRESS_LVL_KEY, levelId);
+        localStorage.setItem(LSKeyEnum.PROGRESS_CURR_LVL, levelId);
 
         // Also update currentLevelNum
         setCurrentLevelNum(getLevelNum(levelId));
@@ -105,7 +105,7 @@ const ProgressContextProvider: React.FC = (props) => {
     // Initialize & load from localStorage
     useEffect(() => {
         // Set current level ID from storage if it exists, else initialise
-        const storedLevelId = localStorage.getItem(LSKeyEnum.PROGRESS_LVL_KEY);
+        const storedLevelId = localStorage.getItem(LSKeyEnum.PROGRESS_CURR_LVL);
         if (storedLevelId) {
             setLevelId(storedLevelId);
         } else {
