@@ -57,7 +57,7 @@ const useDrill: (ctx: ProgressContextState) => UseDrillReturnType = (ctx) => {
     // On level change / init
     useEffect(() => {
         if (ctx.state.currentLevelId === "GRAVEYARD") {
-            // If Graveyard, set
+            // If Graveyard, set the drill up for the Graveyard
             setQuestions(ctx.state.graveyard);
             setCurrentLevel(buildGraveyard(ctx.state.graveyard));
         } else {
@@ -65,6 +65,7 @@ const useDrill: (ctx: ProgressContextState) => UseDrillReturnType = (ctx) => {
             const newCtxLevel = getLevelById(ctx.state.currentLevelId);
 
             if (newCtxLevel) {
+                setCurrentLevel(newCtxLevel);
                 setCurrentLevelNum(ctx.state.currentLevelNum);
 
                 // Check if unanswered questions in level
@@ -76,7 +77,6 @@ const useDrill: (ctx: ProgressContextState) => UseDrillReturnType = (ctx) => {
                 if (nextQuestions.length > 0) {
                     // If questions in current level, set questions
                     setQuestions(nextQuestions);
-                    setCurrentLevel(newCtxLevel);
                 } else {
                     // Else, set questionsCtx level ID to next
                     // thus triggering this useEffect again
