@@ -28,24 +28,30 @@ const Drill: React.FC = () => {
 
     const drill = useDrill(progressCtx);
 
-    // Tests if inputted answer is correct.
-    // Progresses state appropriately, moving to post-answer state if correct
+    /**
+     * Tests if inputted answer is correct.
+     * Progresses state appropriately.
+     * Returns a boolean, representing if the answer is correct (true) or incorrect (false)
+     * @param inputtedAnswer
+     * @returns
+     */
     const attemptHandler = (inputtedAnswer: ParticleEnum) => {
+        // Calculate if answer is correct
         const answerIsCorrect = checkAnswerIsCorrect(
             inputtedAnswer,
             drill.state.question.answers
         );
 
+        // Progress state accordingly
         statsCtx.incrementTotalAttempts();
-
         if (answerIsCorrect) {
             statsCtx.incrementTotalCorrectAttempts();
             drill.correctHandler();
-            return true;
         } else {
             drill.incorrectHandler();
-            return false;
         }
+
+        return answerIsCorrect;
     };
 
     // Render
