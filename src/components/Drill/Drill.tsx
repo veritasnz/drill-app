@@ -43,6 +43,7 @@ const Drill: React.FC = () => {
         if (answerIsCorrect) {
             statsCtx.incrementTotalCorrectAttempts();
             setIsPostAnswer(true);
+            drill.correctHandler();
             return true;
         } else {
             drill.incorrectHandler();
@@ -54,7 +55,7 @@ const Drill: React.FC = () => {
     const nextButtonRef = useRef<HTMLButtonElement>(null);
     const nextButtonHandler = () => {
         if (isPostAnswer) {
-            drill.correctHandler();
+            drill.nextQuestionHandler();
             setIsPostAnswer(false);
         }
     };

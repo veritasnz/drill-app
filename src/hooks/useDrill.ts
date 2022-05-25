@@ -21,6 +21,7 @@ type UseDrillReturnType = {
     state: DrillStateType;
     correctHandler: () => void;
     incorrectHandler: () => void;
+    nextQuestionHandler: () => void;
 };
 
 // Local constant declarations
@@ -93,18 +94,24 @@ const useDrill: (ctx: ProgressContextState) => UseDrillReturnType = (ctx) => {
         }
     }, [ctx.state.currentLevelId]);
 
+    // Updates progressContext and localStorage
     const correctHandler = () => {
         // Add answered question to context + localStorage
         const answeredQuestionId = questions[0].id;
         ctx.addAnsweredQuestionId(answeredQuestionId);
 
+        if (ctx.state.currentLevelId === "GRAVEYARD") {
+            ctx.removeGraveyardQuestionById(answeredQuestionId);
+        }
+    };
+
+    // Goes to the next question
+    const nextQuestionHandler = () => {
         // Clone current questions, and remove answered
         let newQuestions = [...questions];
         newQuestions.shift();
 
-        if (ctx.state.currentLevelId === "GRAVEYARD") {
-            ctx.removeGraveyardQuestionById(answeredQuestionId);
-        } else {
+        if (ctx.state.currentLevelId !== "GRAVEYARD") {
             // Temp store of currentLevelId. To be updated with new level
             let newCurrentLevelId = ctx.state.currentLevelId;
 
@@ -138,6 +145,7 @@ const useDrill: (ctx: ProgressContextState) => UseDrillReturnType = (ctx) => {
         },
         correctHandler,
         incorrectHandler,
+        nextQuestionHandler,
     };
 };
 
