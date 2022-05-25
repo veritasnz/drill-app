@@ -1,5 +1,5 @@
-import ParticleEnum from "../src/models/ParticleEnum.model";
-import Stage from "../src/models/Stage.model";
+import ParticleEnum from "../models/ParticleEnum.model";
+import Stage from "../models/Stage.model";
 
 /**
  * Stores all stage, level and question data.

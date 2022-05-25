@@ -1,4 +1,4 @@
-import drillData from "../../data/drillData";
+import drillData from "../data/drillData";
 
 import { Level } from "../models/Level.model";
 

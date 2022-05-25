@@ -1,4 +1,4 @@
-import drillData from "../../data/drillData";
+import drillData from "../data/drillData";
 
 import Question from "../models/Question.model";
 
