@@ -88,15 +88,15 @@
     }
 
     &__icon {
-        margin-left: 0.3125em;
+        margin-left: 0.4em;
 
         .button--green-next:focus & {
             animation: float-right 1.35s ease-in-out infinite;
         }
 
         svg {
-            width: 1em;
-            height: 1em;
+            width: 0.9em;
+            height: 0.9em;
             object-fit: contain;
             transition: transform 500ms ease-out;
 
