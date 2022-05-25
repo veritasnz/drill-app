@@ -22,15 +22,13 @@ const drillData: Stage[] = [
                 questions: [
                     {
                         id: "yajirobe-long-1",
-                        question:
-                            "{人}(ひと)_プレゼント?{上}(あ)げる",
+                        question: "{人}(ひと)_プレゼント?{上}(あ)げる",
                         answers: [ParticleEnum.NI, ParticleEnum.HE],
                         english: "To give a person a present",
                     },
                     {
                         id: "yajirobe-long-2",
-                        question:
-                            "{人}(ひと)にプレゼント_{上}(あ)げる",
+                        question: "{人}(ひと)にプレゼント_{上}(あ)げる",
                         answers: [ParticleEnum.WO],
                         english: "To give a person a present",
                     },
@@ -169,6 +167,12 @@ const drillData: Stage[] = [
                 questions: [
                     {
                         id: "vegeta-test",
+                        question: "テスト_{行}(おこな)います",
+                        answers: [ParticleEnum.WO],
+                        english: "To carry out a test",
+                    },
+                    {
+                        id: "vegeta-test-2",
                         question: "テスト_{行}(おこな)います",
                         answers: [ParticleEnum.WO],
                         english: "To carry out a test",
