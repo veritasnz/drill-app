@@ -31,62 +31,50 @@ const Header: React.FC = () => {
                         className={s["nav-item"]}
                         activeClassName="active"
                     >
-                        <div className={s["nav-item__wrap"]}>
-                            <i className={s["nav-item__ico"]}>
-                                <Icon name="home-circle" />
-                            </i>
-                            <span className={s["nav-item__text"]}>Home</span>
-                        </div>
+                        <i className={s["nav-item__ico"]}>
+                            <Icon name="home-circle" />
+                        </i>
+                        <span className={s["nav-item__text"]}>Home</span>
                     </NavLink>
                     <NavLink
                         href="/about"
                         className={s["nav-item"]}
                         activeClassName="active"
                     >
-                        <div className={s["nav-item__wrap"]}>
-                            <i className={s["nav-item__ico"]}>
-                                <Icon name="about-circle" />
-                            </i>
-                            <span className={s["nav-item__text"]}>About</span>
-                        </div>
+                        <i className={s["nav-item__ico"]}>
+                            <Icon name="about-circle" />
+                        </i>
+                        <span className={s["nav-item__text"]}>About</span>
                     </NavLink>
                     <NavLink
                         href="/stats"
                         className={s["nav-item"]}
                         activeClassName="active"
                     >
-                        <div className={s["nav-item__wrap"]}>
-                            <i className={s["nav-item__ico"]}>
-                                <Icon name="stats-circle" />
-                            </i>
-                            <span className={s["nav-item__text"]}>Stats</span>
-                        </div>
+                        <i className={s["nav-item__ico"]}>
+                            <Icon name="stats-circle" />
+                        </i>
+                        <span className={s["nav-item__text"]}>Stats</span>
                     </NavLink>
                     <NavLink
                         href="/levels"
                         className={s["nav-item"]}
                         activeClassName="active"
                     >
-                        <div className={s["nav-item__wrap"]}>
-                            <i className={s["nav-item__ico"]}>
-                                <Icon name="level-circle" />
-                            </i>
-                            <span className={s["nav-item__text"]}>Levels</span>
-                        </div>
+                        <i className={s["nav-item__ico"]}>
+                            <Icon name="level-circle" />
+                        </i>
+                        <span className={s["nav-item__text"]}>Levels</span>
                     </NavLink>
                     <NavLink
                         href="/settings"
                         className={s["nav-item"]}
                         activeClassName="active"
                     >
-                        <div className={s["nav-item__wrap"]}>
-                            <i className={s["nav-item__ico"]}>
-                                <Icon name="settings-circle" />
-                            </i>
-                            <span className={s["nav-item__text"]}>
-                                Settings
-                            </span>
-                        </div>
+                        <i className={s["nav-item__ico"]}>
+                            <Icon name="settings-circle" />
+                        </i>
+                        <span className={s["nav-item__text"]}>Settings</span>
                     </NavLink>
                 </nav>
             </div>
