@@ -115,11 +115,11 @@
         font-weight: var(--fw-bold);
 
         opacity: 0;
-        transition: opacity 300ms ease;
 
         .question__place-wrap--correct & {
             opacity: 1;
             color: var(--c-green);
+            transition: opacity 300ms ease;
         }
     }
 
@@ -128,11 +128,11 @@
         right: -1em;
         bottom: 0.25em;
         opacity: 0;
-        transition: opacity 300ms ease;
 
         &--correct {
             opacity: 1;
             color: var(--c-green);
+            transition: opacity 800ms ease;
         }
 
         svg {
@@ -162,11 +162,6 @@
             text-transform: uppercase;
             font-size: 0.66em;
             font-weight: var(--fw-bold);
-
-            &:focus {
-                border-color: var(--c-blue);
-                outline: none;
-            }
 
             &:disabled {
                 opacity: 0;

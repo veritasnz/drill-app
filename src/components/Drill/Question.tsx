@@ -1,4 +1,4 @@
-import React, { Ref, useEffect, useRef } from "react";
+import React, { Ref, useEffect, useRef, useState } from "react";
 
 import { SettingsContextState } from "../../context/settings-context";
 import QuestionT from "../../models/Question.model";
@@ -27,13 +27,23 @@ const Question: React.FC<Props> = ({
     /**
      * Play audio when 'isPostAnswer' changes
      */
-    const audioElement = useRef(new Audio());
+    const audioRef = useRef(new Audio());
+    audioRef.current.autoplay = true;
+
     useEffect(() => {
         if (isPostAnswer && settingsCtx.autoplayIsOn) {
-            audioElement.current.src = `/audio/${nextQuestion.id}.mp3`;
-            audioElement.current.play();
+            try {
+                audioRef.current.src = `/audio/${nextQuestion.id}.mp3`;
+                audioRef.current.play();
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    console.error(
+                        `Media play error: ${err.name} - ${err.message}`
+                    );
+                }
+            }
         } else {
-            audioElement.current.pause();
+            audioRef.current.pause();
         }
     }, [isPostAnswer, nextQuestion.id, settingsCtx.autoplayIsOn]);
 
@@ -76,7 +86,7 @@ const Question: React.FC<Props> = ({
                         <Button
                             ref={nextQuestionButtonRef}
                             id="question-next-button"
-                            color="green"
+                            color="green-next"
                             onClick={onNextQuestion}
                             disabled={!isPostAnswer}
                             icon="arrow-right"

@@ -32,7 +32,6 @@
 
 ## Next to implement
 
--   Fix sound bug
 -   Create one big shared LocalStorage Key enum to avoid duplicate LS keys
 -   Horizontal (flex) NavItems for wide screens
 -   Store more on _progressContext_.
@@ -61,8 +60,6 @@ Then start work for version 2.0:
 
 ## Known Bugs
 
--   **severe** – Browser denying JS autoplay (_audioElement.play()_) not working on mobile browsers
-    -   Inside try/catch, create modal with button to allow user to enable audio
 -   minor – On iOS Safari, NavItem icon SVG edges clip the container on mobile
 
 ## Wishlist
