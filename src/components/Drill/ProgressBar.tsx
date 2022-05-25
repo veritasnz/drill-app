@@ -12,49 +12,69 @@ interface ProgressBarT {
     questionIndex: number;
 }
 
+const INITIAL_STATE: ProgressBarT = {
+    isGraveyard: false,
+    lvlNum: null,
+    lvlTitle: "",
+    questionIndex: 0,
+};
+
+const GRAVEYARD_STATE: ProgressBarT = {
+    isGraveyard: true,
+    lvlNum: null,
+    lvlTitle: "",
+    questionIndex: 0,
+};
+
 import s from "./Drill.module.scss";
 
 const ProgressBar: React.FC<Props> = ({ drillState: ds }) => {
-    const [lvlProgress, setLvlProgress] = useState<ProgressBarT>({
-        isGraveyard: false,
-        lvlNum: null,
-        lvlTitle: "",
-        questionIndex: 0,
-    });
+    const [lvlProgress, setLvlProgress] = useState<ProgressBarT>(INITIAL_STATE);
 
+    /**
+     * Initiate progress bar state & update when level changes
+     */
     useEffect(() => {
         if (ds.currentLevel.id === "GRAVEYARD") {
-            // Set graveyard
-            setLvlProgress((prevState) => {
-                return {
-                    ...prevState,
-                    isGraveyard: true,
-                };
-            });
+            setLvlProgress(GRAVEYARD_STATE);
         } else {
-            // Loop until question index
-            let newQuestionIndex = 0;
-            ds.currentLevel.questions.every((question, index) => {
-                newQuestionIndex = index;
-
-                if (!ds.question) {
-                    return false;
-                } else if (ds.question.id === question.id) {
-                    return false;
-                }
-
-                return true;
-            });
-
-            // Set graveyard
-            setLvlProgress({
+            const newLvlProgress: ProgressBarT = {
                 isGraveyard: false,
                 lvlNum: ds.currentLevelNum,
                 lvlTitle: ds.currentLevel.name,
-                questionIndex: newQuestionIndex,
+                questionIndex: ds.currentLevel.questions.length, // fallback
+            };
+
+            // If level hasn't been finished
+            if (ds.question) {
+                // Loop until question index
+                let newQuestionIndex = 0;
+                ds.currentLevel.questions.every((question, index) => {
+                    newQuestionIndex = index;
+
+                    if (ds.question.id === question.id) return false;
+
+                    return true;
+                });
+
+                newLvlProgress.questionIndex = newQuestionIndex;
+            }
+
+            setLvlProgress(newLvlProgress);
+        }
+    }, [ds.currentLevel]);
+
+    /**
+     * Update progress bar state when drill changes to 'postAnswer' state
+     */
+    useEffect(() => {
+        if (ds.isPostAnswer) {
+            setLvlProgress({
+                ...lvlProgress,
+                questionIndex: lvlProgress.questionIndex + 1,
             });
         }
-    }, [ds.currentLevel, ds.currentLevelNum, ds.question]);
+    }, [ds.isPostAnswer]);
 
     return (
         <header className={s["progress-bar"]}>
