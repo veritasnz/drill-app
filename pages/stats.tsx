@@ -44,7 +44,13 @@ const Stats: NextPage = () => {
     const totalLevelNumber = getTotalLevelCount();
 
     // Highest level completed calculations
-    let highestLevelContent = <small>No levels completed!</small>; // fallback
+    let highestLevelContent = (
+        <small>
+            First level hasn't
+            <br />
+            been completed yet.
+        </small>
+    ); // fallback
 
     const highestLvl = getHighestCompletedLevel(state.answeredQuestionIds);
 

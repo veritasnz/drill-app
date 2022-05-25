@@ -80,6 +80,8 @@
 
     &__cont {
         flex-shrink: 0;
+        line-height: 1.1;
+        text-align: right;
 
         strong {
             font-weight: var(--fw-bold);
@@ -96,6 +98,7 @@
         small {
             font-size: var(--fs-small);
             color: var(--c-grey);
+            line-height: 1.1;
         }
     }
 }
