@@ -32,7 +32,6 @@
 
 ## Next to implement
 
--   Create one big shared LocalStorage Key enum to avoid duplicate LS keys
 -   Horizontal (flex) NavItems for wide screens
 -   Store more on _progressContext_.
     -   Create _state_ object that gets returned.

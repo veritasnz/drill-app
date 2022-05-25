@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import SettingsContext from "./settings-context";
+import LSKeyEnum from "../models/LocalStorageKeyEnum.model";
 
-/** Settings Local Storage Keys */
-enum LSKey {
-    AUTOPLAY_IS_ON = "autoplay_is_on",
-    SHOW_FURIGANA = "show_furigana",
-    SHOW_ENGLISH = "show_english",
-}
+import SettingsContext from "./settings-context";
 
 const SettingsContextProvider: React.FC = (props) => {
     // Toggle booleans
@@ -17,30 +12,30 @@ const SettingsContextProvider: React.FC = (props) => {
 
     // Initialize & load from localStorage
     useEffect(() => {
-        loadBooleanStateValue(LSKey.AUTOPLAY_IS_ON, setAutoplayIsOn);
-        loadBooleanStateValue(LSKey.SHOW_FURIGANA, setShowFurigana);
-        loadBooleanStateValue(LSKey.SHOW_ENGLISH, setShowEnglish);
+        loadBooleanStateValue(LSKeyEnum.SETTING_AUTOPLAY, setAutoplayIsOn);
+        loadBooleanStateValue(LSKeyEnum.SETTING_SHOW_FURI, setShowFurigana);
+        loadBooleanStateValue(LSKeyEnum.SETTING_SHOW_ENG, setShowEnglish);
     }, []);
 
     // Create toggle functions
     const toggleAutoplayIsOn = toggleBoolStateFnBuilder(
-        LSKey.AUTOPLAY_IS_ON,
+        LSKeyEnum.SETTING_AUTOPLAY,
         setAutoplayIsOn
     );
     const toggleShowFurigana = toggleBoolStateFnBuilder(
-        LSKey.SHOW_FURIGANA,
+        LSKeyEnum.SETTING_SHOW_FURI,
         setShowFurigana
     );
     const toggleShowEnglish = toggleBoolStateFnBuilder(
-        LSKey.SHOW_ENGLISH,
+        LSKeyEnum.SETTING_SHOW_ENG,
         setShowEnglish
     );
 
     // Reset settings Fn
     const resetSettings = () => {
-        resetSetting(LSKey.AUTOPLAY_IS_ON, setAutoplayIsOn, true);
-        resetSetting(LSKey.SHOW_FURIGANA, setShowFurigana, true);
-        resetSetting(LSKey.SHOW_ENGLISH, setShowEnglish, true);
+        resetSetting(LSKeyEnum.SETTING_AUTOPLAY, setAutoplayIsOn, true);
+        resetSetting(LSKeyEnum.SETTING_SHOW_FURI, setShowFurigana, true);
+        resetSetting(LSKeyEnum.SETTING_SHOW_ENG, setShowEnglish, true);
     };
 
     return (
@@ -67,7 +62,7 @@ export default SettingsContextProvider;
  */
 // Helper function to set Boolean state val from LS given a LSKey
 const loadBooleanStateValue = (
-    lsKey: LSKey,
+    lsKey: LSKeyEnum,
     setter: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
     const storedValue = localStorage.getItem(lsKey);
@@ -76,7 +71,7 @@ const loadBooleanStateValue = (
 
 // Builds a toggling function based on the LocalStorage key parameter
 const toggleBoolStateFnBuilder = (
-    lskey: LSKey,
+    lskey: LSKeyEnum,
     setter: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
     return () => {
@@ -90,7 +85,7 @@ const toggleBoolStateFnBuilder = (
 
 // Clearing function based on the LocalStorage key parameter and default value
 const resetSetting = (
-    lskey: LSKey,
+    lskey: LSKeyEnum,
     setter: React.Dispatch<React.SetStateAction<boolean>>,
     defaultValue: boolean
 ) => {

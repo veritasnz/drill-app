@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 
+import LSKeyEnum from "../models/LocalStorageKeyEnum.model";
+
 // Models
 import Question from "../models/Question.model";
 
 // Context component
 import ProgressContext from "./progress-context";
-
-/** Stats Local Storage Keys */
-enum LSKey {
-    QUESTIONS_ANSWERED = "questions_answered",
-    LEVEL_KEY = "current_level_id",
-    GRAVEYARD_QUESTIONS = "graveyard_questions",
-}
 
 const INITIAL_LEVEL_ID = "yajirobe";
 
@@ -36,7 +31,7 @@ const ProgressContextProvider: React.FC = (props) => {
 
             // Set local storage
             localStorage.setItem(
-                LSKey.QUESTIONS_ANSWERED,
+                LSKeyEnum.PROGRESS_ANSWERED_QS,
                 JSON.stringify(newAnsweredQuestionIds)
             );
 
@@ -56,7 +51,7 @@ const ProgressContextProvider: React.FC = (props) => {
 
             // Set local storage
             localStorage.setItem(
-                LSKey.QUESTIONS_ANSWERED,
+                LSKeyEnum.PROGRESS_ANSWERED_QS,
                 JSON.stringify(newAnsweredQuestionIds)
             );
 
@@ -66,7 +61,7 @@ const ProgressContextProvider: React.FC = (props) => {
 
     const setLevelId = (level: string) => {
         setCurrentLevelId(level);
-        localStorage.setItem(LSKey.LEVEL_KEY, level);
+        localStorage.setItem(LSKeyEnum.PROGRESS_LVL_KEY, level);
     };
 
     const addGraveyardQuestion = (question: Question) => {
@@ -80,7 +75,7 @@ const ProgressContextProvider: React.FC = (props) => {
             } else {
                 const newGraveyard = prevState.concat(question);
                 localStorage.setItem(
-                    LSKey.GRAVEYARD_QUESTIONS,
+                    LSKeyEnum.PROGRESS_GRAVEYARD_QS,
                     JSON.stringify(newGraveyard)
                 );
                 return newGraveyard;
@@ -94,7 +89,7 @@ const ProgressContextProvider: React.FC = (props) => {
                 (currQuestion) => currQuestion.id !== questionId
             );
             localStorage.setItem(
-                LSKey.GRAVEYARD_QUESTIONS,
+                LSKeyEnum.PROGRESS_GRAVEYARD_QS,
                 JSON.stringify(newGraveyard)
             );
             return newGraveyard;
@@ -104,7 +99,7 @@ const ProgressContextProvider: React.FC = (props) => {
     // Initialize & load from localStorage
     useEffect(() => {
         // Set current level ID from storage if it exists, else initialise
-        const storedLevelId = localStorage.getItem(LSKey.LEVEL_KEY);
+        const storedLevelId = localStorage.getItem(LSKeyEnum.PROGRESS_LVL_KEY);
         if (storedLevelId) {
             setLevelId(storedLevelId);
         } else {
@@ -113,7 +108,7 @@ const ProgressContextProvider: React.FC = (props) => {
 
         // Load questions
         const storedAnsweredQuestionIdsJSON = localStorage.getItem(
-            LSKey.QUESTIONS_ANSWERED
+            LSKeyEnum.PROGRESS_ANSWERED_QS
         );
         if (storedAnsweredQuestionIdsJSON) {
             setAnsweredQuestionsIds(JSON.parse(storedAnsweredQuestionIdsJSON));
@@ -121,7 +116,7 @@ const ProgressContextProvider: React.FC = (props) => {
 
         // Load graveyard
         const storedGraveyardJSON = localStorage.getItem(
-            LSKey.GRAVEYARD_QUESTIONS
+            LSKeyEnum.PROGRESS_GRAVEYARD_QS
         );
         if (storedGraveyardJSON) {
             setGraveyard(JSON.parse(storedGraveyardJSON));

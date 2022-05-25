@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import StatsContext from "./stats-context";
+import LSKeyEnum from "../models/LocalStorageKeyEnum.model";
 
-/** Stats Local Storage Keys */
-enum LSKey {
-    TOTAL_CORRECT = "total_correct_attempts",
-    TOTAL_ALL = "total_attempts",
-}
+import StatsContext from "./stats-context";
 
 const StatsContextProvider: React.FC = (props) => {
     const [totalAttempts, setTotalAttempts] = useState(0);
@@ -15,22 +11,22 @@ const StatsContextProvider: React.FC = (props) => {
     const incrementTotalAttempts = () => {
         const newTotalAttempts = totalAttempts + 1;
         setTotalAttempts(newTotalAttempts);
-        localStorage.setItem(LSKey.TOTAL_ALL, newTotalAttempts.toString());
+        localStorage.setItem(LSKeyEnum.STATS_ATTEMPTS_ALL, newTotalAttempts.toString());
     };
 
     const incrementTotalCorrectAttempts = () => {
         const newTotalCorrectAttempts = totalCorrectAttempts + 1;
         setTotalCorrectAttempts(newTotalCorrectAttempts);
         localStorage.setItem(
-            LSKey.TOTAL_CORRECT,
+            LSKeyEnum.STATS_ATTEMPTS_CORRECT,
             newTotalCorrectAttempts.toString()
         );
     };
 
     useEffect(() => {
-        const storedTotalAttempts = localStorage.getItem(LSKey.TOTAL_ALL);
+        const storedTotalAttempts = localStorage.getItem(LSKeyEnum.STATS_ATTEMPTS_ALL);
         const storedTotalCorrectAttempts = localStorage.getItem(
-            LSKey.TOTAL_CORRECT
+            LSKeyEnum.STATS_ATTEMPTS_CORRECT
         );
 
         if (storedTotalAttempts && storedTotalAttempts !== "-1") {
@@ -45,11 +41,11 @@ const StatsContextProvider: React.FC = (props) => {
     const resetStats = () => {
         // Reset total attempts
         setTotalAttempts(0);
-        localStorage.setItem(LSKey.TOTAL_ALL, "0");
+        localStorage.setItem(LSKeyEnum.STATS_ATTEMPTS_ALL, "0");
 
         // Reset total correct attempts
         setTotalCorrectAttempts(0);
-        localStorage.setItem(LSKey.TOTAL_CORRECT, "0");
+        localStorage.setItem(LSKeyEnum.STATS_ATTEMPTS_CORRECT, "0");
     };
 
     return (
