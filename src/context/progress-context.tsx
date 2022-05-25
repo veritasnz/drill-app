@@ -9,6 +9,7 @@ export interface ProgressContextState {
     state: {
         answeredQuestionIds: string[];
         currentLevelId: string;
+        currentLevelNum: number;
         graveyard: Question[];
     };
 
@@ -24,6 +25,7 @@ const defaultState: ProgressContextState = {
     state: {
         answeredQuestionIds: [],
         currentLevelId: "",
+        currentLevelNum: -1,
         graveyard: [],
     },
     addAnsweredQuestionId: (questionIds: string) => {},

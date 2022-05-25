@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import LSKeyEnum from "../models/LocalStorageKeyEnum.model";
-
 // Models
 import Question from "../models/Question.model";
+import LSKeyEnum from "../models/LocalStorageKeyEnum.model";
+
+// API
+import { getLevelNum } from "../lib/level-api";
 
 // Context component
 import ProgressContext from "./progress-context";
@@ -15,6 +17,7 @@ const ProgressContextProvider: React.FC = (props) => {
         []
     );
     const [currentLevelId, setCurrentLevelId] = useState("");
+    const [currentLevelNum, setCurrentLevelNum] = useState(-1);
     const [graveyard, setGraveyard] = useState<Question[]>([]);
 
     const addAnsweredQuestionId = (questionId: string) => {
@@ -59,9 +62,12 @@ const ProgressContextProvider: React.FC = (props) => {
         });
     };
 
-    const setLevelId = (level: string) => {
-        setCurrentLevelId(level);
-        localStorage.setItem(LSKeyEnum.PROGRESS_LVL_KEY, level);
+    const setLevelId = (levelId: string) => {
+        setCurrentLevelId(levelId);
+        localStorage.setItem(LSKeyEnum.PROGRESS_LVL_KEY, levelId);
+
+        // Also update currentLevelNum
+        setCurrentLevelNum(getLevelNum(levelId));
     };
 
     const addGraveyardQuestion = (question: Question) => {
@@ -142,6 +148,7 @@ const ProgressContextProvider: React.FC = (props) => {
                 state: {
                     answeredQuestionIds,
                     currentLevelId,
+                    currentLevelNum,
                     graveyard,
                 },
                 addAnsweredQuestionId,

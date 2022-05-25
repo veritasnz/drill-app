@@ -35,6 +35,8 @@
 -   Store more on _progressContext_.
     -   Create _state_ object that gets returned.
     -   Stop child components (LevelProgress, Level etc.) from performing needless data operations using the APIs that can instead be performed inside of _ProgressContextProvider_
+-   Add Graveyard icon to .level-progress\_\_lvl inside of LevelProgress
+-   Investigate possibility of merging _drillState.currentLevelNum_ & _progressCtx.ctx.state.currentLevelNum_
 -   Test cases for duplicate IDs (Vitest?)
 -   Fill out question content properly
 -   Fix loading state for SEO

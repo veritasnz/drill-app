@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import Router from "next/router";
 
 import { Level as LevelModel } from "../../models/Level.model";
-import { getLevelIndex } from "../../lib/level-api";
 import { getAnsweredQuestionsInLevel } from "../../lib/question-api";
 import ProgressContext from "../../context/progress-context";
 
@@ -19,17 +18,17 @@ interface Props {
 }
 
 const Level: React.FC<Props> = ({ level }) => {
-    const progressCtx = useContext(ProgressContext);
+    const ctx = useContext(ProgressContext);
 
     const [drawerIsOpen, setDrawerIsOpen] = useState(false);
     const [percentageComplete, setPercentageComplete] = useState(0);
 
     // Setup vars
-    const isActiveLevel = level.id === progressCtx.state.currentLevelId;
-    const levelNum = getLevelIndex(level.id) + 1;
+    const isActiveLevel = level.id === ctx.state.currentLevelId;
+    const levelNum = ctx.state.currentLevelNum;
 
     const answeredQsIds = getAnsweredQuestionsInLevel(
-        progressCtx.state.answeredQuestionIds,
+        ctx.state.answeredQuestionIds,
         level.questions
     ).map((question) => question.id);
 
@@ -37,16 +36,16 @@ const Level: React.FC<Props> = ({ level }) => {
     useEffect(() => {
         const roughDecimal = answeredQsIds.length / level.questions.length;
         setPercentageComplete(Math.round(roughDecimal * 100));
-    }, [progressCtx.state.answeredQuestionIds, answeredQsIds, level]);
+    }, [ctx.state.answeredQuestionIds, answeredQsIds, level]);
 
     // Button Handlers
     const changeLevelHandler = () => {
-        progressCtx.setLevelId(level.id);
+        ctx.setLevelId(level.id);
         Router.push("/");
     };
 
     const resetLevelHandler = () => {
-        progressCtx.removeAnsweredQuestionsIds(answeredQsIds);
+        ctx.removeAnsweredQuestionsIds(answeredQsIds);
     };
 
     const toggleDrawerHandler = () => {

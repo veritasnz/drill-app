@@ -1,10 +1,10 @@
 import { DrillStateType } from "../../hooks/useDrill";
 
-import s from "./Drill.module.scss";
-
 interface Props {
     drillState: DrillStateType;
 }
+
+import s from "./Drill.module.scss";
 
 const LevelProgress: React.FC<Props> = ({ drillState }) => {
     let titleLvl: number | false = false;
@@ -30,7 +30,7 @@ const LevelProgress: React.FC<Props> = ({ drillState }) => {
         // Calculate progressPercent
         progressPercent =
             (questionIndex / drillState.currentLevel.questions.length) * 100;
-        titleLvl = drillState.currentLevelNum + 1;
+        titleLvl = drillState.currentLevelNum;
         titleText = drillState.currentLevel.name;
 
         // Form progressText

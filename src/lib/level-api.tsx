@@ -1,6 +1,7 @@
 import drillData from "../data/drillData";
 
 import { Level } from "../models/Level.model";
+import { getUnansweredQuestionsInLevel } from "./question-api";
 
 /**
  * Returns a Level given a level ID
@@ -76,11 +77,11 @@ export const getNextLevelById: (currLevelId: string) => Level | null = (
 };
 
 /**
- * Get's a level's index as a number if all stages were flattened and concatenated – must account for offset if displaying
+ * Get's a level's index as a number if all stages were flattened and concatenated
  * @param levelId
  * @returns {number}
  */
-export const getLevelIndex: (levelId: string) => number = (levelId: string) => {
+export const getLevelNum: (levelId: string) => number = (levelId: string) => {
     let returnIndex: number = -1;
 
     drillData.every((stage) => {
@@ -96,11 +97,12 @@ export const getLevelIndex: (levelId: string) => number = (levelId: string) => {
         return true;
     });
 
-    return returnIndex;
+    return returnIndex + 1;
 };
 
 /**
-
+ * Loop over drillData and return flattened levels
+ * @returns
  */
 export const getAllLevels: () => Level[] = () => {
     const levelsArray: Level[] = [];
@@ -124,4 +126,38 @@ export const getTotalLevelCount: () => number = () => {
     });
 
     return levelCount;
+};
+
+interface HighestCompletedLevel {
+    name: string;
+    level: number;
+}
+
+/**
+ * Returns an object with the name and level num of the highest completed level
+ * given some answeredIds
+ * @param answeredIds
+ * @returns {HighestCompletedLevel}
+ */
+export const getHighestCompletedLevel = (answeredIds: string[]) => {
+    const allLevels = getAllLevels();
+
+    let highestLevel: Partial<HighestCompletedLevel> = {};
+
+    allLevels.every((level, index) => {
+        const unansweredQuestions = getUnansweredQuestionsInLevel(
+            answeredIds,
+            level.questions
+        );
+
+        if (unansweredQuestions.length > 0) return false;
+
+        highestLevel = {
+            name: level.name,
+            level: index + 1,
+        };
+        return true;
+    });
+
+    return highestLevel as HighestCompletedLevel;
 };

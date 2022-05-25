@@ -21,7 +21,7 @@ const Stats: NextPage = () => {
     const { totalCorrectAttempts, totalAttempts } = useContext(StatsContext);
     const { state } = useContext(ProgressContext);
 
-    // Attempts calculations
+    // Attempts content
     let attemptsContent = <small>No questions attempted!</small>;
     if (totalAttempts > 0) {
         attemptsContent = (
