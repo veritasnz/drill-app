@@ -62,16 +62,18 @@ const ProgressBar: React.FC<Props> = ({ drillState: ds }) => {
 
             setLvlProgress(newLvlProgress);
         }
-    }, [ds.currentLevel]);
+    }, [ds.currentLevel, ds.currentLevelNum, ds.question]);
 
     /**
      * Update progress bar state when drill changes to 'postAnswer' state
      */
     useEffect(() => {
         if (ds.isPostAnswer) {
-            setLvlProgress({
-                ...lvlProgress,
-                questionIndex: lvlProgress.questionIndex + 1,
+            setLvlProgress((prevState) => {
+                return {
+                    ...prevState,
+                    questionIndex: lvlProgress.questionIndex + 1,
+                };
             });
         }
     }, [ds.isPostAnswer]);
