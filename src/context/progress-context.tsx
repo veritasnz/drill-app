@@ -6,24 +6,29 @@ import Question from "../models/Question.model";
  */
 
 export interface ProgressContextState {
-    answeredQuestionIds: string[];
+    state: {
+        answeredQuestionIds: string[];
+        currentLevelId: string;
+        graveyard: Question[];
+    };
+
     addAnsweredQuestionId: (questionId: string) => void;
     removeAnsweredQuestionsIds: (questionIds: string[]) => void;
-    currentLevelId: string;
     setLevelId: (levelId: string) => void;
-    graveyard: Question[];
     addGraveyardQuestion: (question: Question) => void;
     removeGraveyardQuestionById: (questionId: string) => void;
     resetProgress: () => void;
 }
 
 const defaultState: ProgressContextState = {
-    answeredQuestionIds: [],
+    state: {
+        answeredQuestionIds: [],
+        currentLevelId: "",
+        graveyard: [],
+    },
     addAnsweredQuestionId: (questionIds: string) => {},
     removeAnsweredQuestionsIds: (questionIds: string[]) => {},
-    currentLevelId: "",
     setLevelId: (levelId: string) => {},
-    graveyard: [],
     addGraveyardQuestion: (question: Question) => {},
     removeGraveyardQuestionById: (questionId: string) => {},
     resetProgress: () => {},

@@ -139,12 +139,14 @@ const ProgressContextProvider: React.FC = (props) => {
     return (
         <ProgressContext.Provider
             value={{
-                answeredQuestionIds,
+                state: {
+                    answeredQuestionIds,
+                    currentLevelId,
+                    graveyard,
+                },
                 addAnsweredQuestionId,
                 removeAnsweredQuestionsIds,
-                currentLevelId,
                 setLevelId,
-                graveyard,
                 addGraveyardQuestion,
                 removeGraveyardQuestionById,
                 resetProgress,

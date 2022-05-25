@@ -26,14 +26,14 @@ const Stats: NextPage = () => {
             : 0;
 
     // Levels completed calculations
-    const currLevelNumber = getLevelIndex(progressCtx.currentLevelId) + 1; // +1 to account for array offset
+    const currLevelNumber = getLevelIndex(progressCtx.state.currentLevelId) + 1; // +1 to account for array offset
     const totalLevelNumber = getTotalLevelCount();
 
     // Highest level completed calculations
     let highestLevelContent = <>No levels completed!</>; // fallback
 
     const highestLvl = getHighestCompletedLevel(
-        progressCtx.answeredQuestionIds
+        progressCtx.state.answeredQuestionIds
     );
 
     if (highestLvl.name) {

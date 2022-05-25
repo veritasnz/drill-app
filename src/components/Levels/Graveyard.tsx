@@ -18,7 +18,7 @@ const Graveyard: React.FC<Props> = (props) => {
         Router.push("/");
     };
 
-    const graveyardNotEmpty = progressCtx.graveyard.length > 0;
+    const graveyardNotEmpty = progressCtx.state.graveyard.length > 0;
 
     return (
         <section className={`${s["stage-wrap"]} ${s["stage-wrap--graveyard"]}`}>

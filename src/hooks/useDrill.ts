@@ -60,20 +60,20 @@ const useDrill: (progressCtx: ProgressContextState) => UseDrillReturnType = (
 
     // On level change / init
     useEffect(() => {
-        if (progressCtx.currentLevelId === "GRAVEYARD") {
+        if (progressCtx.state.currentLevelId === "GRAVEYARD") {
             // If Graveyard, set
-            setQuestions(progressCtx.graveyard);
-            setCurrentLevel(buildGraveyard(progressCtx.graveyard));
+            setQuestions(progressCtx.state.graveyard);
+            setCurrentLevel(buildGraveyard(progressCtx.state.graveyard));
         } else {
             // Else, get current level
-            const newCtxLevel = getLevelById(progressCtx.currentLevelId);
+            const newCtxLevel = getLevelById(progressCtx.state.currentLevelId);
 
             if (newCtxLevel) {
                 setCurrentLevelNum(getLevelIndex(newCtxLevel.id));
 
                 // Check if unanswered questions in level
                 const nextQuestions = getUnansweredQuestionsInLevel(
-                    progressCtx.answeredQuestionIds,
+                    progressCtx.state.answeredQuestionIds,
                     newCtxLevel.questions
                 );
 
@@ -97,7 +97,7 @@ const useDrill: (progressCtx: ProgressContextState) => UseDrillReturnType = (
                 }
             }
         }
-    }, [progressCtx.currentLevelId]);
+    }, [progressCtx.state.currentLevelId]);
 
     const correctHandler = () => {
         // Add answered question to context + localStorage
@@ -108,11 +108,11 @@ const useDrill: (progressCtx: ProgressContextState) => UseDrillReturnType = (
         let newQuestions = [...questions];
         newQuestions.shift();
 
-        if (progressCtx.currentLevelId === "GRAVEYARD") {
+        if (progressCtx.state.currentLevelId === "GRAVEYARD") {
             progressCtx.removeGraveyardQuestionById(answeredQuestionId);
         } else {
             // Temp store of currentLevelId. To be updated with new level
-            let newCurrentLevelId = progressCtx.currentLevelId;
+            let newCurrentLevelId = progressCtx.state.currentLevelId;
 
             // If not Graveyard
             if (newQuestions.length === 0) {
