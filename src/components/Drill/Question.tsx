@@ -10,18 +10,18 @@ import Icon from "../UI/Icon/Icon";
 import Button from "../UI/Button";
 
 interface Props {
-    nextQuestion: QuestionT;
+    question: QuestionT;
     isPostAnswer: boolean;
-    nextQuestionButtonRef: Ref<HTMLButtonElement> | null;
-    onNextQuestion: () => void;
+    nextButtonRef: Ref<HTMLButtonElement> | null;
+    onNextButton: () => void;
     settingsCtx: SettingsContextState;
 }
 
 const Question: React.FC<Props> = ({
-    nextQuestion,
+    question,
     isPostAnswer,
-    nextQuestionButtonRef,
-    onNextQuestion,
+    nextButtonRef,
+    onNextButton,
     settingsCtx,
 }) => {
     /**
@@ -33,7 +33,7 @@ const Question: React.FC<Props> = ({
     useEffect(() => {
         if (isPostAnswer && settingsCtx.autoplayIsOn) {
             try {
-                audioRef.current.src = `/audio/${nextQuestion.id}.mp3`;
+                audioRef.current.src = `/audio/${question.id}.mp3`;
                 audioRef.current.play();
             } catch (err: unknown) {
                 if (err instanceof Error) {
@@ -45,7 +45,7 @@ const Question: React.FC<Props> = ({
         } else {
             audioRef.current.pause();
         }
-    }, [isPostAnswer, nextQuestion.id, settingsCtx.autoplayIsOn]);
+    }, [isPostAnswer, question.id, settingsCtx.autoplayIsOn]);
 
     /**
      * Render
@@ -57,11 +57,11 @@ const Question: React.FC<Props> = ({
                 ${settingsCtx.showFurigana || s["question--no-fur"]}
             `}
         >
-            {nextQuestion ? (
+            {question ? (
                 <>
                     <div className={s["question__wrap"]}>
                         <QuestionText
-                            nextQuestion={nextQuestion}
+                            question={question}
                             isPostAnswer={isPostAnswer}
                         />
                         <i
@@ -77,17 +77,16 @@ const Question: React.FC<Props> = ({
                         // Only show English if it is post-answer screen / English is enabled
                         (isPostAnswer || settingsCtx.showEnglish) && (
                             <div className={s["question__eng"]}>
-                                {nextQuestion.english}
+                                {question.english}
                             </div>
                         )
                     }
 
                     <div className={s["question__next"]}>
                         <Button
-                            ref={nextQuestionButtonRef}
-                            id="question-next-button"
+                            ref={nextButtonRef}
                             color="green-next"
-                            onClick={onNextQuestion}
+                            onClick={onNextButton}
                             disabled={!isPostAnswer}
                             icon="arrow-right"
                         >

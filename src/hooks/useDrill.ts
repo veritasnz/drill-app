@@ -11,7 +11,7 @@ import { getUnansweredQuestionsInLevel } from "../lib/question-api";
 
 // Local type declarations
 export interface DrillStateType {
-    nextQuestion: Question;
+    question: Question;
     questions: Question[];
     currentLevel: Level;
     currentLevelNum: number;
@@ -131,7 +131,7 @@ const useDrill: (ctx: ProgressContextState) => UseDrillReturnType = (ctx) => {
 
     return {
         state: {
-            nextQuestion: questions[0],
+            question: questions[0],
             questions,
             currentLevel,
             currentLevelNum,

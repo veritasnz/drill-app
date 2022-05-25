@@ -35,7 +35,7 @@ const Drill: React.FC = () => {
     const attemptHandler = (inputtedAnswer: ParticleEnum) => {
         const answerIsCorrect = checkAnswerIsCorrect(
             inputtedAnswer,
-            drill.state.nextQuestion.answers
+            drill.state.question.answers
         );
 
         statsCtx.incrementTotalAttempts();
@@ -51,33 +51,39 @@ const Drill: React.FC = () => {
     };
 
     // Setup 'Next question →' handler & ref
-    const nextQuestionButtonRef = useRef<HTMLButtonElement>(null);
-    const nextQuestionHandler = () => {
+    const nextButtonRef = useRef<HTMLButtonElement>(null);
+    const nextButtonHandler = () => {
         if (isPostAnswer) {
             drill.correctHandler();
             setIsPostAnswer(false);
         }
     };
     useEffect(() => {
-        if (isPostAnswer) nextQuestionButtonRef.current?.focus();
+        if (isPostAnswer) nextButtonRef.current?.focus();
     }, [isPostAnswer]);
 
     // Render
-    if (!drill.state.nextQuestion) {
-        return <DrillEmpty />;
-    }
-
     return (
         <>
             <LevelProgress drillState={drill.state} />
-            <Question
-                nextQuestion={drill.state.nextQuestion}
-                isPostAnswer={isPostAnswer}
-                nextQuestionButtonRef={nextQuestionButtonRef}
-                onNextQuestion={nextQuestionHandler}
-                settingsCtx={settingsCtx}
-            />
-            <Keyboard onAttempt={attemptHandler} isPostAnswer={isPostAnswer} />
+
+            {!drill.state.question ? (
+                <DrillEmpty />
+            ) : (
+                <>
+                    <Question
+                        question={drill.state.question}
+                        isPostAnswer={isPostAnswer}
+                        nextButtonRef={nextButtonRef}
+                        onNextButton={nextButtonHandler}
+                        settingsCtx={settingsCtx}
+                    />
+                    <Keyboard
+                        onAttempt={attemptHandler}
+                        isPostAnswer={isPostAnswer}
+                    />
+                </>
+            )}
         </>
     );
 };

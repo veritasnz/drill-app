@@ -9,11 +9,11 @@ import PlaceholderWrap from "./PlaceholderWrap";
  * Key
  */
 interface Props {
-    nextQuestion: Question;
+    question: Question;
     isPostAnswer: boolean;
 }
 
-const QuestionText: React.FC<Props> = ({ nextQuestion, isPostAnswer }) => {
+const QuestionText: React.FC<Props> = ({ question, isPostAnswer }) => {
     const [firstHalf, setFirstHalf] = useState<JSX.Element>(<></>);
     const [secondHalf, setSecondHalf] = useState<JSX.Element>(<></>);
     const [placeholderContent, setPlaceholderContent] = useState<string[]>([]);
@@ -21,18 +21,18 @@ const QuestionText: React.FC<Props> = ({ nextQuestion, isPostAnswer }) => {
     // Update text on question change
     useEffect(() => {
         const [newFirstHalf, newSecondHalf] = rubifyQuestionText(
-            nextQuestion.question
+            question.question
         );
 
         setFirstHalf(newFirstHalf);
         setSecondHalf(newSecondHalf);
-    }, [nextQuestion]);
+    }, [question]);
 
     // Update placeholder when 'isPostAnswer' changes
     useEffect(() => {
         if (isPostAnswer) {
             let isFirst = true;
-            const newPlaceholderContent = nextQuestion.answers.map((answer) => {
+            const newPlaceholderContent = question.answers.map((answer) => {
                 if (isFirst) {
                     isFirst = false;
                     return answer;
@@ -44,7 +44,7 @@ const QuestionText: React.FC<Props> = ({ nextQuestion, isPostAnswer }) => {
         } else {
             setPlaceholderContent([""]);
         }
-    }, [isPostAnswer, nextQuestion.answers]);
+    }, [isPostAnswer, question.answers]);
 
     return (
         <p className={s["question__text"]}>
