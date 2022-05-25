@@ -34,8 +34,9 @@
 
 -   Store more on _progressContext_.
     -   Create _state_ object that gets returned.
-    -   Stop child components (LevelProgress, Level etc.) from performing needless data operations using the APIs that can instead be performed inside of _ProgressContextProvider_
--   Add Graveyard icon to .level-progress\_\_lvl inside of LevelProgress
+    -   Stop child components (ProgressBar, Level etc.) from performing needless data operations using the APIs that can instead be performed inside of _ProgressContextProvider_
+-   Grey out 'Go' button if level is complete in Level component
+-   Add Graveyard icon to .progress-bar\_\_lvl inside of ProgressBar
 -   Investigate possibility of merging _drillState.currentLevelNum_ & _progressCtx.ctx.state.currentLevelNum_
 -   Test cases for duplicate IDs (Vitest?)
 -   Fill out question content properly

@@ -16,7 +16,7 @@ import useDrill from "../../hooks/useDrill";
 
 // Components
 import DrillEmpty from "./DrillEmpty";
-import LevelProgress from "./LevelProgress";
+import ProgressBar from "./ProgressBar";
 import Question from "./Question";
 import Keyboard from "./Keyboard";
 
@@ -57,7 +57,7 @@ const Drill: React.FC = () => {
     // Render
     return (
         <>
-            <LevelProgress drillState={drill.state} />
+            <ProgressBar drillState={drill.state} />
 
             {!drill.state.question ? (
                 <DrillEmpty />

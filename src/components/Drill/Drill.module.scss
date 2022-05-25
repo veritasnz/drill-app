@@ -1,6 +1,6 @@
 /* Progress
 ------------------------------- */
-.level-progress {
+.progress-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -67,7 +67,7 @@
     text-align: center;
     font-size: var(--fs-question);
 
-    .level-progress + & {
+    .progress-bar + & {
         margin-top: 1em;
     }
 
