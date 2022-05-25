@@ -15,6 +15,7 @@ export interface DrillStateType {
     questions: Question[];
     currentLevel: Level;
     currentLevelNum: number;
+    isPostAnswer: boolean;
 }
 
 type UseDrillReturnType = {
@@ -44,7 +45,6 @@ const buildGraveyard: (graveyard: Question[]) => Level = (
 
 /**
  * Controls the state of the drill, and provides methods to progress the state of the drill.
- *
  * @param {ProgressContextState} ctx The progressCtx
  * @returns {UseDrillReturnType} { state, correctHandler, incorrectHandler }
  */
@@ -52,6 +52,7 @@ const useDrill: (ctx: ProgressContextState) => UseDrillReturnType = (ctx) => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [currentLevel, setCurrentLevel] = useState<Level>(BLANK_LEVEL);
     const [currentLevelNum, setCurrentLevelNum] = useState<number>(0);
+    const [isPostAnswer, setIsPostAnswer] = useState<boolean>(false);
 
     // On level change / init
     useEffect(() => {
@@ -94,7 +95,9 @@ const useDrill: (ctx: ProgressContextState) => UseDrillReturnType = (ctx) => {
         }
     }, [ctx.state.currentLevelId]);
 
-    // Updates progressContext and localStorage
+    /**
+     * Updates progressContext and localStorage
+     */
     const correctHandler = () => {
         // Add answered question to context + localStorage
         const answeredQuestionId = questions[0].id;
@@ -103,37 +106,47 @@ const useDrill: (ctx: ProgressContextState) => UseDrillReturnType = (ctx) => {
         if (ctx.state.currentLevelId === "GRAVEYARD") {
             ctx.removeGraveyardQuestionById(answeredQuestionId);
         }
+
+        setIsPostAnswer(true);
     };
 
-    // Goes to the next question
-    const nextQuestionHandler = () => {
-        // Clone current questions, and remove answered
-        let newQuestions = [...questions];
-        newQuestions.shift();
-
-        if (ctx.state.currentLevelId !== "GRAVEYARD") {
-            // Temp store of currentLevelId. To be updated with new level
-            let newCurrentLevelId = ctx.state.currentLevelId;
-
-            // If not Graveyard
-            if (newQuestions.length === 0) {
-                // If no new questions
-                const nextLevel = getNextLevelById(newCurrentLevelId);
-
-                if (nextLevel) {
-                    // Set next level and add new questions
-                    newCurrentLevelId = nextLevel.id;
-                    ctx.setLevelId(nextLevel.id);
-                    newQuestions = newQuestions.concat(nextLevel.questions);
-                }
-            }
-        }
-
-        setQuestions(newQuestions);
-    };
-
+    /**
+     * Adds incorrect questions to Graveyard (in context and LS)
+     */
     const incorrectHandler = () => {
         ctx.addGraveyardQuestion(questions[0]);
+    };
+
+    /**
+     * Goes to the next question (only if is in postAnswer phase)
+     */
+    const nextQuestionHandler = () => {
+        if (isPostAnswer) {
+            // Clone current questions, and remove answered
+            let newQuestions = [...questions];
+            newQuestions.shift();
+
+            if (ctx.state.currentLevelId !== "GRAVEYARD") {
+                // Temp store of currentLevelId. To be updated with new level
+                let newCurrentLevelId = ctx.state.currentLevelId;
+
+                // If not Graveyard
+                if (newQuestions.length === 0) {
+                    // If no new questions
+                    const nextLevel = getNextLevelById(newCurrentLevelId);
+
+                    if (nextLevel) {
+                        // Set next level and add new questions
+                        newCurrentLevelId = nextLevel.id;
+                        ctx.setLevelId(nextLevel.id);
+                        newQuestions = newQuestions.concat(nextLevel.questions);
+                    }
+                }
+            }
+
+            setQuestions(newQuestions);
+            setIsPostAnswer(false);
+        }
     };
 
     return {
@@ -142,6 +155,7 @@ const useDrill: (ctx: ProgressContextState) => UseDrillReturnType = (ctx) => {
             questions,
             currentLevel,
             currentLevelNum,
+            isPostAnswer,
         },
         correctHandler,
         incorrectHandler,

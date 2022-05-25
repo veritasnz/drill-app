@@ -28,8 +28,6 @@ const Drill: React.FC = () => {
 
     const drill = useDrill(progressCtx);
 
-    const [isPostAnswer, setIsPostAnswer] = useState(false);
-
     // Tests if inputted answer is correct.
     // Progresses state appropriately, moving to post-answer state if correct
     const attemptHandler = (inputtedAnswer: ParticleEnum) => {
@@ -42,7 +40,6 @@ const Drill: React.FC = () => {
 
         if (answerIsCorrect) {
             statsCtx.incrementTotalCorrectAttempts();
-            setIsPostAnswer(true);
             drill.correctHandler();
             return true;
         } else {
@@ -50,18 +47,6 @@ const Drill: React.FC = () => {
             return false;
         }
     };
-
-    // Setup 'Next question →' handler & ref
-    const nextButtonRef = useRef<HTMLButtonElement>(null);
-    const nextButtonHandler = () => {
-        if (isPostAnswer) {
-            drill.nextQuestionHandler();
-            setIsPostAnswer(false);
-        }
-    };
-    useEffect(() => {
-        if (isPostAnswer) nextButtonRef.current?.focus();
-    }, [isPostAnswer]);
 
     // Render
     return (
@@ -73,15 +58,13 @@ const Drill: React.FC = () => {
             ) : (
                 <>
                     <Question
-                        question={drill.state.question}
-                        isPostAnswer={isPostAnswer}
-                        nextButtonRef={nextButtonRef}
-                        onNextButton={nextButtonHandler}
+                        drillState={drill.state}
+                        onNextHandler={drill.nextQuestionHandler}
                         settingsCtx={settingsCtx}
                     />
                     <Keyboard
                         onAttempt={attemptHandler}
-                        isPostAnswer={isPostAnswer}
+                        isPostAnswer={drill.state.isPostAnswer}
                     />
                 </>
             )}

@@ -1,29 +1,39 @@
-import React, { Ref, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
-import { SettingsContextState } from "../../context/settings-context";
+// Models
 import QuestionT from "../../models/Question.model";
+import { DrillStateType } from "../../hooks/useDrill";
 
-import s from "./Drill.module.scss";
+// Context
+import { SettingsContextState } from "../../context/settings-context";
 
+// Components
 import QuestionText from "./QuestionText";
 import Icon from "../UI/Icon/Icon";
 import Button from "../UI/Button";
 
+import s from "./Drill.module.scss";
+
 interface Props {
-    question: QuestionT;
-    isPostAnswer: boolean;
-    nextButtonRef: Ref<HTMLButtonElement> | null;
-    onNextButton: () => void;
+    drillState: DrillStateType;
+    onNextHandler: () => void;
     settingsCtx: SettingsContextState;
 }
 
 const Question: React.FC<Props> = ({
-    question,
-    isPostAnswer,
-    nextButtonRef,
-    onNextButton,
+    drillState: ds,
+    onNextHandler,
     settingsCtx,
 }) => {
+    /**
+     * Setup Next Button
+     * Focus on button when 'ds.isPostAnswer' updates
+     */
+    const nextButtonRef = useRef<HTMLButtonElement>(null);
+    useEffect(() => {
+        if (ds.isPostAnswer) nextButtonRef.current?.focus();
+    }, [ds.isPostAnswer]);
+
     /**
      * Play audio when 'isPostAnswer' changes
      */
@@ -31,9 +41,9 @@ const Question: React.FC<Props> = ({
     audioRef.current.autoplay = true;
 
     useEffect(() => {
-        if (isPostAnswer && settingsCtx.autoplayIsOn) {
+        if (ds.isPostAnswer && settingsCtx.autoplayIsOn) {
             try {
-                audioRef.current.src = `/audio/${question.id}.mp3`;
+                audioRef.current.src = `/audio/${ds.question.id}.mp3`;
                 audioRef.current.play();
             } catch (err: unknown) {
                 if (err instanceof Error) {
@@ -45,7 +55,7 @@ const Question: React.FC<Props> = ({
         } else {
             audioRef.current.pause();
         }
-    }, [isPostAnswer, question.id, settingsCtx.autoplayIsOn]);
+    }, [ds.isPostAnswer, ds.question.id, settingsCtx.autoplayIsOn]);
 
     /**
      * Render
@@ -57,16 +67,16 @@ const Question: React.FC<Props> = ({
                 ${settingsCtx.showFurigana || s["question--no-fur"]}
             `}
         >
-            {question ? (
+            {ds.question ? (
                 <>
                     <div className={s["question__wrap"]}>
                         <QuestionText
-                            question={question}
-                            isPostAnswer={isPostAnswer}
+                            question={ds.question}
+                            isPostAnswer={ds.isPostAnswer}
                         />
                         <i
                             className={`${s["question__check"]} ${
-                                isPostAnswer && s["question__check--correct"]
+                                ds.isPostAnswer && s["question__check--correct"]
                             }`}
                         >
                             <Icon name="check-circle" />
@@ -75,9 +85,9 @@ const Question: React.FC<Props> = ({
 
                     {
                         // Only show English if it is post-answer screen / English is enabled
-                        (isPostAnswer || settingsCtx.showEnglish) && (
+                        (ds.isPostAnswer || settingsCtx.showEnglish) && (
                             <div className={s["question__eng"]}>
-                                {question.english}
+                                {ds.question.english}
                             </div>
                         )
                     }
@@ -86,8 +96,8 @@ const Question: React.FC<Props> = ({
                         <Button
                             ref={nextButtonRef}
                             color="green-next"
-                            onClick={onNextButton}
-                            disabled={!isPostAnswer}
+                            onClick={onNextHandler}
+                            disabled={!ds.isPostAnswer}
                             icon="arrow-right"
                         >
                             Next Question
