@@ -1,23 +1,37 @@
 import { useContext } from "react";
 import type { NextPage } from "next";
 
+// Contexts
 import StatsContext from "../src/context/stats-context";
 import ProgressContext from "../src/context/progress-context";
+
+// API
 import {
-    getAllLevels,
-    getLevelIndex,
+    getHighestCompletedLevel,
     getTotalLevelCount,
 } from "../src/lib/level-api";
 
+// Components
 import Section from "../src/components/Blocks/Section";
 import Title from "../src/components/Blocks/Title";
 import StatBlock from "../src/components/Blocks/StatBlock";
-import { getUnansweredQuestionsInLevel } from "../src/lib/question-api";
 import PaddingWrapper from "../src/components/PageLayout/PaddingWrapper";
 
 const Stats: NextPage = () => {
     const { totalCorrectAttempts, totalAttempts } = useContext(StatsContext);
-    const progressCtx = useContext(ProgressContext);
+    const { state } = useContext(ProgressContext);
+
+    // Attempts calculations
+    let attemptsContent = <small>No questions attempted!</small>;
+    if (totalAttempts > 0) {
+        attemptsContent = (
+            <>
+                <em>{totalCorrectAttempts}</em>
+                {" / "}
+                <strong>{totalAttempts}</strong>
+            </>
+        );
+    }
 
     // Percentage correct calculations
     const percentageCorrect =
@@ -26,15 +40,13 @@ const Stats: NextPage = () => {
             : 0;
 
     // Levels completed calculations
-    const currLevelNumber = getLevelIndex(progressCtx.state.currentLevelId) + 1; // +1 to account for array offset
+    const currLevelNumber = state.currentLevelNum;
     const totalLevelNumber = getTotalLevelCount();
 
     // Highest level completed calculations
-    let highestLevelContent = <>No levels completed!</>; // fallback
+    let highestLevelContent = <small>No levels completed!</small>; // fallback
 
-    const highestLvl = getHighestCompletedLevel(
-        progressCtx.state.answeredQuestionIds
-    );
+    const highestLvl = getHighestCompletedLevel(state.answeredQuestionIds);
 
     if (highestLvl.name) {
         highestLevelContent = (
@@ -51,9 +63,7 @@ const Stats: NextPage = () => {
                     Stats
                 </Title>
                 <StatBlock title="Total questions answered correctly">
-                    <em>{totalCorrectAttempts}</em>
-                    {" / "}
-                    <strong>{totalAttempts}</strong>
+                    {attemptsContent}
                 </StatBlock>
                 <StatBlock title="Percentage correct">
                     <strong>
@@ -83,27 +93,3 @@ const Stats: NextPage = () => {
 };
 
 export default Stats;
-
-type HighestLevelObj = { name: string; level: number };
-
-const getHighestCompletedLevel = (answeredIds: string[]) => {
-    const allLevels = getAllLevels();
-    let highestLevel: Partial<HighestLevelObj> = {};
-
-    allLevels.every((level, index) => {
-        const unansweredQuestions = getUnansweredQuestionsInLevel(
-            answeredIds,
-            level.questions
-        );
-
-        if (unansweredQuestions.length > 0) return false;
-
-        highestLevel = {
-            name: level.name,
-            level: index + 1,
-        };
-        return true;
-    });
-
-    return highestLevel;
-};
