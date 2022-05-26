@@ -32,10 +32,8 @@
 
 ## Next to implement
 
--   Store more on _progressContext_.
-    -   Create _state_ object that gets returned.
-    -   Stop child components (ProgressBar, Level etc.) from performing needless data operations using the APIs that can instead be performed inside of _ProgressContextProvider_
 -   Grey out 'Go' button if level is complete in Level component
+-   Assign titles to button elements
 -   Add Graveyard icon to .progress-bar\_\_lvl inside of ProgressBar
 -   Investigate possibility of merging _drillState.currentLevelNum_ & _progressCtx.ctx.state.currentLevelNum_
 -   Test cases for duplicate IDs (Vitest?)
@@ -65,6 +63,8 @@ Then start work for version 2.0:
 
 ## Wishlist
 
+-   
+-   'Reset' button for entire stages
 -   Double tap brings up modal with word details from Jisho.org
 -   Advanced mode (すら・さえ・しか・だけ)
 -   Backend
