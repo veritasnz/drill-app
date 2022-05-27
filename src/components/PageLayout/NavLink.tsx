@@ -27,7 +27,9 @@ const NavLink: React.FC<Props> = (props) => {
 
     return (
         <Link href={href} {...otherProps}>
-            {React.cloneElement(<a>{children}</a>, { className })}
+            {React.cloneElement(<a title={props.title}>{children}</a>, {
+                className,
+            })}
         </Link>
     );
 };
