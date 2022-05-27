@@ -32,7 +32,6 @@
 
 ## Next to implement
 
--   Add Graveyard icon to .progress-bar\_\_lvl inside of ProgressBar
 -   Investigate possibility of merging _drillState.currentLevelNum_ & _progressCtx.ctx.state.currentLevelNum_
 -   Test cases for duplicate IDs (Vitest?)
 -   Fill out question content properly
@@ -40,8 +39,7 @@
     -   Top page displays "Finished! Choose next level" when viewing page source
     -   Add loading spinner before context has finished loading
 -   404 page
--   Stats page
-    -   Feedback form
+-   Stats page 'Feedback' form
 -   Finalize design/animations
 -   Thorough testing
 

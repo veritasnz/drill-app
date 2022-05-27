@@ -25,6 +25,16 @@
         }
     }
 
+    &__grave {
+        // i
+
+        svg {
+            width: 1.2em;
+            margin: 0 auto 0.2em;
+            color: var(--c-black);
+        }
+    }
+
     &__prog {
         flex-shrink: 0;
         font-size: 0.8em;

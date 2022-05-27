@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { DrillStateType } from "../../hooks/useDrill";
+import Icon from "../UI/Icon/Icon";
 
 interface Props {
     drillState: DrillStateType;
@@ -82,7 +83,10 @@ const ProgressBar: React.FC<Props> = ({ drillState: ds }) => {
         <header className={s["progress-bar"]}>
             <div className={s["progress-bar__lvl"]}>
                 {lvlProgress.isGraveyard ? (
-                    <>Graveyard</>
+                    <i className={s["progress-bar__grave"]}>
+                        <Icon name="graveyard" />
+                        <small>Graveyard</small>
+                    </i>
                 ) : (
                     <>
                         <em>Lv.{lvlProgress.lvlNum}</em>
