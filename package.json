@@ -11,8 +11,7 @@
     "dependencies": {
         "next": "^12.0.8-canary.19",
         "react": "17.0.2",
-        "react-dom": "17.0.2",
-        "sass": "^1.47.0"
+        "react-dom": "17.0.2"
     },
     "devDependencies": {
         "@google-cloud/text-to-speech": "^3.4.0",
@@ -20,6 +19,7 @@
         "babel-plugin-inline-react-svg": "^2.0.1",
         "eslint": "8.6.0",
         "eslint-config-next": "12.0.7",
+        "sass": "^1.52.1",
         "typescript": "4.5.4"
     }
 }
