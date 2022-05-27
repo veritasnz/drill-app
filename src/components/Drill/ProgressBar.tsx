@@ -79,7 +79,8 @@ const ProgressBar: React.FC<Props> = ({ drillState: ds }) => {
                 };
             });
         }
-    }, [ds.isPostAnswer]); // hack // eslint-disable-line
+    }, [ds.isPostAnswer]); // eslint-disable-line
+    // ↑ hack
 
     return (
         <header className={s["progress-bar"]}>
