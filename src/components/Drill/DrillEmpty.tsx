@@ -13,9 +13,7 @@ const DrillEmpty: React.FC<Props> = (props) => {
         <div className={s["empty"]}>
             <p>
                 All the available levels after this one have already been
-                finished!
-            </p>
-            <p>Go to the Levels page and choose another one.</p>
+                finished! <br/>Go to the Levels page and choose another one.</p>
             <div className={s["empty__bttn"]}>
                 <Button
                     color="blue"
