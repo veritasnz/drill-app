@@ -12,8 +12,8 @@ const DrillEmpty: React.FC<Props> = (props) => {
     let buttonText: JSX.Element | string;
 
     if (props.isGraveyard) {
-        content = <>No questions left in the Graveyard! Well done.</>;
-        buttonText = "Choose another level";
+        content = <>No questions left in the Graveyard. Well done!</>;
+        buttonText = "Pick a new level";
     } else {
         content = (
             <>
@@ -35,7 +35,7 @@ const DrillEmpty: React.FC<Props> = (props) => {
                     icon="chevron-right"
                     onClick={() => Router.push("/levels")}
                 >
-                    Go to the Levels Page
+                    {buttonText}
                 </Button>
             </div>
         </div>
