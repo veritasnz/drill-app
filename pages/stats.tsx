@@ -46,9 +46,9 @@ const Stats: NextPage = () => {
     // Highest level completed calculations
     let highestLevelContent = (
         <small>
-            First level hasn't
+            {"First level hasn't"}
             <br />
-            been completed yet.
+            {"been completed yet."}
         </small>
     ); // fallback
 
