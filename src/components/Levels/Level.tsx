@@ -100,9 +100,14 @@ const Level: React.FC<Props> = ({ level }) => {
                         <Button
                             onClick={changeLevelHandler}
                             color="blue"
-                            icon="arrow-right"
+                            icon={
+                                percentageComplete === 100
+                                    ? null
+                                    : "arrow-right"
+                            }
+                            disabled={percentageComplete === 100}
                         >
-                            Go
+                            {percentageComplete === 100 ? "Completed" : "Go"}
                         </Button>
                         <TransitionButton
                             preText="Reset"

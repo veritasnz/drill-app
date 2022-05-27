@@ -32,7 +32,6 @@
 
 ## Next to implement
 
--   Grey out 'Go' button if level is complete in Level component
 -   Assign titles to button elements
 -   Add Graveyard icon to .progress-bar\_\_lvl inside of ProgressBar
 -   Investigate possibility of merging _drillState.currentLevelNum_ & _progressCtx.ctx.state.currentLevelNum_

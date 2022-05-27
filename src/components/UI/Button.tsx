@@ -4,17 +4,17 @@ import Icon, { IconName } from "./Icon/Icon";
 
 import s from "./UI.module.scss";
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    color: ButtonColorNames;
-    icon?: IconName;
-}
-
 export type ButtonColorNames =
     | "blue"
     | "orange"
     | "red"
     | "green"
     | "green-next";
+
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    color: ButtonColorNames;
+    icon?: IconName | null;
+}
 
 const Button = React.forwardRef<HTMLButtonElement, Props>((props, ref) => {
     const { color, icon, children, className, onClick, ...otherProps } = props;
