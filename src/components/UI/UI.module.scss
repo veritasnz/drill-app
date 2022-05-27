@@ -16,13 +16,14 @@
     transition: color 300ms ease, border-color 300ms ease,
         background-color 300ms ease;
 
-        &:disabled {
-            color: var(--c-grey-light);
-            background: var(--c-white);
-            border-color: var(--c-grey-light);
-            pointer-events: none;
-            border-style: dashed;
-        }
+    &:disabled,
+    &--disabled {
+        color: var(--c-grey-light);
+        background: var(--c-white);
+        border-color: var(--c-grey-light);
+        pointer-events: none;
+        border-style: dashed;
+    }
 
     &--blue {
         color: var(--c-white);

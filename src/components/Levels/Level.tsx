@@ -97,19 +97,26 @@ const Level: React.FC<Props> = ({ level }) => {
             <div className={s["level-body"]}>
                 <div className={s["level-body__wrap"]}>
                     <ButtonWrap>
-                        <Button
-                            onClick={changeLevelHandler}
-                            color="blue"
-                            icon={
-                                percentageComplete === 100
-                                    ? null
-                                    : "arrow-right"
-                            }
-                            disabled={percentageComplete === 100}
-                        >
-                            {percentageComplete === 100 ? "Completed" : "Go"}
-                        </Button>
+                        {percentageComplete !== 100 ? (
+                            <Button
+                                title={`Go to Level ${levelNum}`}
+                                onClick={changeLevelHandler}
+                                color="blue"
+                                icon="arrow-right"
+                            >
+                                Go
+                            </Button>
+                        ) : (
+                            <Button
+                                title="This level has already been completed"
+                                color="disabled"
+                                disabled={true}
+                            >
+                                Completed
+                            </Button>
+                        )}
                         <TransitionButton
+                            title="Reset your progress for this level"
                             preText="Reset"
                             color="orange"
                             icon="refresh"
