@@ -38,6 +38,7 @@ const Graveyard: React.FC<Props> = (props) => {
                     <button
                         className={s["graveyard__icon"]}
                         onClick={changeLevelHandler}
+                        title="Visit the Graveyard"
                     >
                         <Icon name="arrow-right-circle" />
                     </button>
