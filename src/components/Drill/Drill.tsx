@@ -60,7 +60,9 @@ const Drill: React.FC = () => {
             <ProgressBar drillState={drill.state} />
 
             {!drill.state.question ? (
-                <DrillEmpty />
+                <DrillEmpty
+                    isGraveyard={drill.state.currentLevel.id === "GRAVEYARD"}
+                />
             ) : (
                 <>
                     <Question
