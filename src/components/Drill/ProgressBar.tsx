@@ -37,7 +37,7 @@ const ProgressBar: React.FC<Props> = ({ drillState: ds }) => {
      */
     useEffect(() => {
         if (ds.currentLevel.id === "GRAVEYARD") {
-            setLvlProgress((prevState) => {
+            setLvlProgress((prevState: ProgressBarT) => {
                 return { ...prevState, isGraveyard: true };
             });
         } else {
@@ -72,14 +72,14 @@ const ProgressBar: React.FC<Props> = ({ drillState: ds }) => {
      */
     useEffect(() => {
         if (ds.isPostAnswer) {
-            setLvlProgress((prevState) => {
+            setLvlProgress((prevState: ProgressBarT) => {
                 return {
                     ...prevState,
                     questionIndex: lvlProgress.questionIndex + 1,
                 };
             });
         }
-    }, [ds.isPostAnswer]); // eslint-disable-line // hack
+    }, [ds.isPostAnswer]); // hack // eslint-disable-line
 
     return (
         <header className={s["progress-bar"]}>
