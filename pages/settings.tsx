@@ -58,6 +58,7 @@ const Settings: NextPage = () => {
                 </Title>
                 <ButtonWrap>
                     <TransitionButton
+                        title="Reset the above settings back to default"
                         onClick={resetSettingsHandler}
                         preText="Reset Settings"
                         postText="Settings Reset"
@@ -65,6 +66,7 @@ const Settings: NextPage = () => {
                         icon="refresh"
                     />
                     <TransitionButton
+                        title="Reset progress for all levels, as well as reset stats"
                         onClick={resetProgressHandler}
                         preText="Reset All Progress"
                         postText="Progress Reset"
