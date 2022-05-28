@@ -36,7 +36,6 @@
 -   Fill out question content properly
 -   Fix loading state for SEO
     -   Top page displays "Finished! Choose next level" when viewing page source
-    -   Add loading spinner before context has finished loading
 -   Stats page 'Feedback' form
 -   Finalize design/animations
 -   Thorough testing
@@ -46,6 +45,7 @@ Then start work for version 2.0:
 -   Huge architecture refactor
     -   Architectually re-think storing **_all_** `answeredIds` in progressContext
     -   Think of system to store answered levels and `answeredIds` separately
+    -   Reduce re-renders
 -   Move data to Supabase & replace all `import drillData` with fetch methods
 -   About page
 -   Documentation
