@@ -64,24 +64,6 @@
     }
 }
 
-/* Empty
-------------------------------- */
-.empty {
-    margin-top: 2em;
-    text-align: center;
-    color: var(--c-grey);
-
-    &__bttn {
-        margin-top: 1.6em;
-    }
-
-    @media (max-width: 599px) {
-        br {
-            display: none;
-        }
-    }
-}
-
 /* Question
 ------------------------------- */
 .question {

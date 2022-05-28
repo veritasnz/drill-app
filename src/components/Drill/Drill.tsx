@@ -15,7 +15,7 @@ import ProgressContext from "../../context/progress-context";
 import useDrill from "../../hooks/useDrill";
 
 // Components
-import DrillEmpty from "./DrillEmpty";
+import Empty from "../PageLayout/Empty";
 import ProgressBar from "./ProgressBar";
 import Question from "./Question";
 import Keyboard from "./Keyboard";
@@ -54,28 +54,39 @@ const Drill: React.FC = () => {
         return answerIsCorrect;
     };
 
+    let content =
+        drill.state.currentLevel.id === "GRAVEYARD" ? (
+            <Empty buttonText="Pick a new level" buttonUrl="/levels">
+                No questions left in the Graveyard. Well done!
+            </Empty>
+        ) : (
+            <Empty buttonText="Go to the Levels page" buttonUrl="/levels">
+                All the available levels after this one have already been
+                finished! <br /> Go to the Levels page and choose another one.
+            </Empty>
+        );
+
+    if (drill.state.question) {
+        content = (
+            <>
+                <Question
+                    drillState={drill.state}
+                    onNextHandler={drill.nextQuestionHandler}
+                    settingsCtx={settingsCtx}
+                />
+                <Keyboard
+                    onAttempt={attemptHandler}
+                    isPostAnswer={drill.state.isPostAnswer}
+                />
+            </>
+        );
+    }
+
     // Render
     return (
         <>
             <ProgressBar drillState={drill.state} />
-
-            {!drill.state.question ? (
-                <DrillEmpty
-                    isGraveyard={drill.state.currentLevel.id === "GRAVEYARD"}
-                />
-            ) : (
-                <>
-                    <Question
-                        drillState={drill.state}
-                        onNextHandler={drill.nextQuestionHandler}
-                        settingsCtx={settingsCtx}
-                    />
-                    <Keyboard
-                        onAttempt={attemptHandler}
-                        isPostAnswer={drill.state.isPostAnswer}
-                    />
-                </>
-            )}
+            {content}
         </>
     );
 };

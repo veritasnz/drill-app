@@ -209,3 +209,24 @@
         }
     }
 }
+
+/* Empty
+------------------------------- */
+.empty {
+    text-align: center;
+    color: var(--c-grey);
+
+    &:not(:first-child) {
+        margin-top: 2em;
+    }
+
+    &__bttn {
+        margin-top: 1.6em;
+    }
+
+    @media (max-width: 599px) {
+        br {
+            display: none;
+        }
+    }
+}
