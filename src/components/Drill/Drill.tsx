@@ -19,6 +19,7 @@ import Empty from "../PageLayout/Empty";
 import ProgressBar from "./ProgressBar";
 import Question from "./Question";
 import Keyboard from "./Keyboard";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const Drill: React.FC = () => {
     // Vars
@@ -54,20 +55,12 @@ const Drill: React.FC = () => {
         return answerIsCorrect;
     };
 
-    let content =
-        drill.state.currentLevel.id === "GRAVEYARD" ? (
-            <Empty buttonText="Pick a new level" buttonUrl="/levels">
-                <p>No questions left in the Graveyard. Well done!</p>
-            </Empty>
-        ) : (
-            <Empty buttonText="Go to the Levels page" buttonUrl="/levels">
-                <p>
-                    All the available levels after this one have already been
-                    finished! <br /> Go to the Levels page and choose another
-                    one.
-                </p>
-            </Empty>
-        );
+    // If level not set, show loading
+    if (drill.state.currentLevel.id === "") {
+        return <LoadingSpinner />;
+    }
+
+    let content: JSX.Element = <></>;
 
     if (drill.state.question) {
         content = (
@@ -83,6 +76,26 @@ const Drill: React.FC = () => {
                 />
             </>
         );
+    } else {
+        // If Graveyard is empty
+        if (drill.state.currentLevel.id === "GRAVEYARD") {
+            content = (
+                <Empty buttonText="Pick a new level" buttonUrl="/levels">
+                    <p>No questions left in the Graveyard. Well done!</p>
+                </Empty>
+            );
+        } else {
+            // If level is complete
+            content = (
+                <Empty buttonText="Go to the Levels page" buttonUrl="/levels">
+                    <p>
+                        All the available levels after this one have already
+                        been finished! <br /> Go to the Levels page and choose
+                        another one.
+                    </p>
+                </Empty>
+            );
+        }
     }
 
     // Render
