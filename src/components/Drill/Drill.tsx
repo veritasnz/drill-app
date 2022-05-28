@@ -57,12 +57,15 @@ const Drill: React.FC = () => {
     let content =
         drill.state.currentLevel.id === "GRAVEYARD" ? (
             <Empty buttonText="Pick a new level" buttonUrl="/levels">
-                No questions left in the Graveyard. Well done!
+                <p>No questions left in the Graveyard. Well done!</p>
             </Empty>
         ) : (
             <Empty buttonText="Go to the Levels page" buttonUrl="/levels">
-                All the available levels after this one have already been
-                finished! <br /> Go to the Levels page and choose another one.
+                <p>
+                    All the available levels after this one have already been
+                    finished! <br /> Go to the Levels page and choose another
+                    one.
+                </p>
             </Empty>
         );
 

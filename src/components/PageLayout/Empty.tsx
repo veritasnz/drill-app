@@ -1,29 +1,32 @@
-import Router from "next/router";
-
-import Button from "../UI/Button";
+import Prose from "../Blocks/Prose";
+import LinkButton from "../UI/LinkButton";
 
 import s from "./Layout.module.scss";
 
 interface Props {
-    buttonText?: JSX.Element | string;
     buttonUrl?: string;
+    buttonText?: JSX.Element | string;
     children: React.ReactNode;
 }
 
 const Empty: React.FC<Props> = (props) => {
     return (
         <div className={s["empty"]}>
-            <p>{props.children}</p>
+            <Prose>{props.children}</Prose>
 
             {props.buttonUrl && props.buttonText && (
                 <div className={s["empty__bttn"]}>
-                    <Button
+                    <LinkButton
                         color="blue"
-                        icon="chevron-right"
-                        onClick={() => Router.push(`${props.buttonUrl}`)}
+                        href={props.buttonUrl}
+                        isExternal={
+                            props.buttonUrl
+                                ? props.buttonUrl.includes("http")
+                                : false
+                        }
                     >
                         {props.buttonText}
-                    </Button>
+                    </LinkButton>
                 </div>
             )}
         </div>

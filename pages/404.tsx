@@ -7,8 +7,10 @@ const Levels: NextPage = () => {
     return (
         <PaddingWrapper>
             <Empty buttonText="Go to the Home page" buttonUrl="/">
-                We looked everywhere, but the page you were searching for
-                doesn't exist 😣
+                <p>
+                    We looked everywhere, but the page you were searching for
+                    doesn't exist 😣
+                </p>
             </Empty>
         </PaddingWrapper>
     );
