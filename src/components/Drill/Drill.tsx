@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext } from "react";
 
 // Models
 import ParticleEnum from "../../models/ParticleEnum.model";
@@ -19,7 +19,6 @@ import Empty from "../PageLayout/Empty";
 import ProgressBar from "./ProgressBar";
 import Question from "./Question";
 import Keyboard from "./Keyboard";
-import LoadingSpinner from "../UI/LoadingSpinner";
 
 const Drill: React.FC = () => {
     // Vars
@@ -56,9 +55,7 @@ const Drill: React.FC = () => {
     };
 
     // If level not set, show loading
-    if (drill.state.currentLevel.id === "") {
-        return <></>;
-    }
+    if (drill.state.currentLevel.id === "") return <></>;
 
     let content: JSX.Element = <></>;
 

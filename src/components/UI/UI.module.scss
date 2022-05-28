@@ -201,9 +201,11 @@
     margin: 3em auto 0;
     color: var(--c-blue);
 
-    circle {
-        transform-origin: center center;
-        animation: spin 1.25s infinite cubic-bezier(0.3, 0.15, 0.6, 0.85);
+    svg {
+        circle {
+            transform-origin: center center;
+            animation: spin 1.25s infinite cubic-bezier(0.3, 0.15, 0.6, 0.85);
+        }
     }
 }
 
