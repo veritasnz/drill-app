@@ -197,6 +197,8 @@
 /* Loading Spinner
 ------------------------------- */
 .spinner {
+    width: 3em;
+    margin: 3em auto 0;
     color: var(--c-blue);
 
     circle {

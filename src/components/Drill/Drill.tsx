@@ -57,7 +57,7 @@ const Drill: React.FC = () => {
 
     // If level not set, show loading
     if (drill.state.currentLevel.id === "") {
-        return <LoadingSpinner />;
+        return <></>;
     }
 
     let content: JSX.Element = <></>;
