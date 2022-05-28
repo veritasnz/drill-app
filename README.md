@@ -33,12 +33,10 @@
 ## Next to implement
 
 -   Investigate possibility of merging _drillState.currentLevelNum_ & _progressCtx.ctx.state.currentLevelNum_
--   Test cases for duplicate IDs (Vitest?)
 -   Fill out question content properly
 -   Fix loading state for SEO
     -   Top page displays "Finished! Choose next level" when viewing page source
     -   Add loading spinner before context has finished loading
--   404 page
 -   Stats page 'Feedback' form
 -   Finalize design/animations
 -   Thorough testing
