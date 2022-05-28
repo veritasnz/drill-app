@@ -120,6 +120,17 @@
     }
 }
 
+@keyframes float-right {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(0.15em);
+    }
+}
+
 /* ButtonBlock
 ------------------------------- */
 .button-wrap {
@@ -183,15 +194,23 @@
     }
 }
 
-/* @ Keyframes
+/* Loading Spinner
 ------------------------------- */
-@keyframes float-right {
-    0%,
-    100% {
-        transform: translateX(0);
+.spinner {
+    color: var(--c-blue);
+
+    circle {
+        transform-origin: center center;
+        animation: spin 1.25s infinite cubic-bezier(0.3, 0.15, 0.6, 0.85);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
     }
 
-    50% {
-        transform: translateX(0.15em);
+    100% {
+        transform: rotate(360deg);
     }
 }
