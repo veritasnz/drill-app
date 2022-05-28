@@ -13,6 +13,7 @@ import ChevronRight from "./svg/chevron-right.svg";
 import CrossCircle from "./svg/cross-circle.svg";
 import Cross from "./svg/cross.svg";
 import DangerZone from "./svg/danger-zone.svg";
+import ExternalLink from "./svg/external-link.svg";
 import Graveyard from "./svg/graveyard.svg";
 import HomeCircle from "./svg/home-circle.svg";
 import Home from "./svg/home.svg";
@@ -43,6 +44,7 @@ export type IconName =
     | "cross"
     | "danger-zone"
     | "graveyard"
+    | "external-link"
     | "home-circle"
     | "home"
     | "hourglass"
@@ -68,6 +70,7 @@ const Icon: React.FC<Props> = ({ name }) => {
         "cross-circle": <CrossCircle />,
         cross: <Cross />,
         "danger-zone": <DangerZone />,
+        "external-link": <ExternalLink />,
         graveyard: <Graveyard />,
         "home-circle": <HomeCircle />,
         home: <Home />,
