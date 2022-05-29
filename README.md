@@ -32,12 +32,15 @@
 
 ## Next to implement
 
+-   Move /pages/ to inside /src/
 -   Investigate possibility of merging _drillState.currentLevelNum_ & _progressCtx.ctx.state.currentLevelNum_
 -   Fill out question content properly
 -   Fix loading state for SEO
     -   Top page displays "Finished! Choose next level" when viewing page source
 -   Stats page 'Feedback' form
+-   Add system for email backing up to Supabase
 -   Finalize design/animations
+-   Documentation
 -   Thorough testing
 
 Then start work for version 2.0:
@@ -48,6 +51,7 @@ Then start work for version 2.0:
     -   Reduce re-renders
 -   Move data to Supabase & replace all `import drillData` with fetch methods
 -   About page
+-   Replace nodemailer with proper mailing solution
 -   Documentation
 -   Create more tests cases
 
@@ -57,7 +61,7 @@ Then start work for version 2.0:
 
 ## Wishlist
 
--   
+-
 -   'Reset' button for entire stages
 -   Double tap brings up modal with word details from Jisho.org
 -   Advanced mode (すら・さえ・しか・だけ)
@@ -129,3 +133,7 @@ Create a new file locally called `.env.local` and add the following:
 | ------------------------------- | -------- | ----------------------------------------------------------------- |
 | GOOGLE_CREDENTIALS_CLIENT_EMAIL | Yes      | The client email from your Google Cloud API credentials JSON file |
 | GOOGLE_CREDENTIALS_PRIV_KEY     | Yes      | The private key from your Google Cloud API credentials JSON file  |
+| SMTP_HOST                       | Yes      | Host address by your SMTP server                                  |
+| SMTP_PORT                       | Yes      | Port used by your SMTP server (e.g. 587)                          |
+| SMTP_USER                       | Yes      | Username for your SMTP server (e.g. bob@mysite.com)               |
+| SMTP_PASS                       | Yes      | Password for your SMTP server                                     |

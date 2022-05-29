@@ -16,8 +16,7 @@
     transition: color 300ms ease, border-color 300ms ease,
         background-color 300ms ease;
 
-    &:disabled,
-    &--disabled {
+    &:disabled {
         color: var(--c-grey-light);
         background: var(--c-white);
         border-color: var(--c-grey-light);
@@ -49,6 +48,14 @@
         &:active {
             color: var(--c-green);
             background: var(--c-white);
+        }
+    }
+
+    &--green {
+        &:disabled {
+            color: var(--c-green);
+            background: var(--c-white);
+            border-color: var(--c-green);
         }
     }
 

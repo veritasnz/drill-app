@@ -9,8 +9,7 @@ export type ButtonColorNames =
     | "orange"
     | "red"
     | "green"
-    | "green-next"
-    | "disabled";
+    | "green-next";
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     color: ButtonColorNames;

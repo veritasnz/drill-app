@@ -109,7 +109,7 @@ const Level: React.FC<Props> = ({ level }) => {
                         ) : (
                             <Button
                                 title="This level has already been completed"
-                                color="disabled"
+                                color="blue"
                                 disabled={true}
                             >
                                 Completed
