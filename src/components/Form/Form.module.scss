@@ -1,0 +1,127 @@
+/* Form
+----------------------------------------------- */
+.c-form {
+    &__control {
+        & + & {
+            margin-top: 0.8em;
+        }
+    }
+
+    &__label {
+        /* label */
+        display: block;
+        margin-bottom: 0.35em;
+
+        small {
+            display: inline-block;
+            margin-left: 0.4em;
+            font-size: 0.9em;
+            color: var(--c-grey-light);
+        }
+    }
+
+    &__field {
+        /* input, textarea */
+        display: block;
+        width: 100%;
+        padding: 0.35em;
+        border: 1px solid var(--c-black);
+        box-shadow: none;
+        resize: vertical;
+        border-radius: 0.5rem;
+        font-size: Max(0.8em, 16px);
+        font-family: var(--ff-sans);
+        letter-spacing: var(--ls-normal);
+
+        &::placeholder {
+            color: var(--c-grey-light);
+        }
+
+        &:focus {
+            outline-color: var(--c-blue);
+        }
+
+        .c-form__control--invalid & {
+            border-color: var(--c-red);
+
+            &:focus {
+                outline-color: var(--c-blue);
+            }
+        }
+    }
+
+    &__error {
+        color: var(--c-red);
+        font-size: 0.7em;
+        text-align: right;
+    }
+
+    &__actions {
+        margin-top: 2em;
+        text-align: right;
+    }
+
+    &__status {
+        max-width: 34em;
+        margin: 2em auto 0;
+        padding: 2em 1em;
+        border: 2px solid;
+        border-radius: 0.5rem;
+        text-align: center;
+
+        &--sending {
+            color: var(--c-blue);
+            border-color: var(--c-blue);
+        }
+
+        &--sent {
+            color: var(--c-green);
+            border-color: var(--c-green);
+        }
+
+        &--error {
+            color: var(--c-red);
+            border-color: var(--c-red);
+        }
+    }
+
+    // Honeypot (hachimitsu = honey in Japanese)
+    &__hachimitsu {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+
+        &,
+        & p,
+        & label,
+        & input {
+            height: 0;
+            width: 0;
+            font-size: 1px;
+            color: transparent;
+            opacity: 0;
+            border: none;
+            background: none;
+            box-shadow: none;
+        }
+    }
+
+    @media (min-width: 660px) {
+        &__control-wrap {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        &__label {
+            width: 11em;
+            margin-bottom: 0;
+            padding-top: 0.25em;
+            padding-right: 0.5em;
+        }
+
+        &__field {
+            width: calc(100% - 11em);
+        }
+    }
+}

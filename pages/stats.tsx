@@ -16,6 +16,7 @@ import Section from "../src/components/Blocks/Section";
 import Title from "../src/components/Blocks/Title";
 import StatBlock from "../src/components/Blocks/StatBlock";
 import PaddingWrapper from "../src/components/PageLayout/PaddingWrapper";
+import FeedbackForm from "../src/components/Form/FeedbackForm";
 
 const Stats: NextPage = () => {
     const { totalCorrectAttempts, totalAttempts } = useContext(StatsContext);
@@ -92,7 +93,7 @@ const Stats: NextPage = () => {
                 <Title heading={2} icon={"megaphone"}>
                     Feedback
                 </Title>
-                <p>Feedback form goes here</p>
+                <FeedbackForm />
             </Section>
         </PaddingWrapper>
     );
