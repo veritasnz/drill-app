@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-import rateLimiter from "../../src/lib/form/rate-limit";
+import rateLimiter from "../../lib/form/rate-limit";
 // import backupEmail from "lib/backupEmail";
 import {
     sendAdminReceiptEmail,
     sendUserReceiptEmail,
-} from "../../src/lib/form/email";
+} from "../../lib/form/email";
 
 const MAX_REQUESTS_PER_MIN = 3;
 

@@ -1,17 +1,17 @@
 import { useContext } from "react";
 import type { NextPage } from "next";
 
-import SettingsContext from "../src/context/settings-context";
-import StatsContext from "../src/context/stats-context";
-import ProgressContext from "../src/context/progress-context";
+import SettingsContext from "../context/settings-context";
+import StatsContext from "../context/stats-context";
+import ProgressContext from "../context/progress-context";
 
-import PaddingWrapper from "../src/components/PageLayout/PaddingWrapper";
-import Section from "../src/components/Blocks/Section";
-import Title from "../src/components/Blocks/Title";
-import ToggleBlock from "../src/components/Blocks/ToggleBlock";
+import PaddingWrapper from "../components/PageLayout/PaddingWrapper";
+import Section from "../components/Blocks/Section";
+import Title from "../components/Blocks/Title";
+import ToggleBlock from "../components/Blocks/ToggleBlock";
 
-import ButtonWrap from "../src/components/UI/ButtonWrap";
-import TransitionButton from "../src/components/UI/TransitionButton";
+import ButtonWrap from "../components/UI/ButtonWrap";
+import TransitionButton from "../components/UI/TransitionButton";
 
 const Settings: NextPage = () => {
     const settingsCtx = useContext(SettingsContext);

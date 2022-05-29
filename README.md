@@ -32,24 +32,25 @@
 
 ## Next to implement
 
--   Move /pages/ to inside /src/
 -   Investigate possibility of merging _drillState.currentLevelNum_ & _progressCtx.ctx.state.currentLevelNum_
 -   Fill out question content properly
--   Fix loading state for SEO
-    -   Top page displays "Finished! Choose next level" when viewing page source
--   Stats page 'Feedback' form
--   Add system for email backing up to Supabase
 -   Finalize design/animations
 -   Documentation
 -   Thorough testing
 
-Then start work for version 2.0:
+Work for version 1.0:
+
+-   Finalize question content
+-   Implement SEO features and publish to message boards
+
+Work for version 2.0:
 
 -   Huge architecture refactor
     -   Architectually re-think storing **_all_** `answeredIds` in progressContext
     -   Think of system to store answered levels and `answeredIds` separately
     -   Reduce re-renders
 -   Move data to Supabase & replace all `import drillData` with fetch methods
+-   Add system for Feedback email backups /w Supabase
 -   About page
 -   Replace nodemailer with proper mailing solution
 -   Documentation

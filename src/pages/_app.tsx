@@ -1,14 +1,14 @@
 import Head from "next/head";
 import type { AppProps } from "next/app";
 
-import "../src/styles/normalize.global.scss";
-import "../src/styles/base.global.scss";
+import "../styles/normalize.global.scss";
+import "../styles/base.global.scss";
 
-import StatsContextProvider from "../src/context/StatsContextProvider";
-import SettingsContextProvider from "../src/context/SettingsContextProvider";
-import ProgressContextProvider from "../src/context/ProgressContextProvider";
+import StatsContextProvider from "../context/StatsContextProvider";
+import SettingsContextProvider from "../context/SettingsContextProvider";
+import ProgressContextProvider from "../context/ProgressContextProvider";
 
-import Header from "../src/components/PageLayout/Header";
+import Header from "../components/PageLayout/Header";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (

@@ -2,21 +2,21 @@ import { useContext } from "react";
 import type { NextPage } from "next";
 
 // Contexts
-import StatsContext from "../src/context/stats-context";
-import ProgressContext from "../src/context/progress-context";
+import StatsContext from "../context/stats-context";
+import ProgressContext from "../context/progress-context";
 
 // API
 import {
     getHighestCompletedLevel,
     getTotalLevelCount,
-} from "../src/lib/level-api";
+} from "../lib/level-api";
 
 // Components
-import Section from "../src/components/Blocks/Section";
-import Title from "../src/components/Blocks/Title";
-import StatBlock from "../src/components/Blocks/StatBlock";
-import PaddingWrapper from "../src/components/PageLayout/PaddingWrapper";
-import FeedbackForm from "../src/components/Form/FeedbackForm";
+import Section from "../components/Blocks/Section";
+import Title from "../components/Blocks/Title";
+import StatBlock from "../components/Blocks/StatBlock";
+import PaddingWrapper from "../components/PageLayout/PaddingWrapper";
+import FeedbackForm from "../components/Form/FeedbackForm";
 
 const Stats: NextPage = () => {
     const { totalCorrectAttempts, totalAttempts } = useContext(StatsContext);

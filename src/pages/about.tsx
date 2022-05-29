@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 
-import PaddingWrapper from "../src/components/PageLayout/PaddingWrapper";
-import Empty from "../src/components/PageLayout/Empty";
+import PaddingWrapper from "../components/PageLayout/PaddingWrapper";
+import Empty from "../components/PageLayout/Empty";
 
 const About: NextPage = () => {
     return (

@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 
-import buildAudio from "../src/lib/build-audio";
+import buildAudio from "../lib/build-audio";
 
-import Drill from "../src/components/Drill/Drill";
-import PaddingWrapper from "../src/components/PageLayout/PaddingWrapper";
+import Drill from "../components/Drill/Drill";
+import PaddingWrapper from "../components/PageLayout/PaddingWrapper";
 
 const Home: NextPage = () => {
     return (

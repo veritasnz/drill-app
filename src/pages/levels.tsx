@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 
-import LevelsMenu from "../src/components/Levels/StagesMenu";
+import LevelsMenu from "../components/Levels/StagesMenu";
 
 const Levels: NextPage = () => {
     return <LevelsMenu />;
