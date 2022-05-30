@@ -179,17 +179,17 @@
 /* Keyboard & Key
 ------------------------------- */
 .keyboard {
-    max-width: 7em;
+    max-width: 9.5em;
     width: 100%;
     margin: 1em auto 0;
     font-size: var(--fs-key);
 
     display: grid;
     grid:
-        "ga ga de de to to" 2em
-        "ni ni he he wo wo" 2em
-        "kara kara kara made made made" 2em
-        / 1fr 1fr 1fr 1fr 1fr 1fr;
+        "ha ga de to" 2em
+        "ni no he wo" 2em
+        "kara kara made made" 2em
+        / 1fr 1fr 1fr 1fr;
     gap: 0.45em;
 }
 
@@ -200,7 +200,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 2em;
+    min-width: 1.5em;
     height: 2em;
     border-radius: 0.25em;
     border: 2px solid var(--c-orange);
@@ -248,6 +248,10 @@
     * Grid Layout code
     */
 
+    &[data-particle="は"] {
+        grid-area: ha;
+    }
+
     &[data-particle="が"] {
         grid-area: ga;
     }
@@ -262,6 +266,10 @@
 
     &[data-particle="に"] {
         grid-area: ni;
+    }
+
+    &[data-particle="の"] {
+        grid-area: no;
     }
 
     &[data-particle="へ"] {

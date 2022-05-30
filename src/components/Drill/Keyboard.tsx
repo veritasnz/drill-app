@@ -12,41 +12,85 @@ interface KeyBoardProps {
 
 type KeyRefsType = { [key: string]: HTMLButtonElement };
 
+const particleKeyPairs: [ParticleEnum, string[]][] = [
+    [ParticleEnum.HA, ["KeyH", "KeyA"]],
+    [ParticleEnum.GA, ["KeyG", "KeyA"]],
+    [ParticleEnum.DE, ["KeyD", "KeyE"]],
+    [ParticleEnum.TO, ["KeyT", "KeyO"]],
+    [ParticleEnum.NI, ["KeyN", "KeyI"]],
+    [ParticleEnum.NO, ["KeyN", "KeyO"]],
+    [ParticleEnum.HE, ["KeyH", "KeyE"]],
+    [ParticleEnum.WO, ["KeyW", "KeyO"]],
+    [ParticleEnum.KARA, ["KeyK", "KeyA"]],
+    [ParticleEnum.MADE, ["KeyM", "KeyA"]],
+];
+
+// Key buffering vars
+const KEYSTROKE_DELAY = 1000;
+let lastStrokeTime = Date.now();
+let keystrokeBuffer: string[] = [];
+
 const Keyboard: React.FC<KeyBoardProps> = ({ isPostAnswer, onAttempt }) => {
-    const particleKeyPairs: { [keyName: string]: ParticleEnum } = {
-        KeyG: ParticleEnum.GA,
-        KeyD: ParticleEnum.DE,
-        KeyT: ParticleEnum.TO,
-        KeyN: ParticleEnum.NI,
-        KeyH: ParticleEnum.HE,
-        KeyW: ParticleEnum.WO,
-        KeyK: ParticleEnum.KARA,
-        KeyM: ParticleEnum.MADE,
-    };
-
-    //Set up keyFocus handler and keyRefs
     const keyRefs = useRef<KeyRefsType>({});
-    const keyFocusHandler = (event: KeyboardEvent) => {
-        keyRefs.current[event.code].focus();
+
+    //Set up buffered keyboard input handler
+    const keyInputHandler = (event: KeyboardEvent) => {
+        const currStrokeTime = Date.now();
+
+        // If last press is old, reset buffer
+        if (currStrokeTime - lastStrokeTime > KEYSTROKE_DELAY) {
+            keystrokeBuffer = [];
+        }
+
+        // Push new key and reset timer
+        keystrokeBuffer.push(event.code);
+        lastStrokeTime = currStrokeTime;
+
+        // Force buffer length to be 2
+        while (keystrokeBuffer.length > 2) keystrokeBuffer.shift();
+
+        // Check if buffer matches particle
+        particleKeyPairs.every((currPair) => {
+            // Doesn't match at all. Continue
+            if (currPair[1][0] !== keystrokeBuffer[0]) return true;
+
+            // One key entered, it matches. Focus & exit
+            if (typeof keystrokeBuffer[1] === "undefined") {
+                keyRefs.current[currPair[0]].focus();
+                return false;
+            }
+
+            // Two keys entered, only first matches. Continue
+            if (currPair[1][1] !== keystrokeBuffer[1]) return true;
+
+            // Two keys entered, both match. Focus & exit
+            keyRefs.current[currPair[0]].focus();
+            return false;
+        });
     };
 
-    // Assign keyFocusHandler to particle keys
-    useKeyPress(Object.keys(particleKeyPairs), keyFocusHandler);
+    // Assign keyInputHandler to particle keys
+    useKeyPress(
+        particleKeyPairs.flatMap((currPair) => currPair[1]),
+        keyInputHandler
+    );
 
     // Build Keys for render
     const keysArray: JSX.Element[] = [];
-    for (const keyChar in particleKeyPairs) {
+    particleKeyPairs.forEach((currPair) => {
         keysArray.push(
             <Key
-                key={keyChar}
+                key={currPair[0]}
                 onAttempt={onAttempt}
-                particle={particleKeyPairs[keyChar]}
+                particle={currPair[0]}
                 isPostAnswer={isPostAnswer}
                 // Assign refs to buttons dynamically
-                ref={(el: HTMLButtonElement) => (keyRefs.current[keyChar] = el)}
+                ref={(el: HTMLButtonElement) =>
+                    (keyRefs.current[currPair[0]] = el)
+                }
             />
         );
-    }
+    });
 
     return (
         <div

@@ -126,13 +126,13 @@ const dragonBallStage: Stage = {
                     id: "eat-with-chopsticks-1",
                     question: "{箸}(はし)_ご{飯}(はん)?{食}(た)べる",
                     answers: [ParticleEnum.DE],
-                    english: "To eat with chopsticks",
+                    english: "To eat rice/a meal with chopsticks",
                 },
                 {
                     id: "eat-with-chopsticks-2",
                     question: "{箸}(はし)でご{飯}(はん)_{食}(た)べる",
                     answers: [ParticleEnum.WO],
-                    english: "To eat with chopsticks",
+                    english: "To eat rice/a meal with chopsticks",
                 },
             ],
         },
@@ -142,13 +142,13 @@ const dragonBallStage: Stage = {
             questions: [
                 {
                     id: "call-me-machan-1",
-                    question: "{私}(わたし)_まっちゃん?{呼}(よ)ぶ",
+                    question: "{私}(わたし)_まっちゃん?{呼}(よ)んでください",
                     answers: [ParticleEnum.WO, ParticleEnum.HA],
-                    english: "To call me Ma-chan",
+                    english: "Please call me Ma-chan",
                 },
                 {
                     id: "call-me-machan-2",
-                    question: "{私}(わたし)をまっちゃん_{呼}(よ)ぶ",
+                    question: "{私}(わたし)をまっちゃん_{呼}(よ)んでください",
                     answers: [ParticleEnum.TO],
                     english: "To call me Ma-chan",
                 },
@@ -221,7 +221,7 @@ const dragonBallStage: Stage = {
                 {
                     id: "he-tired-from-studying-1",
                     question: "{彼}(かれ)_{勉強}(べんきょう)?{疲}(つか)れた",
-                    answers: [ParticleEnum.HA, ParticleEnum.GA],
+                    answers: [ParticleEnum.HA],
                     english: "He was tired from studying",
                 },
                 {
@@ -345,14 +345,14 @@ const saiyanStage: Stage = {
                 {
                     id: "place-milk-in-fridge-1",
                     question:
-                        "{冷蔵庫}(れいぞうこ)_{牛乳}(ぎゅうにゅう)?{置}(お)く",
+                        "{冷蔵庫}(れいぞうこ)_{牛乳}(ぎゅうにゅう)?{入}(い)れる",
                     answers: [ParticleEnum.NI],
                     english: "To put/place milk in the fridge",
                 },
                 {
                     id: "place-milk-in-fridge-2",
                     question:
-                        "{冷蔵庫}(れいぞうこ)に{牛乳}(ぎゅうにゅう)_{置}(お)く",
+                        "{冷蔵庫}(れいぞうこ)に{牛乳}(ぎゅうにゅう)_{入}(い)れる",
                     answers: [ParticleEnum.WO],
                     english: "To put/place milk in the fridge",
                 },

@@ -14,9 +14,6 @@ import PlaceholderWrap from "./PlaceholderWrap";
 
 import s from "./Drill.module.scss";
 
-/**
- * Key
- */
 interface Props {
     question: Question;
     isPostAnswer: boolean;
