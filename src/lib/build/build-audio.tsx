@@ -1,10 +1,10 @@
-import { TextToSpeechClient } from "@google-cloud/text-to-speech";
-
 import fs from "fs";
 import util from "util";
+import { TextToSpeechClient } from "@google-cloud/text-to-speech";
 
-import { getAllQuestions } from "./question-api";
-import { parseQuestionTextForTTS } from "./question-parser";
+import Question from "../../models/Question.model";
+
+import { parseQuestionTextForTTS } from "../question-parser";
 
 /**
  * Build MP3 audio from Google Cloud Text-to-speech API
@@ -16,9 +16,10 @@ const client = new TextToSpeechClient({
     },
 });
 
-export default async function buildVoices() {
-    const allQuestions = getAllQuestions();
-
+/**
+ * Loops through all questions and turns their text into MP3 files inside of '/public/audio/'
+ */
+export default async function buildVoices(allQuestions: Question[]) {
     if (process.env.NODE_ENV == "production") {
         // Delete dir if exists
         if (fs.existsSync("public/audio")) {
@@ -39,9 +40,7 @@ export default async function buildVoices() {
 
             charsToConvert += currentText.length;
 
-            if (currentText) {
-                await writeMp3FromText(currentText, question.id);
-            }
+            if (currentText) await writeMp3FromText(currentText, question.id);
         }
 
         console.log(`Converted ${charsToConvert} chars using TTS API`);
