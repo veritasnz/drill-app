@@ -21,7 +21,13 @@ const dragonBallStage: Stage = {
             name: "Yajirobe",
             questions: [
                 {
-                    id: "have-a-pen",
+                    id: "have-a-pen-1",
+                    question: "{私}(わたし)_ペン?ある",
+                    answers: [ParticleEnum.HA],
+                    english: "I have a pen",
+                },
+                {
+                    id: "have-a-pen-2",
                     question: "{私}(わたし)はペン_ある",
                     answers: [ParticleEnum.GA],
                     english: "I have a pen",
@@ -101,7 +107,7 @@ const dragonBallStage: Stage = {
                 {
                     id: "climb-a-mountain",
                     question: "{山}(やま)_{登}(のぼ)る",
-                    answers: [ParticleEnum.NI],
+                    answers: [ParticleEnum.NI, ParticleEnum.WO],
                     english: "To climb a mountain",
                 },
                 {
@@ -137,7 +143,7 @@ const dragonBallStage: Stage = {
                 {
                     id: "call-me-machan-1",
                     question: "{私}(わたし)_まっちゃん?{呼}(よ)ぶ",
-                    answers: [ParticleEnum.WO],
+                    answers: [ParticleEnum.WO, ParticleEnum.HA],
                     english: "To call me Ma-chan",
                 },
                 {
@@ -185,7 +191,7 @@ const dragonBallStage: Stage = {
                 {
                     id: "go-park-with-friend-2",
                     question: "{友達}(ともだち)と{公園}(こうえん)_{行}(い)く",
-                    answers: [ParticleEnum.NI],
+                    answers: [ParticleEnum.NI, ParticleEnum.HE],
                     english: "To go to the park with a friend",
                 },
                 {
@@ -197,30 +203,30 @@ const dragonBallStage: Stage = {
                 {
                     id: "turn-right-at-intersection-2",
                     question: "{交差点}(こうさてん)を{右}(みぎ)_{曲}(ま)がる",
-                    answers: [ParticleEnum.NI],
+                    answers: [ParticleEnum.NI, ParticleEnum.HE],
                     english: "To turn right at the intersection",
                 },
                 {
                     id: "cross-river-with-boat-1",
-                    question: "{船}(ふね)_{橋}(はし)?{渡}(わた)る",
+                    question: "{船}(ふね)_{川}(かわ)?{渡}(わた)る",
                     answers: [ParticleEnum.DE],
                     english: "To cross a river on a boat",
                 },
                 {
                     id: "cross-river-with-boat-2",
-                    question: "{船}(ふね)で{橋}(はし)_{渡}(わた)る",
+                    question: "{船}(ふね)で{川}(かわ)_{渡}(わた)る",
                     answers: [ParticleEnum.WO],
                     english: "To cross a river on a boat",
                 },
                 {
                     id: "he-tired-from-studying-1",
                     question: "{彼}(かれ)_{勉強}(べんきょう)?{疲}(つか)れた",
-                    answers: [ParticleEnum.GA],
+                    answers: [ParticleEnum.HA, ParticleEnum.GA],
                     english: "He was tired from studying",
                 },
                 {
                     id: "he-tired-from-studying-2",
-                    question: "{彼}(かれ)が{勉強}(べんきょう)_{疲}(つか)れた",
+                    question: "{彼}(かれ)は{勉強}(べんきょう)_{疲}(つか)れた",
                     answers: [ParticleEnum.NI],
                     english: "He was tired from studying",
                 },
@@ -385,7 +391,7 @@ const saiyanStage: Stage = {
                 {
                     id: "move-from-apartment-to-mansion-2",
                     question: "アパートからマンション_{引}(ひ)っ{越}(こ)す",
-                    answers: [ParticleEnum.NI],
+                    answers: [ParticleEnum.NI, ParticleEnum.HE],
                     english: "To move from an apartment to a mansion",
                 },
                 {
@@ -432,13 +438,15 @@ const saiyanStage: Stage = {
                 },
                 {
                     id: "add-two-to-three-you-get-five-2",
-                    question: "{三}(さん)に{二}(に) _{足}(た)すと{五}(ご) ?なる",
+                    question:
+                        "{三}(さん)に{二}(に) _{足}(た)すと{五}(ご) ?なる",
                     answers: [ParticleEnum.WO],
                     english: "Add two to three, and you get five",
                 },
                 {
                     id: "add-two-to-three-you-get-five-3",
-                    question: "{三}(さん)に{二}(に) を{足}(た)すと{五}(ご) _なる",
+                    question:
+                        "{三}(さん)に{二}(に) を{足}(た)すと{五}(ご) _なる",
                     answers: [ParticleEnum.NI],
                     english: "Add two to three, and you get five",
                 },
@@ -451,25 +459,29 @@ const saiyanStage: Stage = {
                 },
                 {
                     id: "exchange-part-with-new-one-1",
-                    question: "{部品}(ぶひん)_{新}(あたら)しいの?{取}(と)り{替}(か)える",
+                    question:
+                        "{部品}(ぶひん)_{新}(あたら)しいの?{取}(と)り{替}(か)える",
                     answers: [ParticleEnum.WO],
                     english: "To exchange the part with a new one",
                 },
                 {
                     id: "exchange-part-with-new-one-2",
-                    question: "{部品}(ぶひん)を{新}(あたら)しいの_{取}(と)り{替}(か)える",
+                    question:
+                        "{部品}(ぶひん)を{新}(あたら)しいの_{取}(と)り{替}(か)える",
                     answers: [ParticleEnum.TO, ParticleEnum.NI],
                     english: "To exchange the part with a new one",
                 },
                 {
                     id: "contact-at-convenient-time-1",
-                    question: "{都合}(つごう)_いい{時}(とき)?{連絡}(れんらく)する",
-                    answers: [ParticleEnum.GA],
+                    question:
+                        "{都合}(つごう)_いい{時}(とき)?{連絡}(れんらく)する",
+                    answers: [ParticleEnum.NO, ParticleEnum.GA],
                     english: "To contact (someone) at a convenient time",
                 },
                 {
                     id: "contact-at-convenient-time-2",
-                    question: "{都合}(つごう)がいい{時}(とき)_{連絡}(れんらく)する",
+                    question:
+                        "{都合}(つごう)がいい{時}(とき)_{連絡}(れんらく)する",
                     answers: [ParticleEnum.NI],
                     english: "To contact (someone) at a convenient time",
                 },
