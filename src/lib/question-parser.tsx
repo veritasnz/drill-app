@@ -20,6 +20,26 @@ export const rubifyQuestionText: (
 };
 
 /**
+ * Takes the answer particles as an array of ParticleEnum types,
+ * and converts them to a string with "・" character between answers
+ */
+export const stringifyAnswerParticles = (answers: ParticleEnum[]) => {
+    let isFirst = true;
+    let returnString = "";
+
+    answers.forEach((answer) => {
+        if (isFirst) {
+            isFirst = false;
+            returnString += answer;
+        } else {
+            returnString += `・${answer}`;
+        }
+    });
+
+    return returnString;
+};
+
+/**
  * Rubifies a sentence and returns the JSX
  * @param sentence
  * @returns {JSX.Element}

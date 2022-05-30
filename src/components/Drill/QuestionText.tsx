@@ -1,9 +1,18 @@
 import { useEffect, useState } from "react";
-import { rubifyQuestionText } from "../../lib/question-parser";
+
+// Lib
+import {
+    rubifyQuestionText,
+    stringifyAnswerParticles,
+} from "../../lib/question-parser";
+
+// Models
 import Question from "../../models/Question.model";
 
-import s from "./Drill.module.scss";
+// Components
 import PlaceholderWrap from "./PlaceholderWrap";
+
+import s from "./Drill.module.scss";
 
 /**
  * Key
@@ -16,7 +25,7 @@ interface Props {
 const QuestionText: React.FC<Props> = ({ question, isPostAnswer }) => {
     const [firstHalf, setFirstHalf] = useState<JSX.Element>(<></>);
     const [secondHalf, setSecondHalf] = useState<JSX.Element>(<></>);
-    const [placeholderContent, setPlaceholderContent] = useState<string[]>([]);
+    const [placeholderContent, setPlaceholderContent] = useState<string>("");
 
     // Update text on question change
     useEffect(() => {
@@ -31,18 +40,9 @@ const QuestionText: React.FC<Props> = ({ question, isPostAnswer }) => {
     // Update placeholder when 'isPostAnswer' changes
     useEffect(() => {
         if (isPostAnswer) {
-            let isFirst = true;
-            const newPlaceholderContent = question.answers.map((answer) => {
-                if (isFirst) {
-                    isFirst = false;
-                    return answer;
-                } else {
-                    return `・${answer}`;
-                }
-            });
-            setPlaceholderContent(newPlaceholderContent);
+            setPlaceholderContent(stringifyAnswerParticles(question.answers));
         } else {
-            setPlaceholderContent([""]);
+            setPlaceholderContent("");
         }
     }, [isPostAnswer, question.answers]);
 

@@ -2,11 +2,10 @@ import s from "./Drill.module.scss";
 
 interface Props {
     isPostAnswer?: boolean;
-    content?: string[];
+    content?: string;
 }
 
 const PlaceholderWrap: React.FC<Props> = (props) => {
-    // else print with content
     return (
         <span
             className={`${s["question__place-wrap"]} ${
