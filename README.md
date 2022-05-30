@@ -33,25 +33,29 @@
 ## Next to implement
 
 -   Investigate possibility of merging _drillState.currentLevelNum_ & _progressCtx.ctx.state.currentLevelNum_
--   Fill out question content properly
+-   Add test for checking if underscore exists in question ID or not
 -   Finalize design/animations
 -   Documentation
 -   Thorough testing
 
 Work for version 1.0:
 
--   Finalize question content
+-   Finalize initial question content
 -   Implement SEO features and publish to message boards
+-   About page
 
 Work for version 2.0:
 
+-   Add 'の' particle for の／が + I-adj situations (e.g. 都合（が・の）いい時)
+-   Add は particle
+-   Merge multiple-particle answers into one question
+    -   _Question.question_ could be array of questions/answers? English and ID would stay the same
 -   Huge architecture refactor
     -   Architectually re-think storing **_all_** `answeredIds` in progressContext
     -   Think of system to store answered levels and `answeredIds` separately
     -   Reduce re-renders
 -   Move data to Supabase & replace all `import drillData` with fetch methods
 -   Add system for Feedback email backups /w Supabase
--   About page
 -   Replace nodemailer with proper mailing solution
 -   Documentation
 -   Create more tests cases
@@ -62,7 +66,6 @@ Work for version 2.0:
 
 ## Wishlist
 
--
 -   'Reset' button for entire stages
 -   Double tap brings up modal with word details from Jisho.org
 -   Advanced mode (すら・さえ・しか・だけ)
