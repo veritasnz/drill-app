@@ -3,14 +3,15 @@ import ReactDOMServer from "react-dom/server";
 
 import Question from "../../models/Question.model";
 
-import { rubifyQuestionText } from "../question-parser";
+import {
+    rubifyQuestionText,
+    stringifyAnswerParticles,
+} from "../question-parser";
 
 /**
  * Loops through all questions and turns their text into MP3 files inside of '/public/audio/'
  */
 export default function buildQuestionMap(allQuestions: Question[]) {
-    // if (process.env.NODE_ENV == "production") {
-
     const QuestionMapPage = () => {
         return (
             <html lang="en">
@@ -23,55 +24,46 @@ export default function buildQuestionMap(allQuestions: Question[]) {
                         fontFamily: "sans-serif",
                     }}
                 >
-                        <h1>Wonideto Question Map</h1>
-                        <ol>
-                            {allQuestions.map((question) => {
-                                const [firstHalfContent, secondHalfContent] =
-                                    rubifyQuestionText(question.question);
+                    <h1>Wonideto Question Map</h1>
+                    <ol>
+                        {allQuestions.map((question) => {
+                            const [firstHalfContent, secondHalfContent] =
+                                rubifyQuestionText(question.question);
 
-                                let isFirst = true;
-                                const answerContent = question.answers.map(
-                                    (answer) => {
-                                        if (isFirst) {
-                                            isFirst = false;
-                                            return answer;
-                                        } else {
-                                            return `・${answer}`;
-                                        }
-                                    }
-                                );
+                            const answerContent = stringifyAnswerParticles(
+                                question.answers
+                            );
 
-                                return (
-                                    <li>
-                                        <p>
-                                            <span>
-                                                {firstHalfContent}
-                                                <span
-                                                    style={{
-                                                        color: "#f85672",
-                                                    }}
-                                                >
-                                                    （{answerContent}）
-                                                </span>
-                                                {secondHalfContent}
+                            return (
+                                <li key={question.id}>
+                                    <p>
+                                        <span>
+                                            {firstHalfContent}
+                                            <span
+                                                style={{
+                                                    color: "#f85672",
+                                                }}
+                                            >
+                                                （{answerContent}）
                                             </span>
-                                            <br />
-                                            <span>{question.english}</span>
-                                        </p>
-                                    </li>
-                                );
-                            })}
-                        </ol>
+                                            {secondHalfContent}
+                                        </span>
+                                        <br />
+                                        <span>{question.english}</span>
+                                    </p>
+                                </li>
+                            );
+                        })}
+                    </ol>
                 </body>
             </html>
         );
     };
 
-    // Render
+    // Render and write to file
     let html = ReactDOMServer.renderToStaticMarkup(<QuestionMapPage />);
     const htmlWDoc = "<!DOCTYPE html>" + html;
     const outputFile = "public/question-map.html";
     fs.writeFileSync(outputFile, htmlWDoc);
     console.log(`Wrote ${outputFile}`);
-    // }
 }

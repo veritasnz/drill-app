@@ -20,31 +20,29 @@ const client = new TextToSpeechClient({
  * Loops through all questions and turns their text into MP3 files inside of '/public/audio/'
  */
 export default async function buildVoices(allQuestions: Question[]) {
-    if (process.env.NODE_ENV == "production") {
-        // Delete dir if exists
-        if (fs.existsSync("public/audio")) {
-            console.log("Directory 'public/audio' already exists. Deleting...");
-            fs.rmSync("public/audio", { recursive: true, force: true });
-        }
-
-        // Re-make dir
-        fs.mkdirSync("public/audio");
-
-        let charsToConvert = 0;
-
-        for (const question of allQuestions) {
-            const currentText = parseQuestionTextForTTS(
-                question.question,
-                question.answers[0]
-            );
-
-            charsToConvert += currentText.length;
-
-            if (currentText) await writeMp3FromText(currentText, question.id);
-        }
-
-        console.log(`Converted ${charsToConvert} chars using TTS API`);
+    // Delete dir if exists
+    if (fs.existsSync("public/audio")) {
+        console.log("Directory 'public/audio' already exists. Deleting...");
+        fs.rmSync("public/audio", { recursive: true, force: true });
     }
+
+    // Re-make dir
+    fs.mkdirSync("public/audio");
+
+    let charsToConvert = 0;
+
+    for (const question of allQuestions) {
+        const currentText = parseQuestionTextForTTS(
+            question.question,
+            question.answers[0]
+        );
+
+        charsToConvert += currentText.length;
+
+        if (currentText) await writeMp3FromText(currentText, question.id);
+    }
+
+    console.log(`Converted ${charsToConvert} chars using TTS API`);
 }
 
 const writeMp3FromText: (text: string, filename: string) => void = async (

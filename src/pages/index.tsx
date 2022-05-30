@@ -21,9 +21,11 @@ export default Home;
  * Build script – Build Audio
  */
 export async function getStaticProps() {
-    const allQuestions = getAllQuestions();
-    await buildAudio(allQuestions);
-    buildQuestionMap(allQuestions);
+    if (process.env.NODE_ENV == "production") {
+        const allQuestions = getAllQuestions();
+        await buildAudio(allQuestions);
+        buildQuestionMap(allQuestions);
+    }
 
     return {
         props: {},

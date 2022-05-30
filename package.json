@@ -8,7 +8,7 @@
         "start": "next start",
         "lint": "next lint",
         "test": "vitest",
-        "check": "npm run test && npm run lint && npm run ts"
+        "check": "vitest run && next lint && npm run ts"
     },
     "dependencies": {
         "@types/nodemailer": "^6.4.4",
