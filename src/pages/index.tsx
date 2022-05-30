@@ -1,9 +1,11 @@
 import type { NextPage } from "next";
 
-import buildAudio from "../lib/build-audio";
+import { getAllQuestions } from "../lib/question-api";
+import buildAudio from "../lib/build/build-audio";
 
 import Drill from "../components/Drill/Drill";
 import PaddingWrapper from "../components/PageLayout/PaddingWrapper";
+import buildQuestionMap from "../lib/build/build-question-map";
 
 const Home: NextPage = () => {
     return (
@@ -19,7 +21,9 @@ export default Home;
  * Build script – Build Audio
  */
 export async function getStaticProps() {
-    await buildAudio();
+    const allQuestions = getAllQuestions();
+    await buildAudio(allQuestions);
+    buildQuestionMap(allQuestions);
 
     return {
         props: {},
