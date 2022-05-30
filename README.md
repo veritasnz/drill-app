@@ -33,7 +33,6 @@
 ## Next to implement
 
 -   Investigate possibility of merging _drillState.currentLevelNum_ & _progressCtx.ctx.state.currentLevelNum_
--   Add test for checking if underscore exists in question ID or not
 -   Finalize design/animations
 -   Documentation
 -   Thorough testing
