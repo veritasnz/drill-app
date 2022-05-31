@@ -27,11 +27,17 @@ const Question: React.FC<Props> = ({
 }) => {
     /**
      * Setup Next Button
-     * Focus on button when 'ds.isPostAnswer' updates
+     * When 'ds.isPostAnswer' updates and is true,
+     * focus on nextbutton else focus on docEl
+     * (docEl requires refocusing b/c of FF bug)
      */
     const nextButtonRef = useRef<HTMLButtonElement>(null);
     useEffect(() => {
-        if (ds.isPostAnswer) nextButtonRef.current?.focus();
+        if (ds.isPostAnswer) {
+            nextButtonRef.current?.focus();
+        } else {
+            document.documentElement.focus();
+        }
     }, [ds.isPostAnswer]);
 
     /**
