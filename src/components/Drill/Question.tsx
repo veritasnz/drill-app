@@ -44,7 +44,9 @@ const Question: React.FC<Props> = ({
         if (ds.isPostAnswer && settingsCtx.autoplayIsOn) {
             try {
                 audioRef.current.src = `/audio/${ds.question.id}.mp3`;
-                audioRef.current.play();
+                (async () => {
+                    await audioRef.current.play();
+                })();
             } catch (err: unknown) {
                 if (err instanceof Error) {
                     console.error(
