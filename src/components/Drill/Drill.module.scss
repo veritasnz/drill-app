@@ -241,7 +241,7 @@
         display: inline-block;
         line-height: 1;
         letter-spacing: var(--ls-thin);
-        margin-left: -0.05em; // offset --ls-thin (hack)
+        margin-left: -0.05em; // HACK: synthetically offset --ls-thin 
     }
 
     /**

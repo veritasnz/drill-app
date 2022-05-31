@@ -18,9 +18,12 @@ const Honeypot = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
     useEffect(() => {
         honeypotTimeout = setTimeout(() => {
             if (ref) {
-                type RefT = MutableRefObject<HTMLInputElement>; // hack
-                (ref as RefT).current.required = false;
-                (ref as RefT).current.ariaRequired = "false";
+                 // HACK: the below 'ref.current' type assignments are forced
+                (ref as MutableRefObject<HTMLInputElement>).current.required =
+                    false;
+                (
+                    ref as MutableRefObject<HTMLInputElement>
+                ).current.ariaRequired = "false";
             }
         }, TIME_UNTIL_DEACTIVATION);
 

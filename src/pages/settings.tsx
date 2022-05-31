@@ -18,10 +18,6 @@ const Settings: NextPage = () => {
     const statsCtx = useContext(StatsContext);
     const progressCtx = useContext(ProgressContext);
 
-    const resetSettingsHandler = () => {
-        settingsCtx.resetSettings();
-    };
-
     const resetProgressHandler = () => {
         progressCtx.resetProgress();
         statsCtx.resetStats();
@@ -59,7 +55,7 @@ const Settings: NextPage = () => {
                 <ButtonWrap>
                     <TransitionButton
                         title="Reset the above settings back to default"
-                        onClick={resetSettingsHandler}
+                        onClick={settingsCtx.resetSettings}
                         preText="Reset Settings"
                         postText="Settings Reset"
                         color="orange"

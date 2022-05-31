@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 
 import { ButtonColorNames } from "./Button";
-import Icon, { IconName } from "./Icon/Icon";
+import Icon from "./Icon/Icon";
 
 import s from "./UI.module.scss";
 

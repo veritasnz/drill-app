@@ -1,10 +1,8 @@
-// https://github.com/vercel/next.js/blob/canary/examples/api-routes-rate-limit/utils/rate-limit.js
-
 import LRU from "lru-cache";
 
-// hack – basically nothing here is properly typed
-
 const rateLimit = (options: any) => {
+    // HACK – basically nothing here is properly typed
+
     const tokenCache = new LRU({
         max: parseInt(options.uniqueTokenPerInterval || 500, 10),
         maxAge: parseInt(options.interval || 60000, 10),
@@ -32,6 +30,11 @@ const rateLimit = (options: any) => {
     };
 };
 
+/**
+ * Function to determine if the rate limit has been exceeded.
+ * Returns a rejected Promise object if exceeded
+ * https://github.com/vercel/next.js/blob/canary/examples/api-routes-rate-limit/utils/rate-limit.js
+ */
 const rateLimiter = rateLimit({
     interval: 60 * 1000, // 60 seconds
     uniqueTokenPerInterval: 500, // Max 500 users per second

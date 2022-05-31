@@ -3,7 +3,7 @@ import { describe, expect, test } from "vitest";
 import { getAllLevels } from "../src/lib/level-api";
 import { getAllQuestions } from "../src/lib/question-api";
 
-describe("drillData tests:", () => {
+describe("Content tests:", () => {
     const allQuestions = getAllQuestions();
     const allLevels = getAllLevels();
 

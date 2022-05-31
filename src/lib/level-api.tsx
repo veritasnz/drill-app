@@ -84,15 +84,15 @@ export const getNextLevelById: (currLevelId: string) => Level | null = (
 export const getLevelNum: (levelId: string) => number = (levelId: string) => {
     let returnIndex: number = -1;
 
+    // Loops over every stage until it finds the queried level,
+    // breaks when found, updating the index with it
     drillData.every((stage) => {
         const levelFound = stage.levels.find((level) => {
             returnIndex++;
             return level.id === levelId;
         });
 
-        if (levelFound) {
-            return false;
-        }
+        if (levelFound) return false;
 
         return true;
     });
@@ -150,12 +150,15 @@ export const getHighestCompletedLevel = (answeredIds: string[]) => {
             level.questions
         );
 
+        // If has unanswered questions, stop
         if (unansweredQuestions.length > 0) return false;
 
+        // Increment current highest level
         highestLevel = {
             name: level.name,
             level: index + 1,
         };
+
         return true;
     });
 

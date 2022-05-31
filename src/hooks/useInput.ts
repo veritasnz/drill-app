@@ -6,17 +6,15 @@ import React, { useState } from "react";
  * Hook that intakes a validation function, and outputs all vars needed to attach to an <input>
  * Internally evaluates the inputted value and returns a boolean representing that value's validity
  * Also internally handles the blurring and focusing of <inputs>
- *
- * @param validateValue Function used to validate input
- * @returns
+ * @param validateFunc Function used to validate input
  */
-const useInput = (validateValue: (p: string) => boolean) => {
+const useInput = (validateFunc: (p: string) => boolean) => {
     // Create necessary states
     const [enteredValue, setEnteredValue] = useState("");
     const [isTouched, setIsTouched] = useState(false);
 
     // Set derived values
-    const valueIsValid = validateValue(enteredValue);
+    const valueIsValid = validateFunc(enteredValue);
     const hasError = isTouched && !valueIsValid;
 
     // Generic logic inside our

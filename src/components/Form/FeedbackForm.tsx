@@ -87,13 +87,16 @@ const FeedbackForm: React.FC<Props> = (props) => {
     const formSubmissionHandler = async (event: React.FormEvent) => {
         event.preventDefault();
 
+        // Valid check
         if (!formIsValid) return;
 
         // Honeypot check – form invalid if has value
         if (honeypotRef && honeypotRef.current?.value.trim() !== "") return;
 
+        // Start process
         setFormState(FormStateNameEnum.SENDING);
 
+        // Start API POST
         const response = await fetch("/api/submit-feedback", {
             method: "POST",
             body: JSON.stringify({
@@ -120,6 +123,7 @@ const FeedbackForm: React.FC<Props> = (props) => {
 
         console.log(response.message);
 
+        // Reset
         subject.reset();
         email.reset();
         message.reset();

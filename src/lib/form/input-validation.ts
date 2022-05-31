@@ -1,7 +1,8 @@
 /**
  * Validates the email field
- * @param {string} value
- * @returns {boolean}
+ * @param required whether the field is required or not
+ * @param value value of the email text inputted
+ * @returns the validity of the field as a boolean
  */
 export function validateEmail(required: boolean, value: string) {
     if (!required && value === "") return true;
@@ -11,9 +12,11 @@ export function validateEmail(required: boolean, value: string) {
 }
 
 /**
- * Validates text
- * @param {string} value
- * @returns {boolean}
+ * Validates text from text input element or textarea element
+ * @param required whether the field is required or not
+ * @param minLength minimum length of the text
+ * @param value value of the text inputted
+ * @returns the validity of the field as a boolean
  */
 export const validateTextLength = (
     required: boolean,

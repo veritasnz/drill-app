@@ -10,13 +10,6 @@ const SettingsContextProvider: React.FC = (props) => {
     const [showFurigana, setShowFurigana] = useState(true);
     const [showEnglish, setShowEnglish] = useState(true);
 
-    // Initialize & load from localStorage
-    useEffect(() => {
-        loadBooleanStateValue(LSKeyEnum.SETTING_AUTOPLAY, setAutoplayIsOn);
-        loadBooleanStateValue(LSKeyEnum.SETTING_SHOW_FURI, setShowFurigana);
-        loadBooleanStateValue(LSKeyEnum.SETTING_SHOW_ENG, setShowEnglish);
-    }, []);
-
     // Create toggle functions
     const toggleAutoplayIsOn = toggleBoolStateFnBuilder(
         LSKeyEnum.SETTING_AUTOPLAY,
@@ -37,6 +30,13 @@ const SettingsContextProvider: React.FC = (props) => {
         resetSetting(LSKeyEnum.SETTING_SHOW_FURI, setShowFurigana, true);
         resetSetting(LSKeyEnum.SETTING_SHOW_ENG, setShowEnglish, true);
     };
+
+    // Initialize & load from localStorage
+    useEffect(() => {
+        loadBooleanStateValue(LSKeyEnum.SETTING_AUTOPLAY, setAutoplayIsOn);
+        loadBooleanStateValue(LSKeyEnum.SETTING_SHOW_FURI, setShowFurigana);
+        loadBooleanStateValue(LSKeyEnum.SETTING_SHOW_ENG, setShowEnglish);
+    }, []);
 
     return (
         <SettingsContext.Provider
@@ -83,7 +83,9 @@ const toggleBoolStateFnBuilder = (
     };
 };
 
-// Clearing function based on the LocalStorage key parameter and default value
+/**
+ * Clearing function based on the LocalStorage key parameter and default value
+ */
 const resetSetting = (
     lskey: LSKeyEnum,
     setter: React.Dispatch<React.SetStateAction<boolean>>,

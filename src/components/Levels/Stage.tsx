@@ -10,12 +10,12 @@ interface Props {
 }
 
 const Stage: React.FC<Props> = ({ stage, stageIndex, color }) => {
-    const stageClassname = `${s["stage"]} ${s["stage-wrap"]} ${
+    const className = `${s["stage"]} ${s["stage-wrap"]} ${
         color && s[`stage-wrap--${color}`]
     }`;
 
     return (
-        <li className={stageClassname}>
+        <li className={className}>
             <div className={s["stage-wrap__inner"]}>
                 <div className={s["stage__tit"]}>
                     <h2>

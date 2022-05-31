@@ -6,6 +6,9 @@ import Graveyard from "./Graveyard";
 import Stage from "./Stage";
 
 const StagesMenu: React.FC = () => {
+    /**
+     * Order of Stage BG colors as an array
+     */
     const stageColorsNames: string[] = [
         "green",
         "blue",

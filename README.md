@@ -34,19 +34,17 @@
 
 -   Investigate possibility of merging _drillState.currentLevelNum_ & _progressCtx.ctx.state.currentLevelNum_
 -   Finalize design/animations
--   Documentation
--   Thorough testing
+-   Switch _getAll_ to use _flatMap_
 
 Work for version 1.0:
 
+-   Thorough testing
 -   Finalize initial question content
 -   Implement SEO features and publish to message boards
 -   About page
 
 Work for version 2.0:
 
--   Add 'の' particle for の／が + I-adj situations (e.g. 都合（が・の）いい時)
--   Add は particle
 -   Merge multiple-particle answers into one question
     -   _Question.question_ could be array of questions/answers? English and ID would stay the same
 -   Huge architecture refactor

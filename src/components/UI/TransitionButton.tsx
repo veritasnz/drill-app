@@ -15,6 +15,10 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 let transitionTimer: any;
 
+/**
+ * Just like a regular < Button >, but switches appearance for a few seconds
+ * on click. Switches to green, preText changes to postText, and icon spins
+ */
 const TransitionButton: React.FC<Props> = React.forwardRef<
     HTMLButtonElement,
     Props
@@ -32,6 +36,7 @@ const TransitionButton: React.FC<Props> = React.forwardRef<
 
     const [btnIsTransitioning, setBtnIsTransitioning] = useState(false);
 
+    // Handler that wraps onClick. Handles the transition
     const clickHandler = () => {
         setBtnIsTransitioning(true);
 
@@ -42,15 +47,14 @@ const TransitionButton: React.FC<Props> = React.forwardRef<
         }, 2000);
     };
 
-    // Clear timer
+    // Clear transition timer
     useEffect(() => {
         return () => clearTimeout(transitionTimer);
     }, []);
 
+    // Prep display text
     let textContent = preText;
-    if (btnIsTransitioning && postText) {
-        textContent = postText;
-    }
+    if (btnIsTransitioning && postText) textContent = postText;
 
     return (
         <button

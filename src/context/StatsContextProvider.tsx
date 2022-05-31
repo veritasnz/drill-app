@@ -9,22 +9,42 @@ const StatsContextProvider: React.FC = (props) => {
     const [totalCorrectAttempts, setTotalCorrectAttempts] = useState(0);
 
     const incrementTotalAttempts = () => {
-        const newTotalAttempts = totalAttempts + 1;
-        setTotalAttempts(newTotalAttempts);
-        localStorage.setItem(LSKeyEnum.STATS_ATTEMPTS_ALL, newTotalAttempts.toString());
+        setTotalAttempts((prevTotalAttempts) => {
+            const newTotalAttempts = prevTotalAttempts + 1;
+            localStorage.setItem(
+                LSKeyEnum.STATS_ATTEMPTS_ALL,
+                newTotalAttempts.toString()
+            );
+            return newTotalAttempts;
+        });
     };
 
     const incrementTotalCorrectAttempts = () => {
-        const newTotalCorrectAttempts = totalCorrectAttempts + 1;
-        setTotalCorrectAttempts(newTotalCorrectAttempts);
-        localStorage.setItem(
-            LSKeyEnum.STATS_ATTEMPTS_CORRECT,
-            newTotalCorrectAttempts.toString()
-        );
+        setTotalCorrectAttempts((prevTotalCorrectAttempts) => {
+            const newTotalCorrectAttempts = prevTotalCorrectAttempts + 1;
+            localStorage.setItem(
+                LSKeyEnum.STATS_ATTEMPTS_CORRECT,
+                newTotalCorrectAttempts.toString()
+            );
+            return newTotalCorrectAttempts;
+        });
     };
 
+    const resetStats = () => {
+        // Reset total attempts
+        setTotalAttempts(0);
+        localStorage.setItem(LSKeyEnum.STATS_ATTEMPTS_ALL, "0");
+
+        // Reset total correct attempts
+        setTotalCorrectAttempts(0);
+        localStorage.setItem(LSKeyEnum.STATS_ATTEMPTS_CORRECT, "0");
+    };
+
+    // Initialize stats context
     useEffect(() => {
-        const storedTotalAttempts = localStorage.getItem(LSKeyEnum.STATS_ATTEMPTS_ALL);
+        const storedTotalAttempts = localStorage.getItem(
+            LSKeyEnum.STATS_ATTEMPTS_ALL
+        );
         const storedTotalCorrectAttempts = localStorage.getItem(
             LSKeyEnum.STATS_ATTEMPTS_CORRECT
         );
@@ -37,16 +57,6 @@ const StatsContextProvider: React.FC = (props) => {
             setTotalCorrectAttempts(+storedTotalCorrectAttempts);
         }
     }, []);
-
-    const resetStats = () => {
-        // Reset total attempts
-        setTotalAttempts(0);
-        localStorage.setItem(LSKeyEnum.STATS_ATTEMPTS_ALL, "0");
-
-        // Reset total correct attempts
-        setTotalCorrectAttempts(0);
-        localStorage.setItem(LSKeyEnum.STATS_ATTEMPTS_CORRECT, "0");
-    };
 
     return (
         <StatsContext.Provider

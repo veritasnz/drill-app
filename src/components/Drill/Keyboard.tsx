@@ -25,7 +25,7 @@ const particleKeyPairs: [ParticleEnum, string[]][] = [
     [ParticleEnum.MADE, ["KeyM", "KeyA"]],
 ];
 
-// Key buffering vars
+// Setup key buffering vars
 const KEYSTROKE_DELAY = 1000;
 let lastStrokeTime = Date.now();
 let keystrokeBuffer: string[] = [];

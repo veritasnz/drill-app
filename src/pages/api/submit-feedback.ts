@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 import rateLimiter from "../../lib/form/rate-limit";
-// import backupEmail from "lib/backupEmail";
+
 import {
     sendAdminReceiptEmail,
     sendUserReceiptEmail,
@@ -28,7 +28,7 @@ export default async function handler(
             return;
         }
 
-        // Back up emails incase of failed delivery
+        // TODO: Back up emails incase of failed delivery
         // await backupEmail(req.body);
 
         // Send emails

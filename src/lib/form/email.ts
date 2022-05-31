@@ -8,7 +8,7 @@ const transporter = SMTPTransport.createTransport({
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
     },
-} as {}); // hack
+} as {}); // HACK: forced type
 
 interface EmailMessageFormat {
     email?: string;

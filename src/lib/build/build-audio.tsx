@@ -31,6 +31,7 @@ export default async function buildVoices(allQuestions: Question[]) {
 
     let charsToConvert = 0;
 
+    // Loop through text and write mp3 to file
     for (const question of allQuestions) {
         const currentText = parseQuestionTextForTTS(
             question.question,
@@ -45,6 +46,11 @@ export default async function buildVoices(allQuestions: Question[]) {
     console.log(`Converted ${charsToConvert} chars using TTS API`);
 }
 
+/**
+ * Use the Google Cloud TTS API to write file to /public/audio/
+ * @param text 
+ * @param filename 
+ */
 const writeMp3FromText: (text: string, filename: string) => void = async (
     text,
     filename
@@ -66,7 +72,7 @@ const writeMp3FromText: (text: string, filename: string) => void = async (
 
         await writeFile(
             `public/audio/${filename}.mp3`,
-            response.audioContent as any, // hack
+            response.audioContent as any, // HACK: forced type
             "binary"
         );
 

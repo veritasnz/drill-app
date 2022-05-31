@@ -9,7 +9,6 @@ const ToggleSwitch: React.FC<Props> = (props) => {
     return (
         <div className={s["toggle-switch"]}>
             <input
-                key={Math.random()} // hack
                 type="checkbox"
                 checked={props.stateVar}
                 onChange={props.onToggle}

@@ -25,7 +25,7 @@ const Question: React.FC<Props> = ({
     onNextHandler,
     settingsCtx,
 }) => {
-    /**
+    /*
      * Setup Next Button
      * When 'ds.isPostAnswer' updates and is true,
      * focus on nextbutton else focus on docEl
@@ -40,7 +40,7 @@ const Question: React.FC<Props> = ({
         }
     }, [ds.isPostAnswer]);
 
-    /**
+    /*
      * Play audio when 'isPostAnswer' changes
      */
     const audioRef = useRef(new Audio());
@@ -65,7 +65,7 @@ const Question: React.FC<Props> = ({
         }
     }, [ds.isPostAnswer, ds.question.id, settingsCtx.autoplayIsOn]);
 
-    /**
+    /*
      * Render
      */
     return (

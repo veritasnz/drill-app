@@ -32,9 +32,7 @@ import s from "./Drill.module.scss";
 const ProgressBar: React.FC<Props> = ({ drillState: ds }) => {
     const [lvlProgress, setLvlProgress] = useState<ProgressBarT>(INITIAL_STATE);
 
-    /**
-     * Initiate progress bar state & update when level/question changes
-     */
+    // Initiate progress bar state & update when level/question changes
     useEffect(() => {
         if (ds.currentLevel.id === "GRAVEYARD") {
             setLvlProgress((prevState: ProgressBarT) => {
@@ -67,9 +65,7 @@ const ProgressBar: React.FC<Props> = ({ drillState: ds }) => {
         }
     }, [ds.currentLevel, ds.currentLevelNum, ds.question]);
 
-    /**
-     * Update progress bar state when drill changes to 'postAnswer' state
-     */
+    // Update progress bar state when drill changes to 'postAnswer' state
     useEffect(() => {
         if (ds.isPostAnswer) {
             setLvlProgress((prevState: ProgressBarT) => {
@@ -79,8 +75,8 @@ const ProgressBar: React.FC<Props> = ({ drillState: ds }) => {
                 };
             });
         }
+        // HACK: 'lvlProgress.questionIndex' should also be a dependancy
     }, [ds.isPostAnswer]); // eslint-disable-line
-    // ↑ hack
 
     return (
         <header className={s["progress-bar"]}>

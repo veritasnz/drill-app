@@ -17,10 +17,8 @@ const Home: NextPage = () => {
 
 export default Home;
 
-/**
- * Build script – Build Audio
- */
 export async function getStaticProps() {
+    // If production, build script page & build audio files
     if (process.env.NODE_ENV == "production") {
         const allQuestions = getAllQuestions();
         await buildAudio(allQuestions);

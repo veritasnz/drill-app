@@ -24,13 +24,11 @@ const ProgressContextProvider: React.FC = (props) => {
         setAnsweredQuestionsIds((prevState) => {
             const newAnsweredQuestionIds = [...prevState];
 
-            // Test if question already exists
+            // Check if question already exists. If non-existent, add
             const questionExists = newAnsweredQuestionIds.find(
                 (currentQuestionId) => currentQuestionId === questionId
             );
-            if (!questionExists) {
-                newAnsweredQuestionIds.push(questionId);
-            }
+            if (!questionExists) newAnsweredQuestionIds.push(questionId);
 
             // Set local storage
             localStorage.setItem(
@@ -46,13 +44,14 @@ const ProgressContextProvider: React.FC = (props) => {
         setAnsweredQuestionsIds((prevState) => {
             let newAnsweredQuestionIds = prevState;
 
+            // Loop through answeredQuestionIds and filter out ones to remove
             questions.forEach((idToRemove) => {
                 newAnsweredQuestionIds = newAnsweredQuestionIds.filter(
                     (item) => item !== idToRemove
                 );
             });
 
-            // Set local storage
+            // Update local storage
             localStorage.setItem(
                 LSKeyEnum.PROGRESS_ANSWERED_QS,
                 JSON.stringify(newAnsweredQuestionIds)
@@ -63,11 +62,12 @@ const ProgressContextProvider: React.FC = (props) => {
     };
 
     const setLevelId = (levelId: string) => {
+        // Update currentLevelId & currentLevelNum
         setCurrentLevelId(levelId);
-        localStorage.setItem(LSKeyEnum.PROGRESS_CURR_LVL, levelId);
-
-        // Also update currentLevelNum
         setCurrentLevelNum(getLevelNum(levelId));
+
+        // Update local storage
+        localStorage.setItem(LSKeyEnum.PROGRESS_CURR_LVL, levelId);
     };
 
     const addGraveyardQuestion = (question: Question) => {
@@ -77,13 +77,17 @@ const ProgressContextProvider: React.FC = (props) => {
             });
 
             if (alreadyExists) {
-                return prevState;
+                return prevState; // do nothing
             } else {
+                // Add to graveyard
                 const newGraveyard = prevState.concat(question);
+
+                // Update local storage
                 localStorage.setItem(
                     LSKeyEnum.PROGRESS_GRAVEYARD_QS,
                     JSON.stringify(newGraveyard)
                 );
+
                 return newGraveyard;
             }
         });
@@ -91,18 +95,35 @@ const ProgressContextProvider: React.FC = (props) => {
 
     const removeGraveyardQuestionById = (questionId: string) => {
         setGraveyard((prevState) => {
+            // Remove question from graveyard
             const newGraveyard = prevState.filter(
                 (currQuestion) => currQuestion.id !== questionId
             );
+
+            // Update local storage
             localStorage.setItem(
                 LSKeyEnum.PROGRESS_GRAVEYARD_QS,
                 JSON.stringify(newGraveyard)
             );
+
             return newGraveyard;
         });
     };
 
-    // Initialize & load from localStorage
+    const resetProgress = () => {
+        // Clear graveyard
+        graveyard.forEach((question) => {
+            removeGraveyardQuestionById(question.id);
+        });
+
+        // Clear all answeredQuestionIds
+        removeAnsweredQuestionsIds(answeredQuestionIds);
+
+        // Reset level
+        setLevelId(INITIAL_LEVEL_ID);
+    };
+
+    // Initialize context & load from local storage
     useEffect(() => {
         // Set current level ID from storage if it exists, else initialise
         const storedLevelId = localStorage.getItem(LSKeyEnum.PROGRESS_CURR_LVL);
@@ -128,19 +149,6 @@ const ProgressContextProvider: React.FC = (props) => {
             setGraveyard(JSON.parse(storedGraveyardJSON));
         }
     }, []);
-
-    const resetProgress = () => {
-        // Clear graveyard
-        graveyard.forEach((question) => {
-            removeGraveyardQuestionById(question.id);
-        });
-
-        // Clear answeredQuestionIds
-        removeAnsweredQuestionsIds(answeredQuestionIds);
-
-        // Reset level
-        setLevelId(INITIAL_LEVEL_ID);
-    };
 
     return (
         <ProgressContext.Provider
