@@ -52,7 +52,7 @@ const FORM_STATES: {
     },
     SENT: {
         bttn: "Sent",
-        alert: "Enquiry sent! Please check your emails for an email of receipt",
+        alert: "Enquiry sent! If you entered your email, please check for an email of receipt",
         color: "green",
         icon: "check",
     },

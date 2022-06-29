@@ -50,6 +50,7 @@ It is still a work in progress.
 -   Investigate possibility of merging _drillState.currentLevelNum_ & _progressCtx.ctx.state.currentLevelNum_
 -   Finalize design/animations
 -   Switch _getAll~_ /lib/ functions to use _flatMap_ array method
+-   Swap `babel-plugin-inline-react-svg` for another library, remove `.babelrc`, allow SWC during build
 
 Work for version 1.0:
 

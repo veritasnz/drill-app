@@ -1,16 +1,6 @@
 import ParticleEnum from "../models/ParticleEnum.model";
 import Stage from "../models/Stage.model";
 
-/**
- * Stores all stage, level and question data.
- * Temporary – to be replaced by database + API at some point
- *
- * Question text symbol legend:
- * -    {}() → Kanji/furigana pair
- * -    _ → Current question marker
- * -    ? → Future question markers
- */
-
 const dragonBallStage: Stage = {
     id: "dragon-ball",
     name: "Dragon Ball",
@@ -502,6 +492,15 @@ const saiyanStage: Stage = {
     ],
 };
 
+/**
+ * Stores all stage, level and question data.
+ * Temporary – to be replaced by database + API at some point
+ *
+ * Question text symbol legend:
+ * -    {}() → Kanji/furigana pair
+ * -    _ → Current question marker
+ * -    ? → Future question markers
+ */
 const drillData: Stage[] = [dragonBallStage, saiyanStage];
 
 export default drillData;
